@@ -6,6 +6,10 @@ body {
   pointer-events: none;
 }
 
+#about_link{
+  cursor: pointer;
+}
+
 .navbar-static-top {
   margin-bottom: 35px;
 }
@@ -44,10 +48,6 @@ body {
   border-top-right-radius: 0;
 }
 
-#auth_form_submitter{
+.auth_form_submitter{
   margin-top: 10px;
-}
-
-#about_link{
-  cursor: pointer;
 }
