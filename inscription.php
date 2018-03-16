@@ -34,23 +34,23 @@ require('database_auth.php'); ?>
 
     <div class="container">
 
-      <form class="form-signin" id="form_inscription">
+      <form class="form-signin" id="form_inscription" action="redirection_inscription.php" method="post">
         <h2 class="form-signin-heading">Inscription</h2>
         
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input type="text" id="inputUsername" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+          <input type="text" id="inputUsername" name="inputUsername" class="form-control" maxlength="50" minlength="6" placeholder="Nom d'utilisateur" required autofocus>
         </div>
 
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe">
+          <input type="password" id="inputPassword" name="inputPassword" class="form-control" maxlength="100" minlength="6" placeholder="Mot de passe" required>
           <script type="text/javascript"> $('#inputPassword').on('input', egalite_mdp); </script>
         </div>
 
         <div class="input-group" id="passwordConfirmContainer">
           <span class="input-group-addon"><i class="glyphicon glyphicon-hand-up"></i></span>
-          <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirmez mot de passe">
+          <input type="password" id="inputPasswordConfirm" name="inputPasswordConfirm" class="form-control" maxlength="100" minlength="6" placeholder="Confirmez mot de passe" required>
           <script type="text/javascript"> $('#inputPasswordConfirm').on('input', egalite_mdp); </script>
         </div>
 

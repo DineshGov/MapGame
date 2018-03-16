@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <title>Se7en</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <link rel="icon" href="bootstrap/favicon_Se7en.ico">
-    <title>Se7en</title>
-
-    <script src="js/jquery-3.3.1.js"></script>
+    
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/redirection_pages_function.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="authentification.css" rel="stylesheet">
     <script src="bootstrap/js/ie-emulation-modes-warning.js"></script>
