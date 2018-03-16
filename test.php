@@ -17,7 +17,12 @@
 </head>
 <body>
 
-	
+<?php 
+require('database_auth.php');
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+?>
 
 	<div id="maDiv" class="col-lg-8" ></div>
 	<script>
@@ -32,7 +37,25 @@
 2.36563]], {color: 'red',weight:6,fillColor:'blue',fillOpacity:0.5})
 .addTo(map);
 polygone.on('click', function(){ alert("test"); });
-
 	</script>
+<span>
+<?php
+
+	if(isset($_POST['inputLogin']) || isset($_POST['inputPassword']) || trim($_POST['inputLogin']) != "" || trim($_POST['inputPassword']) != ""){
+		$req=$bd->prepare('select count(*) as resultat from Users where login=:log and password=:pas');
+		$req->bindvalue(':log', $_POST['inputLogin']);
+		$req->bindvalue(':pas', $_POST['inputPassword']);
+		$req->execute();
+		$tab = $req->fetch(PDO::FETCH_ASSOC);
+			if($tab['resultat']==1){ //Si le login et le password ont été trouvé dans la bdd alors connexion.
+				echo '<p>Authentifié</p>';
+			}
+			else{
+				echo '<p>Echec lors de l\'authentification, login ou mot de pass erroné.</p>';
+			}
+	}
+?>
+</span>
+
 </body>
 </html>
