@@ -21,13 +21,16 @@ require('database_auth.php'); ?>
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
           <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required autofocus>
         </div>
-
-        <div class="input-group" id="passwordConfirmContainer">
+		
+		 <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-hand-up"></i></span>
-          <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Confirmez mot de passe" required autofocus>
+          <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Mot de passe" required autofocus>
         </div>
 
         <button id="signupConfirm" class="btn btn-lg btn-danger btn-block auth_form_submitter active" type="submit">Inscription</button>
+		
+		<br><span style="color: red; display: none;" id="loginError">Ce nom d'utilisateur éxiste déja</span>
+		<br><span style="color: red; display: none;" id="passError">Les mots de passe doivent être identiques</span>
       </form>
 
     </div>

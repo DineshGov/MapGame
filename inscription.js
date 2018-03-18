@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	
-		
+	var msg_error_created = false;	
+	
 	$('#inputUsername').keyup(function(event){
 		
 		$.get('http://localhost/mapgame/verifS.php',
@@ -13,12 +14,16 @@ $(document).ready(function(){
 					$('.auth_form_submitter').removeClass('active');
 					$('.auth_form_submitter').addClass('disabled');
 					$('.auth_form_submitter').css('pointer-events', 'none');
+					$('#loginError').show();
+					document.getElementById("signupConfirm").disabled=true;
 				}
 				else if(reponse=="ok")
 				{
 					$('.auth_form_submitter').removeClass('disabled');
 					$('.auth_form_submitter').addClass('active');
 					$('.auth_form_submitter').css('pointer-events', 'auto');
+					$('#loginError').hide();
+					document.getElementById("signupConfirm").disabled=false;
 				}
 			
 		});
@@ -26,7 +31,6 @@ $(document).ready(function(){
 		
 	});
 	
-	var msg_error_created = false;
 	 
 	$('#inputPassword').keyup(function()
 	{
@@ -37,6 +41,7 @@ $(document).ready(function(){
 				$('.auth_form_submitter').removeClass('active');
 				$('.auth_form_submitter').addClass('disabled');
 				$('.auth_form_submitter').css('pointer-events', 'none');
+				$('#passError').show();
 			  }
 			  msg_error_created = true;		
 		}
@@ -45,6 +50,7 @@ $(document).ready(function(){
 		  $('.auth_form_submitter').removeClass('disabled');
 		  $('.auth_form_submitter').addClass('active');
 		  $('.auth_form_submitter').css('pointer-events', 'auto');
+		  $('#passError').hide();
 		  if (msg_error_created)
 			msg_error_created = false;
 		}
@@ -59,6 +65,7 @@ $(document).ready(function(){
 				$('.auth_form_submitter').removeClass('active');
 				$('.auth_form_submitter').addClass('disabled');
 				$('.auth_form_submitter').css('pointer-events', 'none');
+				$('#passError').show();
 			  }
 			  msg_error_created = true;
 		}
@@ -67,6 +74,7 @@ $(document).ready(function(){
 		  $('.auth_form_submitter').removeClass('disabled');
 		  $('.auth_form_submitter').addClass('active');
 		  $('.auth_form_submitter').css('pointer-events', 'auto');
+		  $('#passError').hide();
 		  if (msg_error_created)
 			msg_error_created = false;
 		}
