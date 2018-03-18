@@ -24,7 +24,7 @@ require('database_auth.php'); ?>
 		
 		 <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-hand-up"></i></span>
-          <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Mot de passe" required autofocus>
+          <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="confirmer le mot de passe" required autofocus>
         </div>
 
         <button id="signupConfirm" class="btn btn-lg btn-danger btn-block auth_form_submitter active" type="submit">Inscription</button>
