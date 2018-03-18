@@ -19,6 +19,7 @@ require('database_auth.php');?>
         </div>
 
         <button class="btn btn-lg btn-danger btn-block auth_form_submitter" id="buttonConnexion" type="submit">Connexion</button>
+		<br><span style="color: red; display: none;" id="loginError">Le nom d'utilisateur et le mot de passe n'éxistent pas</span>
       </form>
 
     </div>
