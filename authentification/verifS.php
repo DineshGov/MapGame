@@ -1,5 +1,5 @@
 <?php
-	require('database_auth.php');
+	require('../database_auth.php');
 	
 	if( isset($_GET['login_2']) )
 	{

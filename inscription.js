@@ -2,13 +2,9 @@ $(document).ready(function(){
 	
 	var msg_error_created = false;	
 	
-	$('#inputUsername').keyup(function(event){  //la fonction s'activera des qu'on tapera du texte sur le champ de texte username
+	$('#inputUsername').keyup(function(){  //la fonction s'activera des qu'on tapera du texte sur le champ de texte username
 		
-		var url = document.location.href;
-		var url_sans_nom_fichier  = url.substring( 0 ,url.lastIndexOf( "/" ) );
-		var url_destination = url_sans_nom_fichier.concat("/verifS.php");
-
-		$.get(url_destination,  //on envoie en paramètre au fichier php (ici login_2) la valeur du champ de texte
+		$.get('verifS.php',  //on envoie en paramètre au fichier php (ici login_2) la valeur du champ de texte
 		{login_2: $('#inputUsername').val()},
 		function(reponse)						//reponse du fichier php
 		{

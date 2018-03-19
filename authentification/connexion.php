@@ -1,7 +1,7 @@
 <?php 
 $page_name = "connexion.php";
 require('header.php');
-require('database_auth.php'); ?>
+require('../database_auth.php'); ?>
 
 	<body>
 		<div class="container">
