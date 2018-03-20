@@ -1,7 +1,7 @@
 <?php
 $page_name = "redirection_connexion.php"; 
 require('header.php');
-require('../database_auth.php');?>
+require('database_auth.php');?>
 
 
 
@@ -25,7 +25,7 @@ require('../database_auth.php');?>
 				echo "<p>Echec lors de l'authentification, login ou mot de passe erroné.</p>";
 				echo "<p>Vous allez maintenant être redirigé vers le formulaire de connexion.</p>";
 				echo("<script>setTimeout('RedirectionVersConnexion()', 5000)</script>");
-				echo "<p><a href='connexion.php'> Cliquez ici si l'attente est trop longue. </a></p>";
+				echo "<p><a href='index.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 			}
 	}
 	else{
@@ -33,7 +33,7 @@ require('../database_auth.php');?>
 		echo "<p>Echec lors de l'authentification, veuillez contacter l'administrateur si le problème persiste.</p>";
 		echo "<p>Vous allez maintenant être redirigé vers le formulaire de connexion.</p>";
 		echo("<script>setTimeout('RedirectionVersConnexion()', 5000)</script>");
-		echo "<p><a href='connexion.php'> Cliquez ici si l'attente est trop longue. </a></p>";
+		echo "<p><a href='index.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 	}
 
 ?>

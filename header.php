@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="../bootstrap/favicon_Se7en.ico">
+    <link rel="icon" href="bootstrap/favicon_Se7en.ico">
     
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../jquery-3.3.1.js"></script>
-    <script src="../js/redirection_pages_function.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <link href="../bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="authentification.css" rel="stylesheet">
-    <script src="../bootstrap/js/ie-emulation-modes-warning.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.3.1.js"></script>
+    <script src="js/redirection_pages_function.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/authentification.css" rel="stylesheet">
+    <script src="bootstrap/js/ie-emulation-modes-warning.js"></script>
   </head>
 
   <body>
@@ -46,8 +46,8 @@
           <ul class="nav navbar-nav navbar-right">
             <?php 
             	if ($page_name === "inscription.php")
-            		echo '<li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>';
-            	elseif ($page_name === "connexion.php")
+            		echo '<li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>';
+            	elseif ($page_name === "index.php")
             		echo '<li><a href="inscription.php"><span class="glyphicon glyphicon-log-in"></span> Inscription</a></li>';
             ?>
             <li><a href="#"><span class="glyphicon glyphicon-user "></span> Invité</a></li>

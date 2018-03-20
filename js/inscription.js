@@ -40,7 +40,7 @@
 	}
 
 	function verif_dispo_login_ajax(){
-		$.get('verifS.php',  //on envoie en paramètre au fichier php (ici login_2) la valeur du champ de texte
+		$.get("requete_ajax.php",  //on envoie en paramètre au fichier php (ici login_2) la valeur du champ de texte
 		{login_2: $('#inputUsername').val()},
 		function(reponse)		//reponse du fichier php
 		{

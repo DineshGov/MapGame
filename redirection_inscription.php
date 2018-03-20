@@ -1,7 +1,7 @@
 <?php
 $page_name = "redirection_inscription.php"; 
 require('header.php');
-require('../database_auth.php'); ?>
+require('database_auth.php'); ?>
 
 
 <div class="div_redirection">
@@ -28,7 +28,7 @@ require('../database_auth.php'); ?>
 
 			echo "<div class='redirection_div'> Bienvenue " . htmlspecialchars($_POST['inputUsername'], ENT_QUOTES) . "! </div>";
 			echo "<p>Votre compte a bien été crée.</p> <p>Vous allez maintenant être redirigé vers le formulaire de connexion.</p>";
-			echo "<p><a href='connexion.php'> Cliquez ici si l'attente est trop longue. </a></p>";
+			echo "<p><a href='index.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 			echo("<script>setTimeout('RedirectionVersConnexion()', 5000)</script>");
 		}
 		else{

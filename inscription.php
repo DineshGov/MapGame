@@ -1,7 +1,7 @@
 <?php 
 $page_name = "inscription.php";
 require('header.php');
-require('../database_auth.php'); ?>
+require('database_auth.php'); ?>
 
 <script type="text/javascript"> 
 	var flag_password_created = false;
@@ -13,7 +13,7 @@ require('../database_auth.php'); ?>
 </script>
 
 	<body>
-		<script src="../inscription.js"></script>
+		<script src="js/inscription.js"></script>
 		<div class="container">
 
 		  <form class="form-signin" id="form_inscription" action="redirection_inscription.php" method="post">
@@ -46,6 +46,6 @@ require('../database_auth.php'); ?>
 	</body>
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="../bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+		<script src="bootstrap/js/ie10-viewport-bug-workaround.js"></script>
 		
 </html>
