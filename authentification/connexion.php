@@ -6,7 +6,7 @@ require('../database_auth.php'); ?>
 	<body>
 		<div class="container">
 
-		  <form class="form-signin" action="test.php" method="post">
+		  <form class="form-signin" action="redirection_connexion.php" method="post">
 			<h2 class="form-signin-heading">Connexion</h2>
 			
 			<div class="input-group">
@@ -20,7 +20,6 @@ require('../database_auth.php'); ?>
 			</div>
 
 			<button class="btn btn-lg btn-danger btn-block auth_form_submitter" id="buttonConnexion" type="submit">Connexion</button>
-			<br><span style="color: red; display: none;" id="loginError">Le nom d'utilisateur et le mot de passe n'éxistent pas</span>
 		  </form>
 
 		</div>	

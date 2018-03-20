@@ -1,13 +1,19 @@
 <?php
 $page_name = "redirection_inscription.php"; 
 require('header.php');
-require('database_auth.php'); ?>
+require('../database_auth.php'); ?>
+
+<?php 
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+?>
 
 <div class="div_redirection">
 <?php
 
 	if( isset($_POST['inputPassword']) && isset($_POST['inputPasswordConfirm']) && ( $_POST['inputPassword'] !== $_POST['inputPasswordConfirm'] ) ){
-		echo '<div class="redirection_span"> Erreur. </div>';
+		echo '<div class="redirection_div"> Erreur. </div>';
 		echo "<p>Les mots de passe ne correspondent pas</p> <p>Vous allez maintenant être redirigé vers le formulaire d'inscription.</p>" . "\n<a href='inscription.php'> Cliquez ici si l'attente est trop longue. </a>";
 		echo("<script>setTimeout('RedirectionVersInscription()', 5000)</script>");
 	}
@@ -25,21 +31,22 @@ require('database_auth.php'); ?>
 			$req->bindvalue(':pass', md5($_POST['inputPassword']) );
 			$req->execute();
 
-			echo "<div class='redirection_span'> Bienvenue " . htmlspecialchars($_POST['inputUsername'], ENT_QUOTES) . "! </div>";
+			echo "<div class='redirection_div'> Bienvenue " . htmlspecialchars($_POST['inputUsername'], ENT_QUOTES) . "! </div>";
 			echo "<p>Votre compte a bien été crée.</p> <p>Vous allez maintenant être redirigé vers le formulaire de connexion.</p>";
 			echo "<p><a href='connexion.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 			echo("<script>setTimeout('RedirectionVersConnexion()', 5000)</script>");
 		}
 		else{
-			echo '<div class="redirection_span"> Erreur. </div>';
+			echo '<div class="redirection_div"> Erreur. </div>';
 			echo "<p>Nom d'utilisateur déjà utilisé. Merci d'en saisir un nouveau.</p> <p>Vous allez maintenant être redirigé vers le formulaire d'inscription.</p>";
 			echo "<p><a href='inscription.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 			echo("<script>setTimeout('RedirectionVersInscription()', 5000)</script>");
+			//Ce cas est normalement impossible car controlé lors du remplissage du formulaire par un script ajax
 		}
 
 	}
 	else{
-		echo '<div class="redirection_span"> Erreur. </div>';
+		echo '<div class="redirection_div"> Erreur. </div>';
 		echo "<p>Erreur lors de l'inscription. Attention à ne pas un mot de passe constitué uniquement d'espace.</p> <p>Veuillez contacter l'administrateur au 06 82 52 23 20 si le problème persiste.</p>" . "\n<a href='inscription.php'> Retour à la page d'inscription </a>";
 		echo("<script>setTimeout('RedirectionVersInscription()', 5000)</script>");
 	}
