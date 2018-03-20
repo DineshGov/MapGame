@@ -55,7 +55,6 @@ require('../database_auth.php'); ?>
 
 			<button id="signupConfirm" class="btn btn-lg btn-danger btn-block auth_form_submitter active" type="submit">Inscription</button>
 			
-			<span style="color: red; display: none;" id="loginError">Ce nom d'utilisateur existe déja</span>
 		  </form>
 
 		</div>
