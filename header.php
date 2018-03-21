@@ -49,8 +49,10 @@
             		echo '<li><a href="index.php"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>';
             	elseif ($page_name === "index.php")
             		echo '<li><a href="inscription.php"><span class="glyphicon glyphicon-log-in"></span> Inscription</a></li>';
+            
+              if($page_name !== "redirection_connexion.php")
+                echo '<li><a href="#"><span class="glyphicon glyphicon-user "></span> Invité</a></li>'
             ?>
-            <li><a href="#"><span class="glyphicon glyphicon-user "></span> Invité</a></li>
           </ul>
         </div>
       </div>
