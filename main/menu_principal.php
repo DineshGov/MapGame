@@ -5,7 +5,6 @@
 
 
 
-    <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-11 col-md-11 col-sm-11"> <h2>Bienvenue !</h2> </div>
 
       <?php
@@ -19,6 +18,7 @@
         echo "</div>";
 
       ?>
-    </div>
     
-    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1"> <a href="administration.php"><h2>Panneau de configuration</h2></a> </div>
+    <div class="col-lg-offset-1 col-lg-11 col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-11">
+      <a href="administration.php"><h2><span class="glyphicon glyphicon-cog"></span>Panneau de configuration</h2></a> 
+    </div>

@@ -9,7 +9,7 @@ require('database_auth.php');?>
 <div class="div_redirection">
 <?php
 
-	if( isset($_POST['inputLogin']) && isset($_POST['inputPassword']) && trim($_POST['inputLogin']) !== "" && trim($_POST['inputPassword']) !== "" && $_POST['inputLogin']="admin"){
+	if( isset($_POST['inputLogin']) && isset($_POST['inputPassword']) && trim($_POST['inputLogin']) !== "" && trim($_POST['inputPassword']) !== "" && $_POST['inputLogin']==="admin"){
 		$req=$bd->prepare('select count(*) as resultat from Users where login=:log and password=:pas');
 		$req->bindvalue(':log', $_POST['inputLogin']);
 		$req->bindvalue(':pas', $_POST['inputPassword']);

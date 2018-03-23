@@ -17,6 +17,7 @@
     <script src="js/redirection_pages_function_main.js"></script>
     <link href="css/header.css" rel="stylesheet">
     <link href="css/deconnexion.css" rel="stylesheet">
+    <link href="css/menu_principal.css" rel="stylesheet">
   </head>
 
   <body>
