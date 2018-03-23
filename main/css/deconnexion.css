@@ -1,0 +1,16 @@
+
+.redirection_div{
+  background-color: #f5f5f5;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  margin-bottom: 25px;
+  margin-left: inherit; 
+}
+
+.div_redirection > p, .div_redirection > a{
+  margin-left: 10px;
+}

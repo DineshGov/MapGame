@@ -16,7 +16,7 @@ require('database_auth.php'); ?>
 
 			<div class="input-group">
 			  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-			  <input type="password" name="inputPassword" id="inputPassword" maxlength="100" minlength="6" class="form-control" placeholder="Mot de passe">
+			  <input type="password" name="inputPassword" id="inputPassword" maxlength="100" minlength="5" class="form-control" placeholder="Mot de passe">
 			</div>
 
 			<button class="btn btn-lg btn-danger btn-block auth_form_submitter" id="buttonConnexion" type="submit">Connexion</button>
