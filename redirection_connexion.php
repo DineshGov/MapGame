@@ -17,7 +17,7 @@ require('database_auth.php');?>
 			if($tab['resultat']==1){ //Si le login et le password ont été trouvé dans la bdd alors connexion.
 				echo "<div class='redirection_div'> Bienvenue " . htmlspecialchars($_POST['inputLogin'], ENT_QUOTES) . "! </div>";
 				echo "<p>Vous êtes connecté.</p> <p>Vous allez maintenant être redirigé vers le menu principal.</p>";
-				echo "<p><a href='menu_principal.php'> Cliquez ici si l'attente est trop longue. </a></p>";
+				echo "<p><a href='./main/menu_principal.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 				//echo("<script>setTimeout('RedirectionVersMenuPrincipal()', 5000)</script>");
 			}
 			else{
