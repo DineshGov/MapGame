@@ -47,12 +47,14 @@
           <ul class="nav navbar-nav navbar-right">
           <?php
           if($page_name!=="deconnexion.php"){
-            if(isset( $_SESSION['login'])){
+            if(isset($_SESSION['login']) && isset($_SESSION['connecte'])){
               echo '<li><a href="#" id="connected_as"><span class="glyphicon glyphicon-education glyphicon_header"> </span> Connecté en tant que ' . $_SESSION['login'] . '</a></li>';
               echo '<li><a href="deconnexion.php"><span class="glyphicon glyphicon-off glyphicon_header"> </span> Déconnexion </a></li>';
             }
-            else
+            else{
               echo "<li><a href='#' id='connected_as'><span class='glyphicon glyphicon-education glyphicon_header'> </span> Connecté en tant qu'invité</a></li>";
+              echo '<li><a href="deconnexion.php"><span class="glyphicon glyphicon-off glyphicon_header"> </span> Déconnexion </a></li>';
+            }
           }
           ?>
           </ul>

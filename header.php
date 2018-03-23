@@ -51,7 +51,7 @@
             		echo '<li><a href="inscription.php"><span class="glyphicon glyphicon-log-in"></span> Inscription</a></li>';
             
               if($page_name !== "redirection_connexion.php")
-                echo '<li><a href="#"><span class="glyphicon glyphicon-user "></span> Invité</a></li>'
+                echo '<li><a href="redirection_invite.php"><span class="glyphicon glyphicon-user "></span> Invité</a></li>'
             ?>
           </ul>
         </div>
