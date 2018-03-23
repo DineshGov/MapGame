@@ -1,14 +1,12 @@
 	function gestion_btn_form_inscription(flag_password, flag_username){
  		//Il suffit qu'un seul flag soit activé pour que le bouton de soumission du formulaire soit désactivé.
  		if(flag_password || flag_username){
- 			console.log("desactivation du bouton");
 			$('.auth_form_submitter').removeClass('active');
 			$('.auth_form_submitter').addClass('disabled');
 			$('.auth_form_submitter').css('pointer-events', 'none');
  		}
  		//Si les deux flags sont désactivés alors on active le bouton.
  		if(!flag_password && !flag_username){
- 			console.log("activation du bouton");
  			$('.auth_form_submitter').removeClass('disabled');
 	    	$('.auth_form_submitter').addClass('active');
 	    	$('.auth_form_submitter').css('pointer-events', 'auto');
