@@ -12,12 +12,14 @@
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="../jquery/jquery-3.3.1.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <link href="../bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <script src="../bootstrap/js/ie-emulation-modes-warning.js"></script>
+    
     <script src="js/redirection_pages_function_main.js"></script>
+    <script src="js/administration.js"></script>
     <link href="css/header.css" rel="stylesheet">
     <link href="css/deconnexion.css" rel="stylesheet">
     <link href="css/menu_principal.css" rel="stylesheet">
+    <link href="css/administration.css" rel="stylesheet">
+    
   </head>
 
   <body>

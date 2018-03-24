@@ -1,0 +1,18 @@
+table{
+	background-color: #ddd;
+	margin-top: 10px;
+}
+
+thead{
+	background-color: #bfbfbf;
+	font-weight: bold;
+}
+
+.glyphicon-remove-circle{
+	color: #cc0000;
+}
+
+.element_supprimable, .glyphicon-remove-sign{
+	display: block;
+	text-align: center;
+}

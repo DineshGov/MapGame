@@ -6,3 +6,4 @@ function RedirectionVersConnexionFromMain(){
 	var url_destination = url_sans_main.concat("/index.php");
   	document.location.href= url_destination;
 }
+//Fonction utilisée en cas de déconnexion. On sort alors du repertoire main d'ou la répétition du substring /
