@@ -8,11 +8,11 @@ thead{
 	font-weight: bold;
 }
 
-.glyphicon-remove-circle{
-	color: #cc0000;
+.glyphicon-trash, .glyphicon-wrench{
+	color: #990000;
 }
 
-.element_supprimable, .element_modifiable, .glyphicon-remove-sign{
+.element_supprimable, .element_modifiable, .glyphicon-remove-sign, .glyphicon-info-sign{
 	display: block;
 	text-align: center;
 }

@@ -34,7 +34,7 @@
                       echo "<td>" . $tab1['id'] . "</td>";
                       echo "<td>" . htmlspecialchars($tab1['login'], ENT_QUOTES) . "</td>";
                       echo "<td>" . $tab1['date_inscription'] . "</td>";
-                      echo "<td> <span id='user" . $tab1['id'] . "'class='element_supprimable glyphicon glyphicon-remove-circle'> </td>"; 
+                      echo "<td> <span id='user" . $tab1['id'] . "'class='element_supprimable glyphicon glyphicon-trash'> </td>"; 
                       echo '</tr>';
                     }
                     //On ne souhaite pas afficher l'utilisateur admin dans la liste des utilisateurs pouvant etre supprimé.
@@ -55,19 +55,18 @@
           <tr>
             <th>id</th>
             <th>Nom questionnaire</th>
-            <th><span class="glyphicon glyphicon-remove-sign"></span></th>
+            <th><span class="glyphicon glyphicon-info-sign"></span></th>
           </tr>
         </thead>
         <tbody>
           <?php
-		  $page_name;
             $req2=$bd->prepare('select * from questionnaires order by idQuestionnaire');
             $req2->execute();
                   while($tab2 = $req2->fetch(PDO::FETCH_ASSOC)){
                     echo '<tr>';
                     echo "<td>" . $tab2['idQuestionnaire'] . "</td>";
                     echo "<td>" . $tab2['nomQuestionnaire'] . "</td>";
-                    echo "<td> <span id='questionnaire" . $tab2['idQuestionnaire'] . "'class='element_modifiable glyphicon glyphicon-remove-circle'> </td>"; 
+                    echo "<td> <span id='questionnaire" . $tab2['idQuestionnaire'] . "'class='element_modifiable glyphicon glyphicon-wrench'> </td>"; 
                     echo '</tr>';
                   }
           ?>

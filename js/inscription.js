@@ -14,7 +14,6 @@
 	}
 
 	function egalite_mdp(){
-
 		if ($('#inputPasswordConfirm').val() !== $('#inputPassword').val()){
 	    	if($('#inputPassword').val() !== '' && $('#inputPasswordConfirm').val() !== ''){
 	        	if(!flag_password_created){
@@ -34,7 +33,6 @@
 	    		gestion_btn_form_inscription(flag_password_created, flag_username_created);
 	    	}
 	 	}
-
 	}
 
 	function verif_dispo_login_ajax(){
