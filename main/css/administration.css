@@ -12,7 +12,7 @@ thead{
 	color: #cc0000;
 }
 
-.element_supprimable, .glyphicon-remove-sign{
+.element_supprimable, .element_modifiable, .glyphicon-remove-sign{
 	display: block;
 	text-align: center;
 }
