@@ -28,12 +28,15 @@
             $req1=$bd->prepare('select * from users order by id');
             $req1->execute();
                   while($tab1 = $req1->fetch(PDO::FETCH_ASSOC)){
-                    echo "<tr id='ligne_user" . $tab1['id'] . "' >";
-                    echo "<td>" . $tab1['id'] . "</td>";
-                    echo "<td>" . htmlspecialchars($tab1['login'], ENT_QUOTES) . "</td>";
-                    echo "<td>" . $tab1['date_inscription'] . "</td>";
-                    echo "<td> <span id='user" . $tab1['id'] . "'class='element_supprimable glyphicon glyphicon-remove-circle'> </td>"; 
-                    echo '</tr>';
+                    if(htmlspecialchars($tab1['login'], ENT_QUOTES) !== "admin"){
+                      echo "<tr id='ligne_user" . $tab1['id'] . "' >";
+                      echo "<td>" . $tab1['id'] . "</td>";
+                      echo "<td>" . htmlspecialchars($tab1['login'], ENT_QUOTES) . "</td>";
+                      echo "<td>" . $tab1['date_inscription'] . "</td>";
+                      echo "<td> <span id='user" . $tab1['id'] . "'class='element_supprimable glyphicon glyphicon-remove-circle'> </td>"; 
+                      echo '</tr>';
+                    }
+                    //On ne souhaite pas afficher l'utilisateur admin dans la liste des utilisateurs pouvant etre supprimé.
                   }
           ?>
         </tbody>
