@@ -38,9 +38,9 @@
 	}
 
 	function verif_dispo_login_ajax(){
-		$.get("requete_ajax.php",  //on envoie en paramètre au fichier php (ici login_2) la valeur du champ de texte
+		$.get("requete_ajax.php",  //on envoie en paramètre (ici login_2) la valeur du champ de texte au fichier requete_ajax.php
 		{login_2: $('#inputUsername').val()},
-		function(reponse)		//reponse du fichier php
+		function(reponse)		//reponse du fichier requete_ajax.php (echo)
 		{
 			if(reponse=="erreur" && !flag_username_created){
 				var msg_error_username = "<p id='msg_error_username' class='h6 text-danger'>Ce nom d'utilisateur existe déjà.</p>";

@@ -70,6 +70,8 @@
       </table>
     </div>
 
+    <script type="text/javascript"> $('.element_supprimable').on('click', supprimer_element_bdd); </script>
+
     <script type="text/javascript">
       $('#menu-bas-user').on('click',function(){
         if($('#menu-bas-user').hasClass('glyphicon-menu-down')){
@@ -83,8 +85,7 @@
           $('#table_user').fadeIn();
         }
       });
-    </script>
-    <script type="text/javascript">
+
       $('#menu-bas-questionnaire').on('click',function(){
         if($('#menu-bas-questionnaire').hasClass('glyphicon-menu-down')){
           $('#menu-bas-questionnaire').removeClass('glyphicon-menu-down');
