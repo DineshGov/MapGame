@@ -40,6 +40,35 @@ INSERT INTO `questionnaires` (`idQuestionnaire`, `nomQuestionnaire`) VALUES(3, '
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `questions`
+--
+
+DROP TABLE IF EXISTS `questions`;
+CREATE TABLE IF NOT EXISTS `questions` (
+	`idQuestion` smallint(6) NOT NULL AUTO_INCREMENT,
+	`idQuestionnaire` smallint(6) NOT NULL,
+	`nomQuestion` text NOT NULL,
+	`longitude` float NOT NULL,
+	`latitude` float NOT NULL,
+	PRIMARY KEY (`idQuestion`,`idQuestionnaire`),
+	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Structure de la table `score`
+--
+
+DROP TABLE IF EXISTS `score`;
+CREATE TABLE IF NOT EXISTS `score` (
+	`login` varchar(50) NOT NULL,
+	`idQuestionnaire` smallint(6) NOT NULL AUTO_INCREMENT,
+	`score` smallint NOT NULL,
+	`date_partie` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	PRIMARY KEY (`login`),
+	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
 -- Structure de la table `users`
 --
 

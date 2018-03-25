@@ -1,4 +1,5 @@
 <?php
+	$page_name="administration.php";
     require ('header.php');
     require('../database_auth.php');
 ?>
@@ -59,6 +60,7 @@
         </thead>
         <tbody>
           <?php
+		  $page_name;
             $req2=$bd->prepare('select * from questionnaires order by idQuestionnaire');
             $req2->execute();
                   while($tab2 = $req2->fetch(PDO::FETCH_ASSOC)){

@@ -1,4 +1,5 @@
 <?php
+	$page_name="menu_principal.php";
     require ('header.php');
     require('../database_auth.php');
 ?>
