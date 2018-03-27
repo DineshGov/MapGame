@@ -11,7 +11,7 @@
 
 
     <div class="col-lg-offset-2 col-lg-10 col-md-offset-2 col-md-10 col-sm-offset-2 col-sm-10"> 
-      <h3>Gestion utilisateurs <span id="menu-bas-user" class="glyphicon glyphicon-menu-down"></span></h3>
+      <h3>Gestion utilisateurs <span id="menu_user_fleche" class="glyphicon glyphicon-menu-down"></span></h3>
     </div>
       
     <div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3">
@@ -46,7 +46,7 @@
     
 
     <div class="col-lg-offset-2 col-lg-10 col-md-offset-2 col-md-10 col-sm-offset-2 col-sm-10"> 
-      <h3>Gestion questionnaires <span id="menu-bas-questionnaire" class="glyphicon glyphicon-menu-down"></span></h3>
+      <h3>Gestion questionnaires <span id="menu_questionnaire_fleche" class="glyphicon glyphicon-menu-down"></span></h3>
     </div>
 
     <div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3">
@@ -68,40 +68,20 @@
                     echo "<td>" . $tab2['nomQuestionnaire'] . "</td>";
                     echo "<td> <span id='questionnaire" . $tab2['idQuestionnaire'] . "'class='element_modifiable glyphicon glyphicon-wrench'> </td>"; 
                     echo '</tr>';
+                    echo "<form method='post' action='gestion_questionnaire.php' id='form_" . $tab2['idQuestionnaire'] . "'>";
+                    echo '<input type="hidden" name="idQuestionnaire" value="' . $tab2["idQuestionnaire"] . '">';
+                    echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab2["nomQuestionnaire"] . '">';
+                    echo "</form>";
                   }
           ?>
         </tbody>
       </table>
     </div>
 
-    <script type="text/javascript"> $('.element_supprimable').on('click', supprimer_element_bdd); </script>
-
-    <script type="text/javascript">
-      $('#menu-bas-user').on('click',function(){
-        if($('#menu-bas-user').hasClass('glyphicon-menu-down')){
-          $('#menu-bas-user').removeClass('glyphicon-menu-down');
-          $('#menu-bas-user').addClass('glyphicon-menu-up');
-          $('#table_user').fadeOut();
-        }
-        else if($('#menu-bas-user').hasClass('glyphicon-menu-up')){
-          $('#menu-bas-user').removeClass('glyphicon-menu-up');
-          $('#menu-bas-user').addClass('glyphicon-menu-down');
-          $('#table_user').fadeIn();
-        }
-      });
-
-      $('#menu-bas-questionnaire').on('click',function(){
-        if($('#menu-bas-questionnaire').hasClass('glyphicon-menu-down')){
-          $('#menu-bas-questionnaire').removeClass('glyphicon-menu-down');
-          $('#menu-bas-questionnaire').addClass('glyphicon-menu-up');
-          $('#table_questionnaire').fadeOut();
-        }
-        else if($('#menu-bas-questionnaire').hasClass('glyphicon-menu-up')){
-          $('#menu-bas-questionnaire').removeClass('glyphicon-menu-up');
-          $('#menu-bas-questionnaire').addClass('glyphicon-menu-down');
-          $('#table_questionnaire').fadeIn();
-        }
-      });
+    <script type="text/javascript"> 
+      $('.element_supprimable').on('click', supprimer_element_bdd);
+      $('#menu_user_fleche').on('click', masque_menu);
+      $('#menu_questionnaire_fleche').on('click', masque_menu);
     </script>
 
   </div>
