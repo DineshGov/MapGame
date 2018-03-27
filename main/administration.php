@@ -68,6 +68,8 @@
                     echo "<td>" . $tab2['nomQuestionnaire'] . "</td>";
                     echo "<td> <span id='questionnaire" . $tab2['idQuestionnaire'] . "'class='element_modifiable glyphicon glyphicon-wrench'> </td>"; 
                     echo '</tr>';
+                    /* Formulaire masqué permettant de rediriger vers la page gestion_questionnaire.
+                    Ce formulaire envoie l'id et le nom du formulaire à modifier à la page. */
                     echo "<form method='post' action='gestion_questionnaire.php' id='form_" . $tab2['idQuestionnaire'] . "'>";
                     echo '<input type="hidden" name="idQuestionnaire" value="' . $tab2["idQuestionnaire"] . '">';
                     echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab2["nomQuestionnaire"] . '">';
@@ -80,6 +82,7 @@
 
     <script type="text/javascript"> 
       $('.element_supprimable').on('click', supprimer_element_bdd);
+      $('.element_modifiable').on('click', modifie_questionnaire);
       $('#menu_user_fleche').on('click', masque_menu);
       $('#menu_questionnaire_fleche').on('click', masque_menu);
     </script>
