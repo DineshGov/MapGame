@@ -25,6 +25,8 @@
     <link href="css/deconnexion.css" rel="stylesheet">
     <link href="css/menu_principal.css" rel="stylesheet">
     <link href="css/administration.css" rel="stylesheet">
+    <link href="css/gestionnaire_questionnaire.css" rel="stylesheet">
+    
     
   </head>
 

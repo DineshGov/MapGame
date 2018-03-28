@@ -5,24 +5,23 @@
 ?>
 
   <div class="col-lg-12 col-md-12 col-sm-12">
-    
+
     <div class="col-lg-offset-1 col-lg-11 col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-11"> <h1>Gestion questionnaire</h1>
     </div>
 
-    <?php
-    	echo "<pre>";
-    	print_r($_POST);
-    	echo "</pre>";
-    ?>
-
-    <div class="col-lg-12 col-md-12 col-sm-12" style="background-color: red;">
+    <div class="col-lg-12 col-md-12 col-sm-12" id="div_gestion">
+        <?php
+        echo "<p>idQuestionnaire: " . $_POST['idQuestionnaire'] . "</p>";
+        echo "<p>nomQuestionnaire: <input type='text' name='inputNomQuestionnaire' id='inputNomQuestionnaire' value='" . $_POST['nomQuestionnaire'] . "'</input>";
+        echo '<button type="button" class="btn btn-info btn-xs">Mise à jour</button>';
+        ?>
     </div>
 
-	<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-sm-offset-1" id="mapContainer" style="height: 460px; margin-top: 20px; margin-bottom: 20px;">   
+    <div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-sm-offset-1" id="mapContainer">   
     </div>
       
       
-    <div class="col-lg-10 col-md-10 col-sm-10" style="margin: 10px;">
+    <div class="col-lg-12 col-md-12 col-sm-12" id="div_gestion">
 
         <p>Latitude: <input type="text" id="clickedLatitude"> 
         Longitude: <input type="text" id="clickedLongitude"></p>
