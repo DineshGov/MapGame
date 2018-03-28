@@ -16,3 +16,7 @@ thead{
 	display: block;
 	text-align: center;
 }
+
+.element_supprimable, .element_modifiable{
+	cursor: pointer;
+}
