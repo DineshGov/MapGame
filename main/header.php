@@ -21,6 +21,8 @@
     
     <script src="js/redirection_pages_function_main.js"></script>
     <script src="js/administration.js"></script>
+    <script src="js/gestion_questionnaire.js"></script>
+    
     <link href="css/header.css" rel="stylesheet">
     <link href="css/deconnexion.css" rel="stylesheet">
     <link href="css/menu_principal.css" rel="stylesheet">
