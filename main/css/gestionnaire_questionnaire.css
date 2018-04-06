@@ -22,6 +22,10 @@
 	margin-right: 10px; 
 }
 
+#table_question{
+	margin-top: 10px;
+}
+
 h4{
 	margin-top: 20px;
 }
@@ -37,4 +41,16 @@ label{
 
 .glyphicon-remove{
 	cursor: pointer;
+}
+
+.return_links{
+	margin-left: 15px;
+}
+
+#div_returnLink{
+	margin-top: 25px;
+}
+
+#buttonQuestionUpdate{
+	margin-bottom: 10px;
 }

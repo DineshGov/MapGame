@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `questions` (
 	`idQuestion` smallint(6) NOT NULL AUTO_INCREMENT,
 	`idQuestionnaire` smallint(6) NOT NULL,
 	`nomQuestion` text NOT NULL,
-	`longitude` float NOT NULL,
 	`latitude` float NOT NULL,
+	`longitude` float NOT NULL,
 	PRIMARY KEY (`idQuestion`,`idQuestionnaire`),
 	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
