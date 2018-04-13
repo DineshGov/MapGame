@@ -22,7 +22,7 @@ USE `MapGame`;
 -- Structure de la table `questionnaires`
 --
 
-DROP TABLE IF EXISTS `questionnaires`;
+DROP TABLE IF EXISTS `questionnaires` cascade;
 CREATE TABLE IF NOT EXISTS `questionnaires` (
   `idQuestionnaire` smallint(6) NOT NULL AUTO_INCREMENT,
   `nomQuestionnaire` tinytext NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
 	`latitude` float NOT NULL,
 	`longitude` float NOT NULL,
 	PRIMARY KEY (`idQuestion`,`idQuestionnaire`),
-	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`)
+	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
