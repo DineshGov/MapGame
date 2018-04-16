@@ -59,8 +59,8 @@ function add_edition_line_in_table(event){
         <tr class='active' id='add_question'>\
         <td id='updating_question_id' >" + id_question + "</td>\
         <td><input type='text' id='newQuestion' class='form-control' value='" + nom_existant + "'></td>\
-        <td><input type='text' id='newLongitude' class='form-control' value='" + longitude_existant + "'></td>\
         <td><input type='text' id='newLatitude' class='form-control' value='" + latitude_existant + "'></td>\
+        <td><input type='text' id='newLongitude' class='form-control' value='" + longitude_existant + "'></td>\
         <td>" + "<span id='cancel_add' class='glyphicon glyphicon-remove'></span>" + "</td>\
         </tr>");
     

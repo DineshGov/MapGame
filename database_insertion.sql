@@ -28,13 +28,13 @@ INSERT INTO `questionnaires` (`idQuestionnaire`, `nomQuestionnaire`) VALUES
 --
 
 INSERT INTO `questions` (`idQuestion`, `idQuestionnaire`, `nomQuestion`, `longitude`, `latitude`) VALUES
-(0, 1, 'Où se situe la pyramide de Kheops?', 31.1339, 29.9789),
-(1, 1, 'Où se situent les jardins suspendus de Babylone?', 44.4275, 32.5355),
-(2, 1, 'Où se situe la statue chryséléphantine de Zeus?', 21.63, 38.6378),
-(3, 1, 'Où se situe le temple d’Artémis?', 27.3639, 37.9497),
-(4, 1, 'Où se situe le tombeau de Mausole?', 27.4241, 37.0379),
-(5, 1, 'Où se situe le colosse de Rhodes?', 28.2278, 36.4511),
-(6, 1, 'Où se situe la tour de Pharos?', 29.885, 31.2142);
+(1, 1, 'Où se situe la pyramide de Kheops?', 31.1339, 29.9789),
+(2, 1, 'Où se situent les jardins suspendus de Babylone?', 44.4275, 32.5355),
+(3, 1, 'Où se situe la statue chryséléphantine de Zeus?', 21.63, 38.6378),
+(4, 1, 'Où se situe le temple d’Artémis?', 27.3639, 37.9497),
+(5, 1, 'Où se situe le tombeau de Mausole?', 27.4241, 37.0379),
+(6, 1, 'Où se situe le colosse de Rhodes?', 28.2278, 36.4511),
+(7, 1, 'Où se situe la tour de Pharos?', 29.885, 31.2142);
 
 --
 -- Contenu de la table `users`

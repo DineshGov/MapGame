@@ -65,7 +65,7 @@
                     $req2->bindvalue(':id', $_POST['idQuestionnaire']);
                     // idQuestion, nomQuestion, longitude, latitude
                     $req2->execute();
-                    $compteur_question = 0;
+                    $compteur_question = 1;
                     $nbr_question_total = 7;
                     $question_trouvee_dans_bdd = false;
 
@@ -75,7 +75,7 @@
 
                     $tab2 = $req2->fetchAll(PDO::FETCH_ASSOC);
 
-                    for ($compteur_question = 0; $compteur_question < $nbr_question_total; $compteur_question++) {
+                    for ($compteur_question = 1; $compteur_question <= $nbr_question_total; $compteur_question++) {
                         for ($i=0; $i < $nbr_question_total; $i++) {
                             if(isset($tab2[$i][idQuestion]) && $tab2[$i][idQuestion] == $compteur_question){
                                 echo '<tr id="tr_question' . $tab2[$i]['idQuestion'] . '">';
@@ -134,10 +134,13 @@
         }).addTo(map);
 
         map.on('click', recuperation_coordonnees);
-
+        var cercle1 = L.circle([48.858376, 2.294442],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+        var cercle2 = L.circle([48.858376, 2.294442],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+        var cercle3 = L.circle([48.858376, 2.294442],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
     </script>
 
     <script type="text/javascript">
+
         $('#majNomQuestionnaire').on('click', maj_nom_questionnaire);
         $('.glyphicon-wrench').on('click', add_edition_line_in_table);
         $('#buttonQuestionUpdate').on('click', maj_question);

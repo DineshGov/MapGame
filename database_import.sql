@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Dim 25 Mars 2018 à 16:41
+-- Généré le :  Lun 16 Avril 2018 à 12:57
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -11,10 +11,11 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Base de données :  `MapGame`
+-- Base de données :  `mapgame`
 --
-CREATE DATABASE IF NOT EXISTS `MapGame` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `MapGame`;
+DROP DATABASE IF EXISTS `mapgame`;
+CREATE DATABASE IF NOT EXISTS `mapgame` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `mapgame`;
 
 -- --------------------------------------------------------
 
@@ -22,53 +23,118 @@ USE `MapGame`;
 -- Structure de la table `questionnaires`
 --
 
-DROP TABLE IF EXISTS `questionnaires` cascade;
-CREATE TABLE IF NOT EXISTS `questionnaires` (
-  `idQuestionnaire` smallint(6) NOT NULL AUTO_INCREMENT,
-  `nomQuestionnaire` tinytext NOT NULL,
-  PRIMARY KEY (`idQuestionnaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
+DROP TABLE IF EXISTS `questionnaires`;
+CREATE TABLE `questionnaires` (
+  `idQuestionnaire` smallint(6) NOT NULL,
+  `nomQuestionnaire` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Structure de la table `questions`
 --
 
 DROP TABLE IF EXISTS `questions`;
-CREATE TABLE IF NOT EXISTS `questions` (
-	`idQuestion` smallint(6) NOT NULL AUTO_INCREMENT,
-	`idQuestionnaire` smallint(6) NOT NULL,
-	`nomQuestion` text NOT NULL,
-	`latitude` float NOT NULL,
-	`longitude` float NOT NULL,
-	PRIMARY KEY (`idQuestion`,`idQuestionnaire`),
-	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`) on delete cascade
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+CREATE TABLE `questions` (
+  `idQuestion` smallint(6) NOT NULL,
+  `idQuestionnaire` smallint(6) NOT NULL,
+  `nomQuestion` text NOT NULL,
+  `latitude` float NOT NULL,
+  `longitude` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Structure de la table `score`
 --
 
 DROP TABLE IF EXISTS `score`;
-CREATE TABLE IF NOT EXISTS `score` (
-	`login` varchar(50) NOT NULL,
-	`idQuestionnaire` smallint(6) NOT NULL AUTO_INCREMENT,
-	`score` smallint NOT NULL,
-	`date_partie` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-	PRIMARY KEY (`login`),
-	FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires`(`idQuestionnaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+CREATE TABLE `score` (
+  `idUser` varchar(50) NOT NULL,
+  `idQuestionnaire` smallint(6) NOT NULL,
+  `score` smallint(6) NOT NULL,
+  `date_partie` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` smallint(6) NOT NULL AUTO_INCREMENT,
-  `login` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`login`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+CREATE TABLE `users` (
+  `id` smallint(6) NOT NULL,
+  `login` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `questionnaires`
+--
+ALTER TABLE `questionnaires`
+  ADD PRIMARY KEY (`idQuestionnaire`);
+
+--
+-- Index pour la table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`idQuestion`,`idQuestionnaire`),
+  ADD KEY `idQuestionnaire` (`idQuestionnaire`);
+
+--
+-- Index pour la table `score`
+--
+ALTER TABLE `score`
+  ADD PRIMARY KEY (`idUser`),
+  ADD KEY `idQuestionnaire` (`idQuestionnaire`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`login`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `questionnaires`
+--
+ALTER TABLE `questionnaires`
+  MODIFY `idQuestionnaire` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `idQuestion` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `score`
+--
+ALTER TABLE `score`
+  MODIFY `idQuestionnaire` smallint(6) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires` (`idQuestionnaire`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `score`
+--
+ALTER TABLE `score`
+  ADD CONSTRAINT `score_ibfk_1` FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires` (`idQuestionnaire`);
