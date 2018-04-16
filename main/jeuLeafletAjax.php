@@ -1,7 +1,8 @@
 <?php
 	 require('../database_auth.php');
+	$val = $_GET['idQ'];
 	$req2=$bd->prepare('select * from questions where idQuestionnaire= :id order by idQuestion');
-                    $req2->bindvalue(':id', 1);
+                    $req2->bindvalue(':id',$val);
                     // idQuestion, nomQuestion, longitude, latitude
                     $req2->execute();
 	$tab2 = $req2->fetchAll(PDO::FETCH_ASSOC);

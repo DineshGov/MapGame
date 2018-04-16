@@ -21,10 +21,12 @@
 		{
 			echo "erreur";
 			exit(1);
+			
 		}
-		
-		echo '<input type="hidden" id="idQuestionnaire" value='.$_POST['idQuestionnaire'].'>';
+
+		echo '<input id="idQuestionnaire" type="hidden" value='.$_POST['idQuestionnaire'].'>';
 	?>
+	
 	
 	<div id="intro" style="text-align:center;">
 		<button class="btn btn-info btn-lg">Cliquez ici pour commencer l'exercice</button>
@@ -36,7 +38,6 @@
 			<div>
 				<div id="carte" style="width: 1200px; height: 600px;"></div>
 			</div>
-			<div class="col-lg-4"><p>aaaaaa</p></div>
 		</div>
 	</div>
 	

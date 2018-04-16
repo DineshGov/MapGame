@@ -1,16 +1,13 @@
 $(document).ready(function(){
 	
 	var exoStart=false;
-	
 	var question =	[];
 	var cercle1;
 	var cercle2;
 	var cercle3;
-	
 	$("#intro").click(function(){
-			
 		$.get("jeuLeafletAjax.php",
-			{idQ: $("#idQestionnaire").val()},
+			{idQ: $('#idQuestionnaire').val()},
 			function(reponse)
 			{
 
