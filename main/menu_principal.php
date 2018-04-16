@@ -14,7 +14,11 @@
 
       echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3" style="text-align: center;">';
       while($tab = $req->fetch(PDO::FETCH_ASSOC)){
-        echo "<button class='btn btn-lg btn-danger btn-block auth_form_submitter' id='buttonConnexion' type='submit'>" . $tab['nomQuestionnaire'] . "</button>";
+        echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
+        echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
+        echo '<input type="hidden" name="idQuestionnaire" value="' . $tab2["idQuestionnaire"] . '">';
+        echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab2["nomQuestionnaire"] . '">';
+        echo "</form>";
       }
       echo "</div>";
 
@@ -25,3 +29,13 @@
       </div>'
 
     ?>
+
+    <script type="text/javascript"> 
+      $('.questionnaire_form_submitter').on('click', transmet_infos_questionnaire);
+    </script>
+
+
+    <!--echo "<form method='post' action='gestion_questionnaire.php' id='form_" . $tab2['idQuestionnaire'] . "'>";
+                    echo '<input type="hidden" name="idQuestionnaire" value="' . $tab2["idQuestionnaire"] . '">';
+                    echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab2["nomQuestionnaire"] . '">';
+                    echo "</form>";-->
