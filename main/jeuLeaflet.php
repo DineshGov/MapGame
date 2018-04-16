@@ -33,7 +33,10 @@
 	<div class="container" >	
 		<div class="row">
 			<div class="intro2" style="text-align: center; display:none"><p id="question"></p></div><br>
-			<div id="carte" style="width: 800px; height: 600px;"></div>	
+			<div>
+				<div id="carte" style="width: 1200px; height: 600px;"></div>
+			</div>
+			<div class="col-lg-4"><p>aaaaaa</p></div>
 		</div>
 	</div>
 	

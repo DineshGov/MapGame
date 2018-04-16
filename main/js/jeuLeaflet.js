@@ -13,9 +13,10 @@ $(document).ready(function(){
 			{idQ: $("#idQestionnaire").val()},
 			function(reponse)
 			{
+
 				var i = 0;
 				
-				while(i<7)
+				while(i<reponse.length)
 				{
 					question.push({q: reponse[i].nomQuestion, latitude: reponse[i].latitude, longitude: reponse[i].longitude})
 					i++;
