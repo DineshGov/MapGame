@@ -1,21 +1,46 @@
 $(document).ready(function(){
 	
-	var question =	[	
-						{q : "Ou se trouve la pyramide de Keops?", latitude : 29.978889, longitude : 31.133889},
-						{q : "Ou se trouve les jardins suspendus de Babylone ?", latitude : 32.53554, longitude : 44.42753},
-						{q : "Ou se trouve la statue chryselephantine de Zeus", latitude : 38.6378, longitude : 21.63},			
-						{q : "Ou se trouve le temple d'Artemis ?", latitude : 37.9497, longitude : 27.3639},
-						{q : "Ou se trouve le tombeau de Mausole ?", latitude : 37.03794, longitude : 27.42406},
-						{q : "Ou se trouve le colosse de Rhodes ?", latitude : 36.4511, longitude : 28.2278},				
-						{q : "Ou se trouve la tour de Pharos ?", latitude : 31.2142, longitude : 29.885}
-					];
+	var exoStart=false;
+	
+	var question =	[];
+	var cercle1;
+	var cercle2;
+	var cercle3;
+	
+	$("#intro").click(function(){
+			
+		$.get("jeuLeafletAjax.php",
+			{idQ: $("#idQestionnaire").val()},
+			function(reponse)
+			{
+				var i = 0;
+				
+				while(i<7)
+				{
+					question.push({q: reponse[i].nomQuestion, latitude: reponse[i].latitude, longitude: reponse[i].longitude})
+					i++;
+				}
+				$('#question').text(question[0].q);
+				cercle1 = L.circle([question[0].latitude,question[0].longitude],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+				cercle2 = L.circle([question[0].latitude,question[0].longitude],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+				cercle3 = L.circle([question[0].latitude,question[0].longitude],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+		 
+			}
+		);
+		
+		exoStart=true;
+		$('.intro2').css("display","");
+		$('#intro').hide();
+		
+	});
+
 	
 	var phase = 0;
 	var essai = 3;
 	var point = 0;
 	var exoFini = false;
 
-	$('#question').text(question[phase].q);
+	
 	$('#points').text("Vous n'avez actuellement aucun point");
 	$('#test').text("Vous avez droit à "+essai+" essais");
 	
@@ -23,21 +48,21 @@ $(document).ready(function(){
 	console.log("Points actuels : "+point);
 	console.log("Essais : "+essai);
 	
-	var map = L.map('carte',
-	{
-		center: [question[phase].latitude,question[phase].longitude],
-		zoom: 14
-	});
+		var map = L.map('carte').setView([48.858376, 2.294442], 3);
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
+        {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 13,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
+        }).addTo(map);
 		
 	//var html ="<h3>Mon marqueur avec popup</h3><p>La Tour Eiffel</p><ul><li>Construction de 1887 à 1889</li><li>Hauteur avec antenne 324m</li><li>Nombre d'ascenseurs 6</li></ul><center><img src='Tour Eiffel.png'></center>";
 		
-	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 		
 	//var popup=L.popup().setLatLng([48.858376, 2.294442]).setContent(html).openOn(map);
 
-		var cercle1 = L.circle([question[phase].latitude,question[phase].longitude],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-		var cercle2 = L.circle([question[phase].latitude,question[phase].longitude],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-		var cercle3 = L.circle([question[phase].latitude,question[phase].longitude],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
 		
 		function miseAJour()
 		{
@@ -66,7 +91,11 @@ $(document).ready(function(){
 			
 				
 	function click(e) {
-		
+		if(!exoStart)
+		{
+			alert("l'exercice n'a pas encore commencé");
+			e.preventDefault();
+		}
 		$("#valLat").val(e.latlng.lat);
 		$("#valLong").val(e.latlng.lng);
 		
