@@ -1,4 +1,9 @@
 <!doctype html>
+<?php
+    $page_name="gestion_questionnaire.php";
+    require ('header.php');
+    require('../database_auth.php');
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -64,9 +69,55 @@
 			</nav>
 	<br><br><br>
 	
-	
-	
-		
+	<?php
+					if(!isset($_POST['idQuestionnaire']))
+					{
+						echo "Erreur";
+						exit(1);
+					}
+					
+					echo '<input type="hidden" id="idQuestion" value='.$_POST['idQuestionnaire'].'>';
+					
+                    /*$req2=$bd->prepare('select * from questions where idQuestionnaire= :id order by idQuestion');
+                    $req2->bindvalue(':id', $_POST['idQuestionnaire']);
+                    // idQuestion, nomQuestion, longitude, latitude
+                    $req2->execute();
+                    $compteur_question = 0;
+                    $nbr_question_total = 7;
+                    $question_trouvee_dans_bdd = false;
+
+                    
+
+                    $tab2 = $req2->fetchAll(PDO::FETCH_ASSOC);
+
+                    for ($compteur_question = 0; $compteur_question < $nbr_question_total; $compteur_question++) {
+                        for ($i=0; $i < $nbr_question_total; $i++) {
+                            if(isset($tab2[$i]['idQuestion']) && $tab2[$i]['idQuestion'] == $compteur_question){
+                                echo '<tr id="tr_question' . $tab2[$i]['idQuestion'] . '">';
+                                echo "<td id='idQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['idQuestion'] . "</td>";
+                                echo "<td id='nomQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['nomQuestion'] . "</td>";
+                                echo "<td id='latiQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['latitude'] . "</td>";
+                                echo "<td id='longQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['longitude'] . "</td>";
+                                echo '<td><span  id="edit_question' . $tab2[$i]['idQuestion'] . '" class="glyphicon glyphicon-wrench"></span></td>';
+                                echo '</tr>';
+
+                                $question_trouvee_dans_bdd = true;
+                            }
+                        }
+                        if(!$question_trouvee_dans_bdd){
+                            echo '<tr id="tr_question' . $compteur_question . '">';
+                            echo "<td id='idQ" . $compteur_question . "'> $compteur_question </td>";
+                            echo "<td id='nomQ" . $compteur_question . "'> </td>";
+                            echo "<td id='latiQ" . $compteur_question . "'> </td>";
+                            echo "<td id='longQ" . $compteur_question . "'> </td>";
+                            echo '<td><span  id="edit_question' . $compteur_question . '" class="glyphicon glyphicon-wrench"></span></td>';
+                            echo '</tr>';
+                        }
+                        $question_trouvee_dans_bdd = false;
+                        $i = 0;
+                    }*/
+                  ?>
+
 		
 	<div class="container">	
 		<div class="row">

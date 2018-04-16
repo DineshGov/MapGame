@@ -1,4 +1,15 @@
-$(document).ready(function(){
+ $(document).ready(function(){
+	
+	var question =	[];
+	$.get(
+		"jeuLeafletAjax.php",
+		{idQuestion: $('#idQuestion').val()},
+		function(reponse){
+			var i=0;
+			alert("a");
+		}
+	);
+	
 	
 	var question =	[	
 						{q : "Ou se trouve la pyramide de Keops?", latitude : 29.978889, longitude : 31.133889},
@@ -9,6 +20,9 @@ $(document).ready(function(){
 						{q : "Ou se trouve le colosse de Rhodes ?", latitude : 36.4511, longitude : 28.2278},				
 						{q : "Ou se trouve la tour de Pharos ?", latitude : 31.2142, longitude : 29.885}
 					];
+					
+	
+	
 	
 	var phase = 0;
 	var essai = 3;
@@ -23,15 +37,19 @@ $(document).ready(function(){
 	console.log("Points actuels : "+point);
 	console.log("Essais : "+essai);
 	
-	var map = L.map('carte',
-	{
-		center: [question[phase].latitude,question[phase].longitude],
-		zoom: 14
-	});
+	map = L.map('carte').setView([48.858376, 2.294442], 3);
+        //La map est créée mais elle ne possède pas encore de tuiles.
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
+        {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 13,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
+        }).addTo(map);
 		
 	//var html ="<h3>Mon marqueur avec popup</h3><p>La Tour Eiffel</p><ul><li>Construction de 1887 à 1889</li><li>Hauteur avec antenne 324m</li><li>Nombre d'ascenseurs 6</li></ul><center><img src='Tour Eiffel.png'></center>";
 		
-	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 		
 	//var popup=L.popup().setLatLng([48.858376, 2.294442]).setContent(html).openOn(map);
 
@@ -52,6 +70,15 @@ $(document).ready(function(){
 			{
 				phase++;
 				essai=3;
+				
+				$.get(
+					"jeuLeafletAjax.php",
+					{idQuestion: phase},
+					function(reponse){
+						console.log(reponse);
+					}
+				);
+				
 				cercle1.setLatLng([question[phase].latitude,question[phase].longitude]);
 				cercle2.setLatLng([question[phase].latitude,question[phase].longitude]);
 				cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);

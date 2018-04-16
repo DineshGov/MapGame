@@ -16,8 +16,8 @@
       while($tab = $req->fetch(PDO::FETCH_ASSOC)){
         echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
         echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
-        echo '<input type="hidden" name="idQuestionnaire" value="' . $tab2["idQuestionnaire"] . '">';
-        echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab2["nomQuestionnaire"] . '">';
+        echo '<input type="hidden" name="idQuestionnaire" value="' . $tab["idQuestionnaire"] . '">';
+        echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab["nomQuestionnaire"] . '">';
         echo "</form>";
       }
       echo "</div>";
