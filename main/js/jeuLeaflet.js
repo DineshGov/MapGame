@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	
+	
 	var exoStart=false;
 	var question =	[];
 	var cercle1;
@@ -20,7 +21,7 @@ $(document).ready(function(){
 
 				var i = 0;
 				
-				while(i<2)
+				while(i<reponse.length)
 				{
 					question.push({q: reponse[i].nomQuestion, latitude: reponse[i].latitude, longitude: reponse[i].longitude})
 					i++;
@@ -85,6 +86,8 @@ $(document).ready(function(){
 				$('#total').text('Test fini : vous avez au total '+point+' point(s)');
 				sauvegarde();
 				exoFini = true;
+				$('#question').hide();
+				$('#corr').show();
 			}
 			else
 			{
@@ -105,7 +108,6 @@ $(document).ready(function(){
 	function click(e) {
 		if(!exoStart)
 		{
-			alert("l'exercice n'a pas encore commencé");
 			e.preventDefault();
 		}
 		$("#valLat").val(e.latlng.lat);
@@ -160,11 +162,7 @@ $(document).ready(function(){
 			}
 			
 		}
-		else
-		{
-			alert("L'exercice est fini");
-			
-		}
+
 	}
 		
 
