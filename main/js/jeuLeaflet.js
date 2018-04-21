@@ -5,6 +5,13 @@ $(document).ready(function(){
 	var cercle1;
 	var cercle2;
 	var cercle3;
+	
+	var phase = 0;
+	var essai = 3;
+	var point = 0;
+	var exoFini = false;
+	
+	
 	$("#intro").click(function(){
 		$.get("jeuLeafletAjax.php",
 			{idQ: $('#idQuestionnaire').val()},
@@ -13,7 +20,7 @@ $(document).ready(function(){
 
 				var i = 0;
 				
-				while(i<reponse.length)
+				while(i<2)
 				{
 					question.push({q: reponse[i].nomQuestion, latitude: reponse[i].latitude, longitude: reponse[i].longitude})
 					i++;
@@ -33,10 +40,7 @@ $(document).ready(function(){
 	});
 
 	
-	var phase = 0;
-	var essai = 3;
-	var point = 0;
-	var exoFini = false;
+	
 
 	
 	$('#points').text("Vous n'avez actuellement aucun point");
@@ -60,7 +64,18 @@ $(document).ready(function(){
 		
 		
 	//var popup=L.popup().setLatLng([48.858376, 2.294442]).setContent(html).openOn(map);
-
+	
+		
+		function sauvegarde()
+		{
+			$.get("jeuLeafletAjax.php",
+			{idQ: "sauvegarde", score: point},
+			function(reponse)
+			{
+				if(reponse!=true)
+					alert("echec de l'enregistrement");
+			});
+		}
 		
 		function miseAJour()
 		{
@@ -68,8 +83,8 @@ $(document).ready(function(){
 			if(phase==question.length-1)
 			{
 				$('#total').text('Test fini : vous avez au total '+point+' point(s)');
+				sauvegarde();
 				exoFini = true;
-				console.log(exoFini);
 			}
 			else
 			{
@@ -86,7 +101,6 @@ $(document).ready(function(){
 			
 		}
 
-			
 				
 	function click(e) {
 		if(!exoStart)
@@ -149,48 +163,11 @@ $(document).ready(function(){
 		else
 		{
 			alert("L'exercice est fini");
+			
 		}
 	}
 		
 
 	map.on('click',click);
-	
-	
-	
-	/*$('.derouler').click(function(){
-		if($('.derbis').css('display')=='block')
-			$('.derbis').css('display','none');
-		else
-			$('.derbis').css('display','block');
-	});
-	
-	
-	$('.rec').click(function(){
-		
-		var a = $('.choix').val();
-		var c = $('.chp_num').val();
-	
-		$('.chp_res').val(a+c);
-		
-		$('.res2').text("votre numéro est le : "+c)
-	});
-	
-	$('#pass').keyup(function(){
-		
-		var a = $('#pass').val();
-		var b = a.length;
-		
-		if( b<2 )
-		{
-			$('#indicateur').text("entrez un mot de passe d'au moins 5 caractères");
-			$('#form1').removeClass().addClass("form-group has-error");
-		}
-		else
-		{
-			$('#indicateur').text("la sécurité est suffisante");
-			$('#form1').removeClass().addClass("form-group has-success");
-		}
-	});*/
-	
 	
 });
