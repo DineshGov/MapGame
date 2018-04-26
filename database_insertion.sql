@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 
 INSERT INTO `questionnaires` (`idQuestionnaire`, `nomQuestionnaire`) VALUES
 (1, 'Les 7 Merveilles du Monde'),
-(2, 'Les 7 pays les plus puissants'),
+(2, 'Les capitales des 7 pays les plus puissants'),
 (3, 'Les 7 meilleurs grecs d\'Ile de France');
 
 --
@@ -34,15 +34,19 @@ INSERT INTO `questions` (`idQuestion`, `idQuestionnaire`, `nomQuestion`, `longit
 (4, 1, 'Où se situe le temple d’Artémis?', 27.3639, 37.9497),
 (5, 1, 'Où se situe le tombeau de Mausole?', 27.4241, 37.0379),
 (6, 1, 'Où se situe le colosse de Rhodes?', 28.2278, 36.4511),
-(7, 1, 'Où se situe la tour de Pharos?', 29.885, 31.2142);
+(7, 1, 'Où se situe la tour de Pharos?', 29.885, 31.2142),
+(1, 2, 'Où se situe la capitale des Etats-Unis?', -77.0363700, 38.8951100),
+(2, 2, 'Où se situent la capitale de la Chine ?', 116.3972300, 39.9075000),
+(3, 2, 'Où se situe la capitale du Japon ?', 139.6917100, 35.6895000),
+(4, 2, 'Où se situe la capitale de l\'Allemagne?', 13.4105300, 52.5243700),
+(5, 2, 'Où se situe la capitale de la France?', 2.333333, 48.866667),
+(6, 2, 'Où se situe la capitale du Royaume-Uni ?',-0.1257400, 51.5085300),
+(7, 2, 'Où se situe la capitale de l\'Inde?', 77.2244500, 28.6357600);
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`) VALUES(1, '<script> alert(\'lol\'); </script>', '04fa28f1f677681d3926ee07083c372d', '2018-03-23 23:55:41');
-INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`) VALUES(2, '<script> alert(\'loSl\'); </script>', '454f93f3022fe8ce9073da3ce4ae817d', '2018-03-23 23:55:41');
-INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`) VALUES(3, '<script> alert(\'test\'); </script>', '7682fe272099ea26efe39c890b33675b', '2018-03-23 23:55:41');
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`) VALUES(4, 'admin', 'admin', '2018-03-23 23:55:41');
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`) VALUES(5, 'azertyuiop', '7682fe272099ea26efe39c890b33675b', '2018-03-23 23:55:41');
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`) VALUES(6, 'azertyuiope', '7682fe272099ea26efe39c890b33675b', '2018-03-23 23:55:41');

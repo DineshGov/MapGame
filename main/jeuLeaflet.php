@@ -7,12 +7,15 @@
 	<?php
 		if(!isset($_POST['idQuestionnaire']))
 		{
-			echo "erreur";
+			echo "erreur d'authetification<br>Redirection en cours...";
+			echo("<script>setTimeout('RedirectionVersConnexionFromMain()', 1000)</script>");
+			header('menu_principal.php');
 			exit(1);
 			
 		}
 		
 		echo '<input id="idQuestionnaire" type="hidden" value='.$_POST['idQuestionnaire'].'>';
+		echo '<input id="nomQuestionnaire" type="hidden" value='.$_POST['nomQuestionnaire'].'>';
 	?>
 	
 	

@@ -5,7 +5,7 @@
 		date_default_timezone_set("Europe/Paris");
 		$datetime = date("Y-m-d H:i:s");
 		
-		if (isset($_GET['idQ']) && ctype_digit($_GET['idQ'])) //ctype_digit permet de savoir si une chaine de caractère contient que des chiffres
+		if (isset($_GET['idQ']) && $_GET['para']=="start") //ctype_digit permet de savoir si une chaine de caractère contient que des chiffres
 		{
 				$val = $_GET['idQ'];
 				$_SESSION['idQuestionnaire']=$val;
@@ -20,19 +20,21 @@
 				echo json_encode($tab);
 		
 		}				
-		else if (isset($_GET['idQ']) && $_GET['idQ']=="sauvegarde")
+		else if (isset($_GET['idQ']) && $_GET['para']=="end")
 		{
 
-			$req = $bd->prepare("select * from score where login = :l");
+			$req = $bd->prepare("select * from score where login = :l and idQuestionnaire = :id");
 			$req->bindvalue(':l',$_SESSION['login']);
+			$req->bindvalue(':id',$_GET['idQ']);
 			$req->execute();
 			$tab = $req->fetchAll(PDO::FETCH_ASSOC);
 			if(empty($tab))
 			{
 				
-				$req2=$bd->prepare('insert into score values(:l,:id,:s,:d)');
+				$req2=$bd->prepare('insert into score values(:l,:id,:nQ,:s,:d)');
 				$req2->bindvalue(':l',$_SESSION['login']);
-				$req2->bindvalue(':id',$_SESSION['idQuestionnaire']);
+				$req2->bindvalue(':id',$_GET['idQ']);
+				$req2->bindvalue(':nQ',$_GET['nomQ']);
 				$req2->bindvalue(':s',$_GET['score']);
 				$req2->bindvalue(':d',$datetime);
 				
@@ -40,8 +42,9 @@
 			}
 			else
 			{
-				$req3 = $bd->prepare("update score set date_partie = :d, score = :s where login = :l;");
+				$req3 = $bd->prepare("update score set date_partie = :d, score = :s where login = :l and idQuestionnaire = :id");
 				$req3->bindvalue(':l',$_SESSION['login']);
+				$req3->bindvalue(':id',$_GET['idQ']);
 				$req3->bindvalue(':s',$_GET['score']);
 				$req3->bindvalue(':d',$datetime);				
 				$req3->execute();
