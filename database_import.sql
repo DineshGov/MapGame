@@ -48,8 +48,9 @@ CREATE TABLE `questions` (
 
 DROP TABLE IF EXISTS `score`;
 CREATE TABLE `score` (
-  `idUser` varchar(50) NOT NULL,
+  `login` varchar(50) NOT NULL,
   `idQuestionnaire` smallint(6) NOT NULL,
+  `nomQuestionnaire` tinytext NOT NULL,
   `score` smallint(6) NOT NULL,
   `date_partie` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -89,7 +90,7 @@ ALTER TABLE `questions`
 -- Index pour la table `score`
 --
 ALTER TABLE `score`
-  ADD PRIMARY KEY (`idUser`),
+  ADD PRIMARY KEY (`login`,`idQuestionnaire`),
   ADD KEY `idQuestionnaire` (`idQuestionnaire`);
 
 --

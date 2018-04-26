@@ -15,13 +15,13 @@ $(document).ready(function(){
 	
 	$("#intro").click(function(){
 		$.get("jeuLeafletAjax.php",
-			{idQ: $('#idQuestionnaire').val()},
+			{para: "start", idQ: $('#idQuestionnaire').val()},
 			function(reponse)
 			{
 
 				var i = 0;
 				
-				while(i<reponse.length)
+				while(i<2)
 				{
 					question.push({q: reponse[i].nomQuestion, latitude: reponse[i].latitude, longitude: reponse[i].longitude})
 					i++;
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		function sauvegarde()
 		{
 			$.get("jeuLeafletAjax.php",
-			{idQ: "sauvegarde", score: point},
+			{para: "end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
 			function(reponse)
 			{
 				if(reponse!=true)
@@ -78,6 +78,7 @@ $(document).ready(function(){
 			});
 		}
 		
+		console.log($('#nomQuestionnaire').val());
 		function miseAJour()
 		{
 			
