@@ -14,40 +14,92 @@
 			
 		}
 		
-		echo '<input id="idQuestionnaire" type="hidden" value='.$_POST['idQuestionnaire'].'>';
-		echo '<input id="nomQuestionnaire" type="hidden" value='.$_POST['nomQuestionnaire'].'>';
+		echo '<input id="idQuestionnaire" type="hidden" value="' . $_POST["idQuestionnaire"]   . '">';
+		echo '<input id="nomQuestionnaire" type="hidden" value="' . $_POST['nomQuestionnaire'] . '">';
 	?>
-	
-	
-	<div style="text-align:center;">
-		<button id="intro" class="btn btn-primary btn-lg">Cliquez ici pour commencer l'exercice</button>
-		<button id="corr" style="display:none" class="btn btn-primary btn-lg">Exercice terminé: cliquez ici pour commencer la correction</button>
-	</div>
-	
-	<div class="container">	
-		<div class="row">
-			<div class="intro2 " style="text-align: center; display:none;"><span id="question" class="label label-primary lg" style="font-size: 120%"></span></div><br>
+	<body>
+		<div id="table-container">
+			<table border="1">
+	    	  
+	    	  <tr>
+	    	  	<?php echo "<th>" . $_POST['nomQuestionnaire'] . "</th>";?>
+	    	    <th id="question_numero">Question N°</th>
+	    	    <!--Contenu géré en js -->
+	    	  </tr>
+
+	    	  <tr>
+	    	    <td id="col1">
+	    	    	<div id="carte">
+	    	    	</div>
+	    	    </td>
+	    	    <td id="col2">
+	    	    	<div id="dashboard">
+						<div>
+							<div>
+								<p id="nom_question" class="well"></p>
+							</div>
+							<div>
+								<p id="nombre_essai" class="text-info"></p>
+							</div>
+							<div>
+								<p id="points" class="text-info"></p>
+								<p id="total"></p>
+							</div>
+
+							<div class="col-lg-12 col-md-12">
+								<form>
+									<p class="text-info"> Latitude : <input id="valLat" type="text" class="form-control" placeholder="Latitude"/></p>
+									<p class="text-info"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="Longitude"/></p>
+								</form>
+							</div>
+						</div>
+	    	    	</div>
+	    	    </td>
+	    	  </tr>
+
+	    	</table>
+	    </div>
+	</body>
+
+	<!--
+	<div class="col-lg-12 col-md-12">
+
+		<div class="container col-lg-8 col-md-8">
 			<div>
-				<div id="carte" style="width: 1200px; height: 600px;"></div>
+				<div>
+					<span id="question" class="label label-primary lg" ></span>
+				</div>
+				<br>
+				<div>
+					<div id="carte"></div>
+				</div>
 			</div>
-			
 		</div>
-	</div>
-	
-	<div class="intro2" style="display:none; margin-left: 200px;">
+
+		<div id="dashboard" class="col-lg-4 col-md-4">
+			<div class="intro2">
+
+				<div class="row">
+					<div>
+						<p id="nombre_essai" class="text-info"></p>
+					</div>
+					<div>
+						<p id="points" class="text-info"></p>
+						<p id="total"></p>
+					</div>
+				</div>
+				
+				<div>
+					<form>
+						<p class="text-info"> Latitude : <input id="valLat" type="text" class="form-control" placeholder="latitude"/></p>
+						<p class="text-info"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="longitude"/></p>
+					</form>
+				</div>
+				<button id="corr" class="btn btn-primary btn-small">Exercice terminé: cliquez ici pour commencer la correction</button>
+			</div>
+		</div>
 		
-		<div class="row">
-			<div class="col-lg-9"> <br><br><p id="test" class="text-info" style="font-size: 120%; font-weight: bold"></p></div>
-			<div class="col-lg-9"><p id="points" style="font-size: 120%; font-weight: bold" class="text-info"></p><p style="font-size: 120%; font-weight: bold" id="total"></p></div>
-		</div>
-		
-		<div>
-			<br>
-			<form>
-				<p class="text-info" style="font-size: 120%; font-weight: bold"> Latitude : <input id="valLat" type="text" class="form-control" placeholder="latitude"/></p>
-				<p class="text-info" style="font-size: 120%; font-weight: bold"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="longitude"/></p>
-			</form>
-		</div>
 	</div>
-	
+	-->
+
 </html>

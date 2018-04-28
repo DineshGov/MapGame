@@ -13,97 +13,93 @@ $(document).ready(function(){
 	var exoFini = false;
 	
 	
-	$("#intro").click(function(){
-		$.get("jeuLeafletAjax.php",
-			{para: "start", idQ: $('#idQuestionnaire').val()},
-			function(reponse)
+
+	$.get("jeuLeafletAjax.php",
+		{para: "start", idQ: $('#idQuestionnaire').val()},
+		function(reponse)
+		{
+
+			var i = 0;
+			
+			while(i<reponse.length)
 			{
-
-				var i = 0;
-				
-				while(i<2)
-				{
-					question.push({q: reponse[i].nomQuestion, latitude: reponse[i].latitude, longitude: reponse[i].longitude})
-					i++;
-				}
-				$('#question').text(question[0].q);
-				cercle1 = L.circle([question[0].latitude,question[0].longitude],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
-				cercle2 = L.circle([question[0].latitude,question[0].longitude],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-				cercle3 = L.circle([question[0].latitude,question[0].longitude],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-		 
+				question.push({
+					idQuestion: reponse[i].idQuestion,
+					q: reponse[i].nomQuestion,
+				 	latitude: reponse[i].latitude,
+				  	longitude: reponse[i].longitude
+				})
+				i++;
 			}
-		);
-		
-		exoStart=true;
-		$('.intro2').css("display","");
-		$('#intro').hide();
-		
-	});
-
+			$('#question_numero').text("Question N°" + question[0].idQuestion);
+			$('#nom_question').text(question[0].q);
+			cercle1 = L.circle([question[0].latitude,question[0].longitude],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+			cercle2 = L.circle([question[0].latitude,question[0].longitude],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+			cercle3 = L.circle([question[0].latitude,question[0].longitude],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+	 
+		}
+	);
 	
-	
+	exoStart=true;
 
 	
 	$('#points').text("Vous n'avez actuellement aucun point");
-	$('#test').text("Vous avez droit à "+essai+" essais");
+	$('#nombre_essai').text("Vous avez droit à "+essai+" essais");
 	
 	console.log("Phase : "+phase);
 	console.log("Points actuels : "+point);
 	console.log("Essais : "+essai);
 	
-		var map = L.map('carte').setView([48.858376, 2.294442], 3);
+	var map = L.map('carte').setView([48.858376, 2.294442], 3);
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
-        {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 13,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
-        }).addTo(map);
-		
-	//var html ="<h3>Mon marqueur avec popup</h3><p>La Tour Eiffel</p><ul><li>Construction de 1887 à 1889</li><li>Hauteur avec antenne 324m</li><li>Nombre d'ascenseurs 6</li></ul><center><img src='Tour Eiffel.png'></center>";
-		
-		
-	//var popup=L.popup().setLatLng([48.858376, 2.294442]).setContent(html).openOn(map);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
+    {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 13,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
+    }).addTo(map);
 	
-		
-		function sauvegarde()
+	function sauvegarde()
+	{
+		$.get("jeuLeafletAjax.php",
+		{para: "end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
+		function(reponse)
 		{
-			$.get("jeuLeafletAjax.php",
-			{para: "end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
-			function(reponse)
-			{
-				if(reponse!=true)
-					alert("echec de l'enregistrement");
-			});
+			if(reponse!=true)
+				alert("echec de l'enregistrement");
+		});
+	}
+	
+	console.log($('#nomQuestionnaire').val());
+
+	function miseAJour()
+	{
+		
+		if(phase==question.length-1)
+		{
+			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
+			sauvegarde();
+			exoFini = true;
+			$('#question_numero').hide();
+			$('#nom_question').hide();
+			$('#corr').show();
+		}
+		else
+		{
+			phase++;
+			essai=3;
+			cercle1.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle2.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
+		
+			$('#question_numero').text("Question N°" + question[phase].idQuestion);
+			$('#nom_question').text(question[phase].q);
+			$('#nombre_essai').text("Vous avez droit à "+essai+" essais");				
+			$('#points').text("Vous avez "+point+" point(s)");
 		}
 		
-		console.log($('#nomQuestionnaire').val());
-		function miseAJour()
-		{
-			
-			if(phase==question.length-1)
-			{
-				$('#total').text('Test fini : vous avez au total '+point+' point(s)');
-				sauvegarde();
-				exoFini = true;
-				$('#question').hide();
-				$('#corr').show();
-			}
-			else
-			{
-				phase++;
-				essai=3;
-				cercle1.setLatLng([question[phase].latitude,question[phase].longitude]);
-				cercle2.setLatLng([question[phase].latitude,question[phase].longitude]);
-				cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
-			
-				$('#question').text(question[phase].q);		
-				$('#test').text("Vous avez droit à "+essai+" essais");				
-				$('#points').text("Vous avez "+point+" point(s)");
-			}
-			
-		}
+	}
 
 				
 	function click(e) {
@@ -155,7 +151,7 @@ $(document).ready(function(){
 					essai--;
 				}
 						
-				$('#test').text("Vous avez droit à "+essai+" essais");
+				$('#nombre_essai').text("Vous avez droit à "+essai+" essais");
 						
 				console.log("Phase : "+phase);
 				console.log("Points actuels : "+point);

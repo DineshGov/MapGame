@@ -30,8 +30,10 @@
     <link href="css/menu_principal.css" rel="stylesheet">
     <link href="css/administration.css" rel="stylesheet">
     <link href="css/gestionnaire_questionnaire.css" rel="stylesheet">
-    <link href="css/jeuLeaflet.css" rel="stylesheet">
-
+    <?php
+    if($page_name==="gestion_questionnaire.php" || $page_name==="jeuLeaflet.php")
+      echo '<link href="css/jeuLeaflet.css" rel="stylesheet">';
+    ?>
     
     
   </head>
