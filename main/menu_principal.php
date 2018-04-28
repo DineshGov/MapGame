@@ -12,7 +12,7 @@
       $req=$bd->prepare('select * from Questionnaires');
       $req->execute();
 
-      echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3" style="text-align: center;">';
+      echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3 container_questionnaire" style="text-align: center;">';
       while($tab = $req->fetch(PDO::FETCH_ASSOC)){
         echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
         echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
@@ -24,7 +24,9 @@
 	  
 	  echo '
 			<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3" style="text-align: center;">
-				<a href="score.php" style="color: white; text-decoration:none"><button class="btn btn-lg btn-info btn-block">Voir mon score</button></a>
+				<a href="score.php" style="color: white; text-decoration:none">
+          <button class="btn btn-lg btn-info btn-block">Score</button>
+        </a>
 			</div>
 			';
 

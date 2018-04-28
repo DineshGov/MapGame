@@ -79,4 +79,12 @@
           </ul>
         </div>
       </div>
+
+      <?php
+      if($page_name != 'deconnexion.php'){
+        echo '<script type="text/javascript">
+          $(".navbar-brand").on("click", RedirectionVersMenuPrincipal);
+        </script>';
+      }
+      ?>
     </nav>

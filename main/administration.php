@@ -80,6 +80,10 @@
       </table>
     </div>
 
+    <div class="col-lg-offset-2 col-lg-4 col-md-offset-2 col-md-4 col-sm-offset-2 col-sm-4"> 
+      <button id="btn_creation_questionnaire" class="btn btn-lg btn-success btn-block">Création questionnaire</button>
+    </div>
+
     <script type="text/javascript"> 
       $('.element_supprimable').on('click', supprimer_element_bdd);
       $('.element_modifiable').on('click', modifie_questionnaire);

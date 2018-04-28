@@ -7,3 +7,11 @@ function RedirectionVersConnexionFromMain(){
   	document.location.href= url_destination;
 }
 //Fonction utilisée en cas de déconnexion. On sort alors du repertoire main d'ou la répétition du substring /
+
+function RedirectionVersMenuPrincipal(){
+	var url = document.location.href;
+	var url_sans_nom_fichier  = url.substring( 0 ,url.lastIndexOf( "/" ) );
+	var url_destination = url_sans_nom_fichier.concat("/menu_principal.php");
+  	document.location.href= url_destination; 
+}
+//Fonction utilisée au click sur le nom du jeu
