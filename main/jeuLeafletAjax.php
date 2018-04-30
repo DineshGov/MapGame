@@ -22,7 +22,11 @@
 		}				
 		else if (isset($_GET['idQ']) && $_GET['para']=="end")
 		{
-
+			if(!isset($_SESSION['login']))
+			{
+				echo "true";
+			}	
+			
 			$req = $bd->prepare("select * from score where login = :l and idQuestionnaire = :id");
 			$req->bindvalue(':l',$_SESSION['login']);
 			$req->bindvalue(':id',$_GET['idQ']);
@@ -42,10 +46,11 @@
 			}
 			else
 			{
-				$req3 = $bd->prepare("update score set date_partie = :d, score = :s where login = :l and idQuestionnaire = :id");
+				$req3 = $bd->prepare("update score set date_partie = :d, score = :s, nomQuestionnaire = :nQ where login = :l and idQuestionnaire = :id");
 				$req3->bindvalue(':l',$_SESSION['login']);
 				$req3->bindvalue(':id',$_GET['idQ']);
 				$req3->bindvalue(':s',$_GET['score']);
+				$req3->bindvalue(':nQ',$_GET['nomQ']);
 				$req3->bindvalue(':d',$datetime);				
 				$req3->execute();
 			}

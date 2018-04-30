@@ -3,6 +3,15 @@ $page_name='score.php';
 require('header.php');
 require('../database_auth.php');
 
+ if(!isset($_SESSION['login']))
+ {
+	echo '<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">';
+		echo "seul les membres inscrits peuvent voir leurs score<br><br>";
+		echo '<a href="menu_principal.php"><p class="text-danger" style="font-size: 150%; font-weight: bold">Retour au menu principal</p></a>';
+	echo '</div>';
+	exit;
+ }
+
 $req = $bd->prepare('select * from score where login=:l');
 $req->bindvalue(':l',$_SESSION['login']);
 $req->execute();

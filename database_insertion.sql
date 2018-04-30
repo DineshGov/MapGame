@@ -36,7 +36,7 @@ INSERT INTO `questions` (`idQuestion`, `idQuestionnaire`, `nomQuestion`, `longit
 (6, 1, 'Où se situe le colosse de Rhodes?', 28.2278, 36.4511),
 (7, 1, 'Où se situe la tour de Pharos?', 29.885, 31.2142),
 (1, 2, 'Où se situe la capitale des Etats-Unis?', -77.0363700, 38.8951100),
-(2, 2, 'Où se situent la capitale de la Chine ?', 116.3972300, 39.9075000),
+(2, 2, 'Où se situe la capitale de la Chine ?', 116.3972300, 39.9075000),
 (3, 2, 'Où se situe la capitale du Japon ?', 139.6917100, 35.6895000),
 (4, 2, 'Où se situe la capitale de l\'Allemagne?', 13.4105300, 52.5243700),
 (5, 2, 'Où se situe la capitale de la France?', 2.333333, 48.866667),

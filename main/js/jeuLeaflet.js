@@ -13,6 +13,7 @@ $(document).ready(function(){
 	var exoFini = false;
 	
 	
+	
 
 	$.get("jeuLeafletAjax.php",
 		{para: "start", idQ: $('#idQuestionnaire').val()},
@@ -33,10 +34,11 @@ $(document).ready(function(){
 			}
 			$('#question_numero').text("Question N°" + question[0].idQuestion);
 			$('#nom_question').text(question[0].q);
-			cercle1 = L.circle([question[0].latitude,question[0].longitude],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
-			cercle2 = L.circle([question[0].latitude,question[0].longitude],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-			cercle3 = L.circle([question[0].latitude,question[0].longitude],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-	 
+			cercle1 = L.circle([question[0].latitude,question[0].longitude],5000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+			cercle2 = L.circle([question[0].latitude,question[0].longitude],10000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+			cercle3 = L.circle([question[0].latitude,question[0].longitude],15000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+			cercle4 = L.circle([question[0].latitude,question[0].longitude],20000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+			cercle5 = L.circle([question[0].latitude,question[0].longitude],25000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
 		}
 	);
 	
@@ -55,13 +57,14 @@ $(document).ready(function(){
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
     {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 13,
+    maxZoom: 10,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
     }).addTo(map);
 	
 	function sauvegarde()
 	{
+		
 		$.get("jeuLeafletAjax.php",
 		{para: "end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
 		function(reponse)
@@ -72,14 +75,18 @@ $(document).ready(function(){
 	}
 	
 	console.log($('#nomQuestionnaire').val());
-
 	function miseAJour()
 	{
 		
 		if(phase==question.length-1)
 		{
 			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
-			sauvegarde();
+			
+			if($('#invite').val()=='true')
+				$('#btnInvite').show();
+			else
+				sauvegarde();
+			
 			exoFini = true;
 			$('#question_numero').hide();
 			$('#nom_question').hide();
@@ -92,6 +99,8 @@ $(document).ready(function(){
 			cercle1.setLatLng([question[phase].latitude,question[phase].longitude]);
 			cercle2.setLatLng([question[phase].latitude,question[phase].longitude]);
 			cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle4.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle5.setLatLng([question[phase].latitude,question[phase].longitude]);
 		
 			$('#question_numero').text("Question N°" + question[phase].idQuestion);
 			$('#nom_question').text(question[phase].q);
@@ -101,8 +110,14 @@ $(document).ready(function(){
 		
 	}
 
+	map.on('mousemove',function(e){
+		
+		$("#valLat").val(e.latlng.lat);
+		$("#valLong").val(e.latlng.lng);
+	});
+	
 				
-	function click(e) {
+	map.on('click',function click(e) {
 		if(!exoStart)
 		{
 			e.preventDefault();
@@ -127,21 +142,33 @@ $(document).ready(function(){
 			{
 				if(dist<=cercle1.getRadius())
 				{
-					alert("Bonne réponse, vous avez eu 5 points");
-					point+=5;
+					alert("Bonne réponse, vous avez eu 10 points");
+					point+=10;
 					miseAJour();
 				}
 					
 				else if(dist>cercle1.getRadius() && dist<=cercle2.getRadius())
 				{
-					alert("Vous y étiez presque, vous avez eu 3 points");
-					point+=3;
+					alert("Vous y étiez presque, vous avez eu 8 points");
+					point+=8;
 					miseAJour();
 				}
 				else if(dist>cercle2.getRadius() && dist<=cercle3.getRadius())
 				{
-					alert("Pas mal vous avez eu 1 point");
-					point+=1;
+					alert("Pas mal vous avez eu 6 point");
+					point+=6;
+					miseAJour();
+				}
+				else if(dist>cercle3.getRadius() && dist<=cercle4.getRadius())
+				{
+					alert("Pas mal vous avez eu 4 point");
+					point+=4;
+					miseAJour();
+				}
+				else if(dist>cercle4.getRadius() && dist<=cercle5.getRadius())
+				{
+					alert("Pas mal vous avez eu 2 point");
+					point+=2;
 					miseAJour();
 				}
 				else
@@ -160,9 +187,7 @@ $(document).ready(function(){
 			
 		}
 
-	}
-		
+	});
 
-	map.on('click',click);
 	
 });
