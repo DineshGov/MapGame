@@ -80,8 +80,8 @@
       </table>
     </div>
 
-    <div class="col-lg-offset-2 col-lg-4 col-md-offset-2 col-md-4 col-sm-offset-2 col-sm-4"> 
-      <button id="btn_creation_questionnaire" class="btn btn-lg btn-success btn-block">Création questionnaire</button>
+    <div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3"> 
+      <a href="creation_questionnaire.php" id="btn_creation_questionnaire" class="btn btn-lg btn-success btn-block" role="button">Création questionnaire</a>
     </div>
 
     <script type="text/javascript"> 

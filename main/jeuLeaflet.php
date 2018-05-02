@@ -59,7 +59,8 @@
 						</div>
 						
 						<div id="btnInvite" style="display:none; margin-left:20px; margin-right:20px;">
-							<button class="btn btn-primary"><a href="menu_principal.php" style="color:white;text-decoration:none">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a></button>
+							<!--<button class="btn btn-primary"><a href="menu_principal.php" style="color:white;text-decoration:none">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a></button>-->
+							<a href="menu_principal.php" class="btn btn-lg btn-primary" role="button">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a>
 						</div>
 					</div>
 					
