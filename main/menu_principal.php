@@ -41,9 +41,3 @@
     <script type="text/javascript"> 
       $('.questionnaire_form_submitter').on('click', transmet_infos_questionnaire);
     </script>
-
-
-    <!--echo "<form method='post' action='gestion_questionnaire.php' id='form_" . $tab2['idQuestionnaire'] . "'>";
-                    echo '<input type="hidden" name="idQuestionnaire" value="' . $tab2["idQuestionnaire"] . '">';
-                    echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab2["nomQuestionnaire"] . '">';
-                    echo "</form>";-->

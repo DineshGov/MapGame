@@ -9,7 +9,7 @@
 		{
 			echo "erreur d'authetification<br>Redirection en cours...";
 			echo("<script>setTimeout('RedirectionVersConnexionFromMain()', 1000)</script>");
-			header('menu_principal.php');
+			//header('menu_principal.php');
 			exit(1);
 			
 		}
