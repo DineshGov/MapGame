@@ -10,7 +10,7 @@ require('database_auth.php'); ?>
 	if( isset($_POST['inputPassword']) && isset($_POST['inputPasswordConfirm']) && ( $_POST['inputPassword'] !== $_POST['inputPasswordConfirm'] ) ){
 		echo '<div class="redirection_div"> Erreur. </div>';
 		echo "<p>Les mots de passe ne correspondent pas</p> <p>Vous allez maintenant être redirigé vers le formulaire d'inscription.</p>" . "\n<a href='inscription.php'> Cliquez ici si l'attente est trop longue. </a>";
-		echo("<script>setTimeout('RedirectionVersInscription()', 2000)</script>");
+		echo("<script>setTimeout('RedirectionVersInscription()', 1000)</script>");
 	}
 //Si lors de l'inscription le mdp n'est pas correctement saisi deux fois alors echec de l'inscription.
 //Normalement impossible car envoi du formulaire bloqué par jquery.
@@ -29,13 +29,13 @@ require('database_auth.php'); ?>
 			echo "<div class='redirection_div'> Bienvenue " . htmlspecialchars($_POST['inputUsername'], ENT_QUOTES) . "! </div>";
 			echo "<p>Votre compte a bien été crée.</p> <p>Vous allez maintenant être redirigé vers le formulaire de connexion.</p>";
 			echo "<p><a href='index.php'> Cliquez ici si l'attente est trop longue. </a></p>";
-			echo("<script>setTimeout('RedirectionVersConnexion()', 2000)</script>");
+			echo("<script>setTimeout('RedirectionVersConnexion()', 1000)</script>");
 		}
 		else{
 			echo '<div class="redirection_div"> Erreur. </div>';
 			echo "<p>Nom d'utilisateur déjà utilisé. Merci d'en saisir un nouveau.</p> <p>Vous allez maintenant être redirigé vers le formulaire d'inscription.</p>";
 			echo "<p><a href='inscription.php'> Cliquez ici si l'attente est trop longue. </a></p>";
-			echo("<script>setTimeout('RedirectionVersInscription()', 2000)</script>");
+			echo("<script>setTimeout('RedirectionVersInscription()', 1000)</script>");
 			//Ce cas est normalement impossible car controlé lors du remplissage du formulaire par un script ajax
 		}
 

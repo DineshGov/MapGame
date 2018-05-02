@@ -10,12 +10,16 @@
 			echo "erreur d'authetification<br>Redirection en cours...";
 			echo("<script>setTimeout('RedirectionVersConnexionFromMain()', 1000)</script>");
 			//header('menu_principal.php');
+			//header('index.php');
 			exit(1);
 			
 		}
 		
 		echo '<input id="idQuestionnaire" type="hidden" value="' . $_POST["idQuestionnaire"]   . '">';
 		echo '<input id="nomQuestionnaire" type="hidden" value="' . $_POST['nomQuestionnaire'] . '">';
+		
+		if(!isset($_SESSION['login']))
+			echo '<input id="invite" value="true" type="hidden"/>';
 	?>
 	<body>
 		<div id="table-container">
@@ -46,16 +50,24 @@
 								<p id="total"></p>
 							</div>
 
-							<div class="col-lg-12 col-md-12">
+							<div id="latlng" class="col-lg-12 col-md-12">
 								<form>
 									<p class="text-info"> Latitude : <input id="valLat" type="text" class="form-control" placeholder="Latitude"/></p>
 									<p class="text-info"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="Longitude"/></p>
 								</form>
 							</div>
 						</div>
-	    	    	</div>
+						
+						<div id="btnInvite" style="display:none; margin-left:20px; margin-right:20px;">
+							<button class="btn btn-primary"><a href="menu_principal.php" style="color:white;text-decoration:none">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a></button>
+						</div>
+					</div>
+					
 	    	    </td>
+				
 	    	  </tr>
+			  
+			 
 
 	    	</table>
 	    </div>
