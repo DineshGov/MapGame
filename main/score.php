@@ -2,7 +2,16 @@
 $page_name='score.php';
 require('header.php');
 require('../database_auth.php');
+?>
 
+    <div>
+        <a href="menu_principal.php" class='return_links'>
+            <span class="glyphicon glyphicon-step-backward"></span>
+            Retour au menu principal
+        </a>
+    </div>
+
+<?php
  if(!isset($_SESSION['login']))
  {
 	echo '<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">';
@@ -33,10 +42,16 @@ echo '	<br><br>
 
 echo				'</table>
 					<br><br>
-					<a href="menu_principal.php"><p class="text-danger" style="font-size: 150%; font-weight: bold">Retour au menu principal</p></a>
 				</div>
 			</div>
 		</div>
 	';
 
 ?>
+
+    <div>
+        <a href="menu_principal.php" class='return_links'>
+            <span class="glyphicon glyphicon-step-backward"></span>
+            Retour au menu principal
+        </a>
+    </div>
