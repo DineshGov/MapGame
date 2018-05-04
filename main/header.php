@@ -25,6 +25,7 @@
     <script src="js/gestion_questionnaire.js"></script>
     <script src="js/jeuLeaflet.js"></script>
     <script src="js/creation_questionnaire.js"></script>
+	<script src="js/score.js"></script>
     
     <link href="css/header.css" rel="stylesheet">
     <link href="css/deconnexion.css" rel="stylesheet">
@@ -32,6 +33,7 @@
     <link href="css/administration.css" rel="stylesheet">
     <link href="css/gestionnaire_questionnaire.css" rel="stylesheet">
     <link href="css/creation_questionnaire.css" rel="stylesheet">
+	<link href="css/score.css" rel="stylesheet">
     <?php
     if($page_name==="gestion_questionnaire.php" || $page_name==="jeuLeaflet.php")
       echo '<link href="css/jeuLeaflet.css" rel="stylesheet">';
