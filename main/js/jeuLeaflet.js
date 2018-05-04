@@ -6,6 +6,9 @@ $(document).ready(function(){
 	var cercle1;
 	var cercle2;
 	var cercle3;
+	var cercle4;
+	var cercle5;
+	var cercle6;
 	
 	var phase = 0;
 	var essai = 3;
@@ -34,11 +37,11 @@ $(document).ready(function(){
 			}
 			$('#question_numero').text("Question N°" + question[0].idQuestion);
 			$('#nom_question').text(question[0].q);
-			cercle1 = L.circle([question[0].latitude,question[0].longitude],5000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
-			cercle2 = L.circle([question[0].latitude,question[0].longitude],10000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-			cercle3 = L.circle([question[0].latitude,question[0].longitude],15000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-			cercle4 = L.circle([question[0].latitude,question[0].longitude],20000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-			cercle5 = L.circle([question[0].latitude,question[0].longitude],25000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+			cercle1 = L.circle([question[0].latitude,question[0].longitude],8000).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+			cercle2 = L.circle([question[0].latitude,question[0].longitude],16000).addTo(map);
+			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000).addTo(map);
+			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000).addTo(map);
+			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000).addTo(map);
 		}
 	);
 	
@@ -47,17 +50,14 @@ $(document).ready(function(){
 	
 	$('#points').text("Vous n'avez actuellement aucun point");
 	$('#nombre_essai').text("Vous avez droit à "+essai+" essais");
-	
-	console.log("Phase : "+phase);
-	console.log("Points actuels : "+point);
-	console.log("Essais : "+essai);
+
 	
 	var map = L.map('carte').setView([48.858376, 2.294442], 3);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
     {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 10,
+    maxZoom: 9,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
     }).addTo(map);
@@ -74,16 +74,19 @@ $(document).ready(function(){
 		});
 	}
 	
-	console.log($('#nomQuestionnaire').val());
 	function miseAJour()
 	{
 		
+		$('#btnInfos').hide();
 		if(phase==question.length-1)
 		{
 			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
 			
 			if($('#invite').val()=='true')
-				$('#btnInvite').show();
+			{
+				$('#btnInfos').show()
+				$('#btnInfos').text("Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil");
+			}
 			else
 				sauvegarde();
 			
@@ -114,6 +117,11 @@ $(document).ready(function(){
 		
 		$("#valLat").val(e.latlng.lat);
 		$("#valLong").val(e.latlng.lng);
+		
+		if(e.latlng.distanceTo([question[phase].latitude,question[phase].longitude])<=cercle5.getRadius())
+			$('#help').show();
+		else
+			$('#help').hide();
 	});
 	
 				
@@ -133,58 +141,62 @@ $(document).ready(function(){
 		
 		if(exoFini!=true)
 		{
-			if(essai==0)
+			if(essai==1)
 			{
-				alert("nombre d'essai dépassé");
+						
+				attrib_pts();
+				
 				miseAJour();
+				
+				
 			}
 			else
+			{	
+				attrib_pts();	
+			}
+			
+			function attrib_pts()
 			{
 				if(dist<=cercle1.getRadius())
 				{
-					alert("Bonne réponse, vous avez eu 10 points");
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Bonne réponse , vous avez eu 10 point").openOn(map);
 					point+=10;
 					miseAJour();
 				}
 					
 				else if(dist>cercle1.getRadius() && dist<=cercle2.getRadius())
 				{
-					alert("Vous y étiez presque, vous avez eu 8 points");
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Vous y étiez presque , vous avez eu 8 point").openOn(map);
 					point+=8;
 					miseAJour();
 				}
 				else if(dist>cercle2.getRadius() && dist<=cercle3.getRadius())
 				{
-					alert("Pas mal vous avez eu 6 point");
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Pas mal vous avez eu 6 point").openOn(map);
 					point+=6;
 					miseAJour();
 				}
 				else if(dist>cercle3.getRadius() && dist<=cercle4.getRadius())
 				{
-					alert("Pas mal vous avez eu 4 point");
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Pas mal vous avez eu 4 point").openOn(map);
 					point+=4;
 					miseAJour();
 				}
 				else if(dist>cercle4.getRadius() && dist<=cercle5.getRadius())
 				{
-					alert("Pas mal vous avez eu 2 point");
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Pas mal vous avez eu 2 point").openOn(map);
 					point+=2;
 					miseAJour();
 				}
 				else
 				{
 					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("vous êtes loin de la réponse").openOn(map);
-					console.log("Distance entre le point de réference et le click : "+dist);
 					essai--;
 				}
 						
 				$('#nombre_essai').text("Vous avez droit à "+essai+" essais");
-						
-				console.log("Phase : "+phase);
-				console.log("Points actuels : "+point);
-				console.log("Essais : "+essai);
+		
 			}
-			
 		}
 
 	});

@@ -41,6 +41,7 @@
 						<div>
 							<div>
 								<p id="nom_question" class="well"></p>
+								
 							</div>
 							<div>
 								<p id="nombre_essai" class="text-info"></p>
@@ -56,12 +57,15 @@
 									<p class="text-info"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="Longitude"/></p>
 								</form>
 							</div>
+
+						</div>
+
+						<div id="btnInfos" style="display:none; margin-left:20px; margin-right:20px;">
+							<!--<button class="btn btn-primary"><a href="menu_principal.php" style="color:white;text-decoration:none">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a></button>-->
+							<a href="menu_principal.php" class="btn btn-lg btn-primary" role="button"></a>
 						</div>
 						
-						<div id="btnInvite" style="display:none; margin-left:20px; margin-right:20px;">
-							<!--<button class="btn btn-primary"><a href="menu_principal.php" style="color:white;text-decoration:none">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a></button>-->
-							<a href="menu_principal.php" class="btn btn-lg btn-primary" role="button">Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil</a>
-						</div>
+						<span id="help" class="glyphicon glyphicon-eye-open"></span>
 					</div>
 					
 	    	    </td>
