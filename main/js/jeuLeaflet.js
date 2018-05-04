@@ -37,11 +37,13 @@ $(document).ready(function(){
 			}
 			$('#question_numero').text("Question N°" + question[0].idQuestion);
 			$('#nom_question').text(question[0].q);
-			cercle1 = L.circle([question[0].latitude,question[0].longitude],8000).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
-			cercle2 = L.circle([question[0].latitude,question[0].longitude],16000).addTo(map);
-			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000).addTo(map);
-			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000).addTo(map);
-			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000).addTo(map);
+			cercle1 = L.circle([question[0].latitude,question[0].longitude],8000,{color: 'transparent'}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+			cercle2 = L.circle([question[0].latitude,question[0].longitude],16000,{color: 'transparent'}).addTo(map);
+			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000,{color: 'transparent'}).addTo(map);
+			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000,{color: 'transparent'}).addTo(map);
+			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000,{color: 'transparent'}).addTo(map);
+			
+
 		}
 	);
 	
@@ -81,6 +83,7 @@ $(document).ready(function(){
 		if(phase==question.length-1)
 		{
 			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
+			$('#nombre_essai').hide();
 			
 			if($('#invite').val()=='true')
 			{
