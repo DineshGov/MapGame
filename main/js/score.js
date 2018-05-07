@@ -17,7 +17,7 @@ $(document).ready(function()
 			
 			$.get
 			(
-				"scoreAjax.php",
+				"requete_ajax_score.php",
 				{para: parametre, ordre: 'asc'},
 				function(reponse)
 				{
@@ -33,7 +33,7 @@ $(document).ready(function()
 			
 			$.get
 			(
-				"scoreAjax.php",
+				"requete_ajax_score.php",
 				{para: parametre, ordre: 'desc'},
 				function(reponse)
 				{

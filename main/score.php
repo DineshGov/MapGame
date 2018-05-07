@@ -1,4 +1,3 @@
-
 <?php
 $page_name='score.php';
 require('header.php');
@@ -50,3 +49,5 @@ echo				'</table>
             Retour au menu principal
         </a>
     </div>
+</body>
+</html>

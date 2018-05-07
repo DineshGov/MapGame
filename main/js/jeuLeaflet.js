@@ -18,7 +18,7 @@ $(document).ready(function(){
 	
 	
 
-	$.get("jeuLeafletAjax.php",
+	$.get("requete_ajax_jeuLeaflet.php",
 		{para: "start", idQ: $('#idQuestionnaire').val()},
 		function(reponse)
 		{
@@ -67,7 +67,7 @@ $(document).ready(function(){
 	function sauvegarde()
 	{
 		
-		$.get("jeuLeafletAjax.php",
+		$.get("requete_ajax_jeuLeaflet.php",
 		{para: "end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
 		function(reponse)
 		{

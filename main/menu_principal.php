@@ -41,3 +41,5 @@
     <script type="text/javascript"> 
       $('.questionnaire_form_submitter').on('click', transmet_infos_questionnaire);
     </script>
+</body>
+</html>

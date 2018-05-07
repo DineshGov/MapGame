@@ -21,7 +21,7 @@
 		if(!isset($_SESSION['login']))
 			echo '<input id="invite" value="true" type="hidden"/>';
 	?>
-	<body>
+
 		<div id="table-container">
 			<table border="1">
 	    	  
@@ -77,46 +77,4 @@
 	    	</table>
 	    </div>
 	</body>
-
-	<!--
-	<div class="col-lg-12 col-md-12">
-
-		<div class="container col-lg-8 col-md-8">
-			<div>
-				<div>
-					<span id="question" class="label label-primary lg" ></span>
-				</div>
-				<br>
-				<div>
-					<div id="carte"></div>
-				</div>
-			</div>
-		</div>
-
-		<div id="dashboard" class="col-lg-4 col-md-4">
-			<div class="intro2">
-
-				<div class="row">
-					<div>
-						<p id="nombre_essai" class="text-info"></p>
-					</div>
-					<div>
-						<p id="points" class="text-info"></p>
-						<p id="total"></p>
-					</div>
-				</div>
-				
-				<div>
-					<form>
-						<p class="text-info"> Latitude : <input id="valLat" type="text" class="form-control" placeholder="latitude"/></p>
-						<p class="text-info"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="longitude"/></p>
-					</form>
-				</div>
-				<button id="corr" class="btn btn-primary btn-small">Exercice terminé: cliquez ici pour commencer la correction</button>
-			</div>
-		</div>
-		
-	</div>
-	-->
-
 </html>
