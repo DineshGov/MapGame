@@ -17,3 +17,15 @@
 .btn-info{
 	margin-top: 30px;
 }
+
+#message_invite{
+  background-color: #f5f5f5;
+  margin-top: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  font-style: italic;
+}

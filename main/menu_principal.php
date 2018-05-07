@@ -14,22 +14,31 @@
 
      if(!isset($_SESSION['login']))
 	{
-		echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3 container_questionnaire" style="text-align: center;">';
-  
-        echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire1'>Les 7 merveilles du monde</button>";
-        echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire1'>";
-        echo "<input type='hidden' name='idQuestionnaire' value='1'>";
-        echo "<input type='hidden' name='nomQuestionnaire' value='Les 7 merveilles du monde'>";
-        echo "</form>";
-      
+      echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3 container_questionnaire" style="text-align: center;">';
+
+      echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire1'>Les 7 merveilles du monde</button>";
+      echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire1'>";
+      echo "<input type='hidden' name='idQuestionnaire' value='1'>";
+      echo "<input type='hidden' name='nomQuestionnaire' value='Les 7 merveilles du monde'>";
+      echo "</form>";
+
       echo "</div>";
+      echo '<div class="col-lg-12 col-md-12 col-sm-12" id="message_invite">
+        Vous êtes connecté en tant qu’invité.' . '</br>' . 'Pour avoir accès à tout les questionnaires proposés, inscrivez-vous ou connectez-vous.
+      </div>';
+
 	}
 	else
 	{
 		echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3 container_questionnaire" style="text-align: center;">';
       while($tab = $req->fetch(PDO::FETCH_ASSOC))
 	  {
-        echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
+      if($tab['statut'] == 'desactive'){
+       echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter disabled' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>"; 
+      }
+      else{
+        echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter active' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
+      }
         echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
         echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
         echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
