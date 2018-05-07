@@ -25,7 +25,7 @@
 
             echo "<p>idQuestionnaire: <input type='text' name='inputIdQuestionnaire' id='inputIdQuestionnaire' value='" . $tab['idQuestionnaire'] . "'disabled></input></p>";
             echo '<p>nomQuestionnaire: <input type="text" name="inputNomQuestionnaire" id="inputNomQuestionnaire" value="' . $tab["nomQuestionnaire"] . '"></input>';
-            echo '<button type="button" class="btn btn-info btn-xs" id="majNomQuestionnaire">Mise à jour</button>';
+            echo '<button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="majNomQuestionnaire">Mise à jour</button>';
             ?>
             <div id="resultat_requete_MAJ">
             </div>
@@ -41,9 +41,12 @@
             Latitude: <input type="text" id="clickedLatitude"> 
             Longitude: <input type="text" id="clickedLongitude">
         </p>
-            <p>Attribuer ces coordonnées à la question à modifier
-                <button type="button" class="btn btn-info btn-xs" id="btn_attrib_coord" >Go</button>
-            </p>
+
+        <div>
+            <p>Attribuer ces coordonnées à la question à modifier</p>
+            <p><button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="btn_attrib_coord" >Go</button></p>
+            <p id="explication_utilisation">(Cliquez sur une clé à molette et appuyez sur le bouton Go pour attribuer les coordonnées à la question.)</p>
+        </div>
 
         </div>
 
@@ -63,15 +66,10 @@
                   <?php
                     $req2=$bd->prepare('select * from questions where idQuestionnaire= :id order by idQuestion');
                     $req2->bindvalue(':id', $_POST['idQuestionnaire']);
-                    // idQuestion, nomQuestion, longitude, latitude
                     $req2->execute();
                     $compteur_question = 1;
                     $nbr_question_total = 7;
                     $question_trouvee_dans_bdd = false;
-
-                    /*print_r($tab2 = $req2->fetchAll(PDO::FETCH_ASSOC));
-                    echo "<br />";
-                    echo "test = " . ($tab2[0][idQuestion]);*/
 
                     $tab2 = $req2->fetchAll(PDO::FETCH_ASSOC);
 
@@ -101,6 +99,9 @@
                         $question_trouvee_dans_bdd = false;
                         $i = 0;
                     }
+                    //Cette boucle for permet de creer le tableau ligne par ligne
+                    //Une ligne est vide si pour tout $i, il n'existe pas de question d'id correspondant
+                    //Sinon on recupere les infos de la question et on l'ajoute au tableau
                   ?>
                 </tbody>
             </table>
@@ -108,7 +109,7 @@
         </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <button type="button" class="btn btn-info btn-xs" id="buttonQuestionUpdate">Mise à jour question</button>
+                <button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="buttonQuestionUpdate">Mise à jour question</button>
                 <h6 id="reponse_MAJ"></h6>
             </div>
     </div>
@@ -151,6 +152,7 @@
         $('#majNomQuestionnaire').on('click', maj_nom_questionnaire);
         $('.glyphicon-wrench').on('click', add_edition_line_in_table);
         $('#buttonQuestionUpdate').on('click', maj_question);
+        $('#btn_attrib_coord').on('click', attribution_coordonnes_via_bouton);
     </script>
 
 

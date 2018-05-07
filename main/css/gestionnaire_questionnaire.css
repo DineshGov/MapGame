@@ -35,10 +35,6 @@ label{
 	font-size: 13px
 }
 
-#btn_attrib_coord{
-	margin-left: 10px;
-}
-
 .glyphicon-remove{
 	cursor: pointer;
 }
@@ -53,4 +49,13 @@ label{
 
 #buttonQuestionUpdate{
 	margin-bottom: 10px;
+}
+
+.btn_gestion_questionnaire{
+	margin-top: inherit;
+}
+
+#explication_utilisation{
+	font-size: 90%;
+	font-style: italic;
 }

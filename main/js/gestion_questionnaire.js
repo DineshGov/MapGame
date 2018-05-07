@@ -72,6 +72,11 @@ function delete_edition_line_in_table(){
     $('#add_question').remove();
 }
 
+function attribution_coordonnes_via_bouton(){
+    $('#newLatitude').val($("#clickedLatitude").val());
+    $('#newLongitude').val($("#clickedLongitude").val());
+}
+
 
 function maj_question(){
 
