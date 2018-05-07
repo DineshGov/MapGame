@@ -87,8 +87,8 @@ $(document).ready(function(){
 			
 			if($('#invite').val()=='true')
 			{
-				$('#btnInfos').show()
-				$('#btnInfos').text("Test en mode invité terminé: cliquez sur ce lien pour retourner à la page d'accueil");
+				$('#btnInfos').show();
+				$('#btnInvit').show();
 			}
 			else
 				sauvegarde();

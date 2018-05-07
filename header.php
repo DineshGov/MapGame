@@ -38,7 +38,7 @@
             <li class="active"><a id="about_link">About</a></li>
             <script type="text/javascript"> 
               $('#about_link').on('click', function(){
-                alert('Informations sur les développeurs blabla');
+                alert('Se7en est un jeu intéractif ayant pour but d\'enrichir la culture générale du joueur en lui faisant découvrir plusieurs lieux \nCe site a été codé en PHP et Javascript en utilisant la bibliothèque Leaflet');
               })
             </script>
           </ul>
