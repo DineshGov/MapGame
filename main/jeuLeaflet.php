@@ -57,7 +57,7 @@
 									<p class="text-info"> Longitude : <input id="valLong" type="text" class="form-control" placeholder="Longitude"/></p>
 								</form>
 							</div>
-
+							<span id="help" class="glyphicon glyphicon-eye-open"></span>
 						</div>
 
 						<div id="btnInfos" style="display:none; margin-left:20px; margin-right:20px;">
@@ -65,7 +65,7 @@
 							<a href="menu_principal.php" class="btn btn-lg btn-primary" role="button"></a>
 						</div>
 						
-						<span id="help" class="glyphicon glyphicon-eye-open"></span>
+						
 					</div>
 					
 	    	    </td>
