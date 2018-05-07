@@ -18,6 +18,7 @@
         echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
         echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
         echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
+        echo "<input type='hidden' name='statutQuestionnaire' value='" . $tab['statut'] . "'>";
         echo "</form>";
       }
       echo "</div>";

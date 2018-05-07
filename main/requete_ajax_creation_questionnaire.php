@@ -9,7 +9,7 @@
         
         if($tab["bool_quest_absent"] == 0){
 
-            $req2=$bd->prepare('INSERT INTO questionnaires (nomQuestionnaire) VALUES (:newQuestionnaire);');
+            $req2=$bd->prepare('INSERT INTO questionnaires (nomQuestionnaire, statut) VALUES (:newQuestionnaire, "desactive");');
             $req2->bindvalue(':newQuestionnaire',$_GET['nomQuestionnaire']);
             $req2->execute();
 

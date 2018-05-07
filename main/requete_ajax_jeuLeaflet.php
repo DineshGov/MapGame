@@ -19,7 +19,7 @@
 
 				echo json_encode($tab);
 		
-		}				
+		} //Récupération de toutes les questions et formatage des questions sous forme json
 		else if (isset($_GET['idQ']) && $_GET['para']=="end")
 		{
 			if(!isset($_SESSION['login']))
@@ -45,6 +45,5 @@
 			
 			echo true;
 		}
-	
-	
+		//Insertion dans la table Score du score du joueur
 ?>

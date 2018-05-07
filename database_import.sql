@@ -26,7 +26,9 @@ USE `mapgame`;
 DROP TABLE IF EXISTS `questionnaires`;
 CREATE TABLE `questionnaires` (
   `idQuestionnaire` smallint(6) NOT NULL,
-  `nomQuestionnaire` tinytext NOT NULL
+  `nomQuestionnaire` tinytext NOT NULL,
+  `statut` varchar(50)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --

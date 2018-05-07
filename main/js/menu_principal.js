@@ -7,3 +7,7 @@ function transmet_infos_questionnaire(event){
 	var formulaire_a_soumettre = "formQuestionnaire" + id_questionnaire;
 	$('#' + formulaire_a_soumettre).submit();
 }
+
+function desactive_button_statut(){
+	console.log('test');
+}
