@@ -139,12 +139,6 @@
             console.log(e.latlng);
         });
 
-        var cercle1 = L.circle([48.858376, 2.294442],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-        var cercle2 = L.circle([48.858376, 2.294442],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-        var cercle3 = L.circle([48.858376, 2.294442],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-
-
-
     </script>
 
     <script type="text/javascript">
