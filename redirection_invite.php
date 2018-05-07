@@ -11,7 +11,6 @@ require('header.php');;?>
 		echo "<p><a href='main/menu_principal.php'> Cliquez ici si l'attente est trop longue. </a></p>";
 		echo("<script>setTimeout('RedirectionVersMenuPrincipal()', 1000)</script>");
 
-		session_destroy();
 	?>
 	</div>
 </body>
