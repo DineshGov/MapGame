@@ -24,7 +24,7 @@
 
 
             echo "<p>idQuestionnaire: <input type='text' name='inputIdQuestionnaire' id='inputIdQuestionnaire' value='" . $tab['idQuestionnaire'] . "'disabled></input></p>";
-            echo "<p>nomQuestionnaire: <input type='text' name='inputNomQuestionnaire' id='inputNomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'></input>";
+            echo '<p>nomQuestionnaire: <input type="text" name="inputNomQuestionnaire" id="inputNomQuestionnaire" value="' . $tab["nomQuestionnaire"] . '"></input>';
             echo '<button type="button" class="btn btn-info btn-xs" id="majNomQuestionnaire">Mise à jour</button>';
             ?>
             <div id="resultat_requete_MAJ">
