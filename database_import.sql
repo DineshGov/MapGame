@@ -90,7 +90,7 @@ ALTER TABLE `questions`
 -- Index pour la table `score`
 --
 ALTER TABLE `score`
-  ADD PRIMARY KEY (`login`,`idQuestionnaire`),
+  ADD PRIMARY KEY (`login`,`idQuestionnaire`,`date_partie`),
   ADD KEY `idQuestionnaire` (`idQuestionnaire`);
 
 --

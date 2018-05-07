@@ -32,28 +32,17 @@
 			$req->bindvalue(':id',$_GET['idQ']);
 			$req->execute();
 			$tab = $req->fetchAll(PDO::FETCH_ASSOC);
-			if(empty($tab))
-			{
+			
+			
+			$req2=$bd->prepare('insert into score values(:l,:id,:nQ,:s,:d)');
+			$req2->bindvalue(':l',$_SESSION['login']);
+			$req2->bindvalue(':id',$_GET['idQ']);
+			$req2->bindvalue(':nQ',$_GET['nomQ']);
+			$req2->bindvalue(':s',$_GET['score']);
+			$req2->bindvalue(':d',$datetime);
 				
-				$req2=$bd->prepare('insert into score values(:l,:id,:nQ,:s,:d)');
-				$req2->bindvalue(':l',$_SESSION['login']);
-				$req2->bindvalue(':id',$_GET['idQ']);
-				$req2->bindvalue(':nQ',$_GET['nomQ']);
-				$req2->bindvalue(':s',$_GET['score']);
-				$req2->bindvalue(':d',$datetime);
-				
-				$req2->execute();
-			}
-			else
-			{
-				$req3 = $bd->prepare("update score set date_partie = :d, score = :s, nomQuestionnaire = :nQ where login = :l and idQuestionnaire = :id");
-				$req3->bindvalue(':l',$_SESSION['login']);
-				$req3->bindvalue(':id',$_GET['idQ']);
-				$req3->bindvalue(':s',$_GET['score']);
-				$req3->bindvalue(':nQ',$_GET['nomQ']);
-				$req3->bindvalue(':d',$datetime);				
-				$req3->execute();
-			}
+			$req2->execute();
+			
 			echo true;
 		}
 	
