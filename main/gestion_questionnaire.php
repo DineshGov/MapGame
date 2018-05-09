@@ -17,7 +17,7 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="div_gestion">
             <?php
-            $req=$bd->prepare("SELECT idQuestionnaire, nomQuestionnaire FROM questionnaires WHERE idQuestionnaire = :id");
+            $req=$bd->prepare("SELECT idQuestionnaire, nomQuestionnaire, statut FROM questionnaires WHERE idQuestionnaire = :id");
             $req->bindvalue(":id", $_POST['idQuestionnaire']);
             $req->execute();
             $tab = $req->fetch(PDO::FETCH_ASSOC);
@@ -108,11 +108,41 @@
 
         </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="buttonQuestionUpdate">Mise à jour question</button>
-                <h6 id="reponse_MAJ"></h6>
-            </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="buttonQuestionUpdate">Mise à jour question</button>
+            <h6 id="reponse_MAJ"></h6>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <form id="questionnaireStatutForm">
+                <?php
+                if($tab['statut'] !== 'desactive'){
+                    echo '<label class="radio-inline">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="active" checked="checked">
+                        Questionnaire activé</label>';
+                    echo '<label class="radio-inline">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="desactive" >
+                        Questionnaire désactivé</label>';
+                    }
+                else{
+                    echo '<label class="radio-inline">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="active">
+                        Activer le questionnaire</label>';
+                    echo '<label class="radio-inline">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="desactive" checked="checked">
+                        Desactiver le questionnaire</label>';
+                }
+                ?>
+            </form>
+        </div>
+
     </div>
+
+    <script type="text/javascript">
+        $('.questionnaireStatut').on('click',function(){
+            console.log($(this).attr('id')); //AJOUTER AJAX POUR ACTIVER/DESACTIVER QUESTIONNAIRE
+        });
+    </script>
 
     <div class="col-lg-12 col-md-12 col-sm-12" id="div_returnLink">
         <a href="administration.php" class='return_links'>
@@ -147,6 +177,7 @@
         $('.glyphicon-wrench').on('click', add_edition_line_in_table);
         $('#buttonQuestionUpdate').on('click', maj_question);
         $('#btn_attrib_coord').on('click', attribution_coordonnes_via_bouton);
+
     </script>
 
 
