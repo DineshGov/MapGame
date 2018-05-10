@@ -15,7 +15,7 @@
 			
 		}
 		
-		echo '<input id="idQuestionnaire" type="hidden" value="' . $_POST["idQuestionnaire"]   . '">';
+		echo '<input id="idQuestionnaire" type="hidden" value="' . (int)$_POST["idQuestionnaire"] . '">';
 		echo '<input id="nomQuestionnaire" type="hidden" value="' . $_POST['nomQuestionnaire'] . '">';
 		
 		if(!isset($_SESSION['login']))

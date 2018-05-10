@@ -14,10 +14,14 @@ require('../database_auth.php');
 	echo '</div>';
 	exit;
  }
-
-$req = $bd->prepare('select * from score where login=:l');
+ 
+$req = $bd->prepare('select nomQuestionnaire,max(score) as record from score where login=:l group by nomQuestionnaire');
 $req->bindvalue(':l',$_SESSION['login']);
 $req->execute();
+ 
+$req2 = $bd->prepare('select * from score where login=:l');
+$req2->bindvalue(':l',$_SESSION['login']);
+$req2->execute();
 
 $i=0;
 
@@ -25,18 +29,48 @@ echo '	<br><br>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">
+				
+					
+					<h2 class="text-info">Record personnels <span class="glyphicon glyphicon-king"></span></h2>
+					<br>
+					<table class="table table-bordered table-hover">
+						<tr id="table_header"><th>Nom du questionnaire</th><th>Record</th></tr>';
+						
+						while($tab = $req->fetch(PDO::FETCH_ASSOC))
+						{
+							echo "<tr><td>".$tab['nomQuestionnaire']."</td><td>".$tab['record']."</td></tr>";
+							$i++;
+						}
+
+echo				'</table>
+					
+				</div>
+				
+			</div>
+		</div>
+	';
+
+echo '	<br><br>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">
+				
+					<h2 class="text-info">Score <span class="glyphicon glyphicon-education"></span></h2>
+					<br>
+				
 					<table id="table_content" class="table table-bordered table-hover">
 						<tr id="table_header"><th>Nom</th><th>Nom du questionnaire <span class="main_row glyphicon glyphicon-arrow-down" title="trier par nom (questionnaire)"></span></th><th>Score <span class="main_row glyphicon glyphicon-arrow-down" title="trier par score"></span></th><th>Date <span class="main_row glyphicon glyphicon-arrow-down" title="trier par date"></span></th></tr>';
 						
-						while($tab = $req->fetch(PDO::FETCH_ASSOC))
+						while($tab = $req2->fetch(PDO::FETCH_ASSOC))
 						{
 							echo "<tr class='content'><td>".$tab['login']."</td><td>".$tab['nomQuestionnaire']."</td><td>".$tab['score']."</td><td>".$tab['date_partie']."</td></tr>";
 							$i++;
 						}
 
 echo				'</table>
-					<br><br>
+					
 				</div>
+				
 			</div>
 		</div>
 	';

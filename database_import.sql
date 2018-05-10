@@ -66,7 +66,8 @@ CREATE TABLE `users` (
   `id` smallint(6) NOT NULL,
   `login` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `progression` integer NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --

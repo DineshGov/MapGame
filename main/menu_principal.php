@@ -11,6 +11,11 @@
     <?php
       $req=$bd->prepare('select * from Questionnaires');
       $req->execute();
+	  $req2=$bd->prepare('select * from users where login=:l');
+	  $req2->bindvalue(':l',$_SESSION['login']);
+      $req2->execute();
+	  $tab2 = $req2->fetch(PDO::FETCH_ASSOC);
+	  
 
      if(!isset($_SESSION['login']))
 	{
@@ -29,11 +34,23 @@
 		echo '<div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3 container_questionnaire" style="text-align: center;">';
       while($tab = $req->fetch(PDO::FETCH_ASSOC))
 	  {
-        echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
-        echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
-        echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
-        echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
-        echo "</form>";
+		if($tab2['progression']<$tab['idQuestionnaire']) //si le niveau de progression du joueur est inférieur  à l'id du questionnaire, cela veut dire qu'il n'a pas encore terminé le questionnaire précédent et on bloque donc le questionnaire concerné
+		{
+			echo "<button disabled='disabled' class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>". $tab['nomQuestionnaire'] . "    <span class='glyphicon glyphicon-lock'></span</button>";
+			echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
+			echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
+			echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
+			echo "</form>";
+		}
+		else //sinon on le rend accessible (par défaut le 1er questionnaire est accessible à tous)
+		{
+			echo "<button class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>" . $tab['nomQuestionnaire'] . "</button>";
+			echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
+			echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
+			echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
+			echo "</form>";
+		}
+        
       }
       echo "</div>";
 	  echo '
