@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 -- Contenu de la table `questionnaires`
 --
 
-INSERT INTO `questionnaires` (`idQuestionnaire`, `nomQuestionnaire`) VALUES
-(1, 'Les 7 Merveilles du Monde'),
-(2, 'Les capitales des 7 pays les plus puissants'),
-(3, 'Les 7 meilleurs grecs d\'Ile de France');
+INSERT INTO `questionnaires` (`idQuestionnaire`, `nomQuestionnaire`,`statut`) VALUES
+(1, 'Les 7 Merveilles du Monde', 'active'),
+(2, 'Les capitales des 7 pays les plus puissants', 'active'),
+(3, 'Les 7 meilleurs grecs d\'Ile de France', 'desactive');
 
 --
 -- Contenu de la table `questions`
