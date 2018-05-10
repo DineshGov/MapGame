@@ -22,10 +22,6 @@ function recuperation_coordonnees(e) {
         $("#clickedLongitude").val(extractionCoordonnees[1]);
 }
 
-function attribution_coordonnees(){
-    console.log('lol');
-}
-
 function maj_nom_questionnaire(){
     $.get("requete_ajax_gestion_questionnaire.php",{
         nomQuestionnaire: $('#inputNomQuestionnaire').val(),
@@ -45,6 +41,20 @@ function maj_nom_questionnaire(){
         }     
     })
 };
+
+    
+    $('.questionnaireStatut').on('click',function(){
+        console.log($(this).attr('id')); //AJOUTER AJAX POUR ACTIVER/DESACTIVER QUESTIONNAIRE
+    });
+
+function change_statut_questionnaire(){
+    $.get("requete_ajax_gestion_questionnaire.php",{
+        nvxStatut: $(this).attr('id'),
+        idQuestionnaire: $('#inputIdQuestionnaire').val()
+    })
+    //On ignore le retour
+};
+
 
 
 function add_edition_line_in_table(event){

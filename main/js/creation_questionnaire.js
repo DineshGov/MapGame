@@ -10,6 +10,7 @@ function add_questionnaire(){
         }
         else{
             $('#creationStatus').text("Echec lors de la création du questionnaire.");
+            console.log(reponse);
         }     
     })
 };

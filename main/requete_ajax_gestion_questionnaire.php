@@ -25,6 +25,12 @@
 
         echo 'Mise a jour terminée';
     }
+    elseif ( isset($_GET['nvxStatut']) && isset($_GET['idQuestionnaire']) ) {
+        $req=$bd->prepare('UPDATE questionnaires set statut = :newStatut where idQuestionnaire = :id;');
+        $req->bindvalue(':newStatut',$_GET['nvxStatut']);
+        $req->bindvalue(':id',$_GET['idQuestionnaire']);
+        $req->execute();
+    }
     else{
         echo 'rien';
     }

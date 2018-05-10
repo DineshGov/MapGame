@@ -138,12 +138,6 @@
 
     </div>
 
-    <script type="text/javascript">
-        $('.questionnaireStatut').on('click',function(){
-            console.log($(this).attr('id')); //AJOUTER AJAX POUR ACTIVER/DESACTIVER QUESTIONNAIRE
-        });
-    </script>
-
     <div class="col-lg-12 col-md-12 col-sm-12" id="div_returnLink">
         <a href="administration.php" class='return_links'>
         <span class="glyphicon glyphicon-step-backward"></span>
@@ -177,6 +171,7 @@
         $('.glyphicon-wrench').on('click', add_edition_line_in_table);
         $('#buttonQuestionUpdate').on('click', maj_question);
         $('#btn_attrib_coord').on('click', attribution_coordonnes_via_bouton);
+        $('.questionnaireStatut').on('click', change_statut_questionnaire);
 
     </script>
 

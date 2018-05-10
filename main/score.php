@@ -31,10 +31,10 @@ echo '	<br><br>
 				<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">
 				
 					
-					<h2 class="text-info">Record personnels <span class="glyphicon glyphicon-king"></span></h2>
+					<h2 class="text-info">Records personnels <span class="glyphicon glyphicon-king"></span></h2>
 					<br>
 					<table class="table table-bordered table-hover">
-						<tr id="table_header"><th>Nom du questionnaire</th><th>Record</th></tr>';
+						<tr id="table_header"><th>Nom du questionnaire</th><th>Score</th></tr>';
 						
 						while($tab = $req->fetch(PDO::FETCH_ASSOC))
 						{

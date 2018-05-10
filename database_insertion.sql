@@ -46,7 +46,7 @@ INSERT INTO `questions` (`idQuestion`, `idQuestionnaire`, `nomQuestion`, `longit
 --
 -- Contenu de la table `users`
 --
-INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(1, 'admin', 'admin', '2018-03-23 23:55:41',2);
+INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(1, 'admin', 'admin', '2018-03-23 23:55:41',1);
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(2, 'assan', 'bafa1b192396b6aceacd52f5708064b1', '2018-03-23 23:55:41',1);
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(3, 'azertyuiop', '7682fe272099ea26efe39c890b33675b', '2018-03-23 23:55:41',1);
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(4, 'azertyuiope', '7682fe272099ea26efe39c890b33675b', '2018-03-23 23:55:41',1);
