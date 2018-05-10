@@ -37,11 +37,12 @@ $(document).ready(function(){
 			}
 			$('#question_numero').text("Question N°" + question[0].idQuestion);
 			$('#nom_question').text(question[0].q);
-			cercle1 = L.circle([question[0].latitude,question[0].longitude],8000,{color: 'blue',opacity: 0.1}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+			cercle1 = L.circle([question[0].latitude,question[0].longitude],8000,{color: 'transparent'}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
 			cercle2 = L.circle([question[0].latitude,question[0].longitude],16000,{color: 'transparent'}).addTo(map);
 			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000,{color: 'transparent'}).addTo(map);
 			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000,{color: 'transparent'}).addTo(map);
 			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000,{color: 'transparent'}).addTo(map);
+			cercle6 = L.circle([question[0].latitude,question[0].longitude],120000,{color: 'transparent'}).addTo(map);
 			
 
 		}
@@ -68,7 +69,7 @@ $(document).ready(function(){
 	{
 		
 		$.get("requete_ajax_jeuLeaflet.php",
-		{para: "end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
+		{para:"end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
 		function(reponse)
 		{
 			if(reponse!=true)
@@ -83,7 +84,7 @@ $(document).ready(function(){
 		if(phase==question.length-1)
 		{
 			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
-			$('#nombre_essai').hide();
+			$('#points').hide();
 			
 			if($('#invite').val()=='true')
 			{
@@ -107,6 +108,7 @@ $(document).ready(function(){
 			cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
 			cercle4.setLatLng([question[phase].latitude,question[phase].longitude]);
 			cercle5.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle6.setLatLng([question[phase].latitude,question[phase].longitude])
 		
 			$('#question_numero').text("Question N°" + question[phase].idQuestion);
 			$('#nom_question').text(question[phase].q);
@@ -121,7 +123,7 @@ $(document).ready(function(){
 		$("#valLat").val(e.latlng.lat);
 		$("#valLong").val(e.latlng.lng);
 		
-		if(e.latlng.distanceTo([question[phase].latitude,question[phase].longitude])<=cercle5.getRadius())
+		if(e.latlng.distanceTo([question[phase].latitude,question[phase].longitude])<=cercle6.getRadius())
 			$('#help').show();
 		else
 			$('#help').hide();

@@ -5,3 +5,7 @@
 .main_row{
 	float:right;
 }
+
+#table_content{
+	margin-right: 10em;
+}

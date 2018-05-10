@@ -19,7 +19,7 @@
 
 				echo json_encode($tab);
 		
-		} //Récupération de toutes les questions et formatage des questions sous forme json
+		}				
 		else if (isset($_GET['idQ']) && $_GET['para']=="end")
 		{
 			if(!isset($_SESSION['login']))
@@ -39,11 +39,29 @@
 			$req2->bindvalue(':id',$_GET['idQ']);
 			$req2->bindvalue(':nQ',$_GET['nomQ']);
 			$req2->bindvalue(':s',$_GET['score']);
-			$req2->bindvalue(':d',$datetime);
-				
+			$req2->bindvalue(':d',$datetime);				
 			$req2->execute();
 			
-			echo true;
+			
+			$req3 = $bd->prepare("select progression from users where login = :l");
+			$req3->bindvalue(':l',$_SESSION['login']);
+			$req3->execute();
+			$tab2 = $req3->fetch(PDO::FETCH_ASSOC);
+			
+			if(($_GET['idQ']<$tab2['progression'])) //si l'id du questionnaire en cours est inferieur au niveau de progression du joueur alors on ne fait aucune MaJ pour ne pas écraser sa progression
+			{
+				echo true;
+			}
+			else //sinon on déverouille le prochain questionnaire accessible en incrémentant le niveau de progression du joueur
+			{
+				$req4=$bd->prepare('update users set progression = :p where login = :l');
+				$req4->bindvalue(':l',$_SESSION['login']);
+				$req4->bindvalue(':p',((int)$_GET['idQ']+1));
+				$req4->execute();
+				echo true;
+			}
+			
 		}
-		//Insertion dans la table Score du score du joueur
+	
+	
 ?>
