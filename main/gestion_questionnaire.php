@@ -72,6 +72,7 @@
                     $question_trouvee_dans_bdd = false;
 
                     $tab2 = $req2->fetchAll(PDO::FETCH_ASSOC);
+                    //Ce tableau contient toutes les informations d'un questionnaire.
 
                     for ($compteur_question = 1; $compteur_question <= $nbr_question_total; $compteur_question++) {
                         for ($i=0; $i < $nbr_question_total; $i++) {
@@ -114,21 +115,117 @@
         </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12">
+            <h3>Insertion image et description pour chaque question</h3>
+            <!--<form method="post" action="verification_upload.php" enctype="multipart/form-data" class="form-inline">
+                <div class="form-group">
+                    <label for="image">Fichier:</label>
+                    <input type="file" name="image" id="image">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Envoyer </button>
+            </form>-->
+
+            <?php
+                $nbr_question = 7;
+                $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+                for ($div_question = 1; $div_question <= $nbr_question; $div_question++) {
+                    echo '<div class="col-lg-12 col-md-12 col-sm-12">';
+                        echo '<h4>Question ' . $div_question . '</h4>';
+
+                        $indiceQuestionDansTab2 = $div_question - 1;
+                        $id_image = $tab['idQuestionnaire'] . "_" . $div_question;
+
+                        $pwd_image = "img/" . $id_image . "";
+                        //Chemin vers l'image sans l'extension
+
+                        //Ajout des différentes extensions possibles
+                        $jpg_image  = "" . $pwd_image . "." . $extensions_valides[0] . "";
+                        $jpeg_image = "" . $pwd_image . "." . $extensions_valides[1] . "";
+                        $gif_image  = "" . $pwd_image . "." . $extensions_valides[2] . "";
+                        $png_image  = "" . $pwd_image . "." . $extensions_valides[3] . "";
+
+                        if(file_exists($jpg_image)){
+                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                                echo '<img src="' . $jpg_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else if(file_exists($jpeg_image)){
+                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                                echo '<img src="' . $jpeg_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else if(file_exists($gif_image)){
+                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                                echo '<img src="' . $gif_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else if(file_exists($png_image)){
+                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                                echo '<img src="' . $png_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else
+                            echo "Pas d'image enregistrée.";
+
+                        echo '<form class="form-horizontal" method="post" action="verification_upload.php" enctype="multipart/form-data">';
+                            
+                            echo '<div class="form-group">';
+                                echo '<label class="control-label col-sm-2" for="image">Fichier: </label>';
+                                echo '<div class="col-sm-10">';
+                                    echo '<input type="file"  name="image" id="image">';
+                                echo "</div>";
+                            echo '</div>';
+
+                            echo '<div class="form-group">';
+                                echo '<label class="control-label col-sm-2" for="description">Description:</label>';
+                                echo '<div class="col-sm-10">';
+                                    if(isset($tab2[$indiceQuestionDansTab2]['description']) && !is_null($tab2[$indiceQuestionDansTab2]['description']) ){
+                                        echo '<textarea name="description" class="form-control" id="description">' . $tab2[$indiceQuestionDansTab2]['description'] . '</textarea>';    
+                                    }
+                                    else{
+                                        echo '<textarea name="description" class="form-control" id="description"></textarea>';
+                                    }
+                                    //Affiche la description dans le champs si une description pour cette question existe dans la bdd
+                                echo "</div>";
+                            echo '</div>';
+
+                            //Informations à transmettre via $_POST:
+                            echo '<input type="hidden" name="idQuestionnaire" value="' . $tab["idQuestionnaire"] . '"> ';
+                            echo '<input type="hidden" name="idQuestion" value="' . $div_question . '"> ';
+                            //idQuestionnaire et idQuestion serviront à créer le nom de l'image.
+
+                            echo '<button type="submit" class="btn btn-default">Envoyer </button>';
+
+                        echo '</form>';
+
+                    echo '</div>';
+
+                }//Fin for
+            ?>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" id="div_statut_questionnaire">
+            <h3>Statut du questionnaire</h3>
             <form id="questionnaireStatutForm">
+
                 <?php
                 if($tab['statut'] !== 'desactive'){
-                    echo '<label class="radio-inline">
+                    echo '<label class="radio">
                         <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="active" checked="checked">
                         Questionnaire activé</label>';
-                    echo '<label class="radio-inline">
+                    echo '<label class="radio">
                         <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="desactive" >
                         Questionnaire désactivé</label>';
                     }
                 else{
-                    echo '<label class="radio-inline">
+                    echo '<label class="radio">
                         <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="active">
                         Activer le questionnaire</label>';
-                    echo '<label class="radio-inline">
+                    echo '<label class="radio">
                         <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="desactive" checked="checked">
                         Desactiver le questionnaire</label>';
                 }
@@ -144,6 +241,7 @@
         Retour à la page d'administration
         </a>
     </div>
+
 
     <script type="text/javascript">
         

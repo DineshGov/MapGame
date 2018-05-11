@@ -59,3 +59,12 @@ label{
 	font-size: 90%;
 	font-style: italic;
 }
+
+#div_statut_questionnaire{
+	margin-top: 40px;
+}
+
+#questionnaireStatutForm{
+	margin-top: 25px;
+	margin-left: 30px;
+}

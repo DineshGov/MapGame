@@ -41,7 +41,8 @@ CREATE TABLE `questions` (
   `idQuestionnaire` smallint(6) NOT NULL,
   `nomQuestion` text NOT NULL,
   `latitude` float NOT NULL,
-  `longitude` float NOT NULL
+  `longitude` float NOT NULL,
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
