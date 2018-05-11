@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php
 $page_name = "redirection_invite.php"; 
-require('header.php');;?>
+require('header.php');?>
 
 
 	<div class="div_redirection">

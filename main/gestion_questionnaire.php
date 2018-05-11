@@ -22,7 +22,6 @@
             $req->execute();
             $tab = $req->fetch(PDO::FETCH_ASSOC);
 
-
             echo "<p>idQuestionnaire: <input type='text' name='inputIdQuestionnaire' id='inputIdQuestionnaire' value='" . $tab['idQuestionnaire'] . "'disabled></input></p>";
             echo '<p>nomQuestionnaire: <input type="text" name="inputNomQuestionnaire" id="inputNomQuestionnaire" value="' . $tab["nomQuestionnaire"] . '"></input>';
             echo '<button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="majNomQuestionnaire">Mise à jour</button>';
@@ -116,17 +115,6 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12">
             <h3>Insertion image et description pour chaque question</h3>
-            <!--<form method="post" action="verification_upload.php" enctype="multipart/form-data" class="form-inline">
-                <div class="form-group">
-                    <label for="image">Fichier:</label>
-                    <input type="file" name="image" id="image">
-                </div>
-                <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea name="description" id="description"></textarea>
-                </div>
-                <button type="submit" class="btn btn-default">Envoyer </button>
-            </form>-->
 
             <?php
                 $nbr_question = 7;
@@ -148,22 +136,22 @@
                         $png_image  = "" . $pwd_image . "." . $extensions_valides[3] . "";
 
                         if(file_exists($jpg_image)){
-                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
                                 echo '<img src="' . $jpg_image . '" alt="img' . $id_image . '" height="160" width="100" >';
                             echo '</div>';
                         }
                         else if(file_exists($jpeg_image)){
-                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
                                 echo '<img src="' . $jpeg_image . '" alt="img' . $id_image . '" height="160" width="100" >';
                             echo '</div>';
                         }
                         else if(file_exists($gif_image)){
-                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
                                 echo '<img src="' . $gif_image . '" alt="img' . $id_image . '" height="160" width="100" >';
                             echo '</div>';
                         }
                         else if(file_exists($png_image)){
-                            echo '<div class="col-lg-11 col-md-11 col-sm-11">';
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
                                 echo '<img src="' . $png_image . '" alt="img' . $id_image . '" height="160" width="100" >';
                             echo '</div>';
                         }
@@ -173,9 +161,9 @@
                         echo '<form class="form-horizontal" method="post" action="verification_upload.php" enctype="multipart/form-data">';
                             
                             echo '<div class="form-group">';
-                                echo '<label class="control-label col-sm-2" for="image">Fichier: </label>';
+                                echo '<label class="control-label col-sm-2" for="image">Fichier: (JPG , JPEG , GIF , PNG & max. 4 Mo)</label>';
                                 echo '<div class="col-sm-10">';
-                                    echo '<input type="file"  name="image" id="image">';
+                                    echo '<input type="file"  name="image" id="image" required>';
                                 echo "</div>";
                             echo '</div>';
 
@@ -183,10 +171,10 @@
                                 echo '<label class="control-label col-sm-2" for="description">Description:</label>';
                                 echo '<div class="col-sm-10">';
                                     if(isset($tab2[$indiceQuestionDansTab2]['description']) && !is_null($tab2[$indiceQuestionDansTab2]['description']) ){
-                                        echo '<textarea name="description" class="form-control" id="description">' . $tab2[$indiceQuestionDansTab2]['description'] . '</textarea>';    
+                                        echo '<textarea name="description" class="form-control" id="description">' . $tab2[$indiceQuestionDansTab2]['description'] . '</textarea required>';    
                                     }
                                     else{
-                                        echo '<textarea name="description" class="form-control" id="description"></textarea>';
+                                        echo '<textarea name="description" class="form-control" id="description"></textarea required>';
                                     }
                                     //Affiche la description dans le champs si une description pour cette question existe dans la bdd
                                 echo "</div>";
