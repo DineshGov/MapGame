@@ -2,6 +2,13 @@
 	$page_name="administration.php";
     require ('header.php');
     require('../database_auth.php');
+	
+	if(!$_SESSION['login'] || !isset($_SESSION['statut']))
+	{
+		echo "Vous n'avez pas les droits nécessaires pour acceder à cette page";
+		header('location: menu_principal.php');
+		exit(1);
+	}
 ?>
 
   <div class="col-lg-12 col-md-12 col-sm-12">

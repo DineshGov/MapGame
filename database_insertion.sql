@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 
 INSERT INTO `questionnaires` (`idQuestionnaire`, `nomQuestionnaire`,`statut`) VALUES
 (1, 'Les 7 Merveilles du Monde', 'active'),
-(2, 'Les capitales des 7 pays les plus puissants', 'active'),
-(3, 'Les 7 meilleurs grecs d\'Ile de France', 'desactive');
+(2, 'Les capitales des 7 pays les plus puissants', 'active');
 
 --
 -- Contenu de la table `questions`

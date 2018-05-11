@@ -1,3 +1,15 @@
+$(document).ready(function(){
+	
+	$('.btnHidden').hover(function(){
+		$('.popUpInfo').toggle();
+	});
+	
+	$('.btnHidden').click(function(event){
+		event.preventDefault();
+	});
+	
+});
+
 function transmet_infos_questionnaire(event){
 
 	var bouton_click = event.target.id;
@@ -11,3 +23,4 @@ function transmet_infos_questionnaire(event){
 function desactive_button_statut(){
 	console.log('test');
 }
+
