@@ -12,7 +12,7 @@
       $req=$bd->prepare('select * from Questionnaires');
       $req->execute();
 	  $req2=$bd->prepare('select * from users where login=:l');
-	  $req2->bindvalue(':l',$_SESSION['login']);
+	  $req2->bindvalue(':l',@$_SESSION['login']);
       $req2->execute();
 	  $tab2 = $req2->fetch(PDO::FETCH_ASSOC);
 	  
@@ -47,13 +47,13 @@
       }
         echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
         echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
-        echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
+     	 echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
         echo "<input type='hidden' name='statutQuestionnaire' value='" . $tab['statut'] . "'>";
         echo "</form>";
 */
   		if($tab2['progression']<$tab['idQuestionnaire']) //si le niveau de progression du joueur est inférieur  à l'id du questionnaire, cela veut dire qu'il n'a pas encore terminé le questionnaire précédent et on bloque donc le questionnaire concerné
   		{
-  			echo "<button disabled='disabled' class='btn btn-lg btn-danger btn-block questionnaire_form_submitter' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>". $tab['nomQuestionnaire'] . "    <span class='glyphicon glyphicon-lock'></span</button>";
+  			echo "<button readonly='readonly' class='btnHidden btn btn-lg btn-danger btn-block' id='buttonQuestionnaire" . $tab['idQuestionnaire'] . "'>". $tab['nomQuestionnaire'] . "    <span class='glyphicon glyphicon-lock'></span</button>";
   			echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
   			echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
   			echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
@@ -76,10 +76,13 @@
         </a>
 			</div>
 			';
+	echo"<br><div class='col-lg-offset-4 col-lg-4 col-lg-offset-4 popUpInfo'>";
+		echo "<p class='text-danger'>Vous devez terminez le questionnaire précédent pour pouvoir acceder à celui-ci</p>";
+    echo"</div>";
 	} 
-	  
-
-    
+	 
+	
+	
     if(isset($_SESSION['statut']) && $_SESSION['statut']==="admin")
       echo '<div id="panneau_config_link" class="col-lg-offset-1 col-lg-11 col-md-offset-1 col-md-11 col-sm-offset-1 col-sm-11">
         <a href="administration.php"><h2><span class="glyphicon glyphicon-cog"></span>Panneau de configuration</h2></a> 

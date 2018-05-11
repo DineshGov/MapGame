@@ -86,18 +86,12 @@ $(document).ready(function(){
 			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
 			$('#points').hide();
 			
-			if($('#invite').val()=='true')
-			{
-				$('#btnInfos').show();
-				$('#btnInvit').show();
-			}
-			else
-				sauvegarde();
+			sauvegarde();
 			
 			exoFini = true;
 			$('#question_numero').hide();
 			$('#nom_question').hide();
-			$('#corr').show();
+			$('.endGame').show();
 		}
 		else
 		{

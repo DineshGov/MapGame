@@ -7,7 +7,7 @@
 	<?php
 		if(!isset($_POST['idQuestionnaire']))
 		{
-			echo "erreur d'authetification<br>Redirection en cours...";
+			echo "Vous devez vous connecter pour pouvoir coninuer<br>Redirection en cours...";
 			echo("<script>setTimeout('RedirectionVersConnexionFromMain()', 1000)</script>");
 			//header('menu_principal.php');
 			//header('index.php');
@@ -59,10 +59,8 @@
 							</div>
 							<span id="help" class="glyphicon glyphicon-eye-open"></span>
 						</div>
-
-						<div id="btnInfos" style="display:none; margin-left:20px; margin-right:20px;">
-							<a class="btn btn-primary btnInvit" href="menu_principal.php">Test en mode invité terminé: cliquez sur ce bouton pour retourner à la page d'accueil</a>						
-						</div>
+						<a  href="" class="endGame btn btn-primary">Voir la correction</a>							
+						<a  href="menu_principal.php" class="endGame btn btn-primary btnInvit">retourner au menu principal</a>
 						
 						
 					</div>
