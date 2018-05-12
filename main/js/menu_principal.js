@@ -1,14 +1,3 @@
-$(document).ready(function(){
-	
-	$('.btnHidden').hover(function(){
-		$('.popUpInfo').toggle();
-	});
-	
-	$('.btnHidden').click(function(event){
-		event.preventDefault();
-	});
-	
-});
 
 function transmet_infos_questionnaire(event){
 

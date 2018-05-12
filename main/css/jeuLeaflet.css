@@ -2,7 +2,7 @@ html, body{
 	height: 100%;
 	width: 100%;
 	margin: 0px;
-	padding: 0px
+	padding: 0px;
 }
 
 #table-container{
@@ -65,8 +65,18 @@ th{
 }
 
 
-.endGame{
-	margin-left:20px;
-	margin-right:20px;
+.endGameButton{
 	display:none; 
+}
+
+#btnScore{
+	margin-top: 10px;
+}
+
+#btnCorrection{
+	margin-top: 10px;
+}
+
+#btnMenuPrincipal{
+	margin-top: 10px;
 }

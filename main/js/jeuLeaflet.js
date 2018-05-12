@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	
-	
 	var exoStart=false;
 	var question =	[];
 	var cercle1;
@@ -14,9 +13,6 @@ $(document).ready(function(){
 	var essai = 3;
 	var point = 0;
 	var exoFini = false;
-	
-	
-	
 
 	$.get("requete_ajax_jeuLeaflet.php",
 		{para: "start", idQ: $('#idQuestionnaire').val()},
@@ -83,15 +79,16 @@ $(document).ready(function(){
 		$('#btnInfos').hide();
 		if(phase==question.length-1)
 		{
-			$('#total').text('Test fini : vous avez au total '+point+' point(s)');
+			$('#total').text('Test fini : vous avez au total '+point+' point(s) sur 70');
 			$('#points').hide();
 			
 			sauvegarde();
 			
 			exoFini = true;
-			$('#question_numero').hide();
-			$('#nom_question').hide();
-			$('.endGame').show();
+			$('#question_numero').text("");
+			$('#nom_question').text("Questionnaire terminé.");
+			$('.endGameButton').css("display", "block");
+
 		}
 		else
 		{
