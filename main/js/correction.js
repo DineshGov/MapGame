@@ -3,7 +3,6 @@ var question_affichee = 1;
 var question =	[];
 
 function select_all_from_question(){
-	console.log("select_all_from_question");
 	$.get("requete_ajax_correction.php",
 	{
 		idQuestionnaire: $('#idQuestionnaire').val()
@@ -22,7 +21,6 @@ function select_all_from_question(){
 				});
 				i++;
 			}
-			console.log(question);
 			set_description_container(question_affichee);
 			/*Fonction executée lorsque le while se termine.
 			Si on l'a place dans le init il y a un problème de synchronisation
@@ -31,14 +29,6 @@ function select_all_from_question(){
 			*/
 		}
 	});
-}
-
-function set_description_container(question_affichee){
-	idquestion = window.question_affichee - 1;
-	intitule_question = question[idquestion].q;
-	description_question = question[idquestion].description;
-	$('#nom_question_container').text(intitule_question);
-	$('#description_question_container').text(description_question);
 }
 
 function fichier_existe(chemin) {
@@ -71,8 +61,6 @@ function set_image(question_affichee){
 
     hauteur_div_container = $('#image_container').height();
     largeur_div_container = $('#image_container').width();
-    console.log("largeur_div_container" + largeur_div_container * 0.9);
-    console.log("hauteur_div_container" + hauteur_div_container * 0.9);
 
     if (fichier_existe(jpg_image))
     	$('#image_question').attr('src', jpg_image);
@@ -85,6 +73,38 @@ function set_image(question_affichee){
 
     $('#image_question').css('height',hauteur_div_container);
     $('#image_question').css('width',largeur_div_container);
+}
+
+function centerLeafletMapOnMarker(map, marker) {
+	var latLngs = [ marker.getLatLng() ];
+	var markerBounds = L.latLngBounds(latLngs);
+	map.fitBounds(markerBounds);
+}
+
+function gestion_marqueur(question_affichee){
+	$(".leaflet-marker-icon").remove();
+	$(".leaflet-marker-shadow").remove();
+	//On supprime le marker (et son ombre) si précédemment placé.
+
+	idquestion = window.question_affichee - 1;
+
+	latitude = question[idquestion].latitude;
+	longitude = question[idquestion].longitude;
+
+	marker = L.marker([latitude, longitude]).addTo(map);
+
+	centerLeafletMapOnMarker(map, marker);
+
+}
+
+function set_description_container(question_affichee){
+	idquestion = window.question_affichee - 1;
+
+	intitule_question = question[idquestion].q;
+	description_question = question[idquestion].description;
+	
+	$('#nom_question_container').text(intitule_question);
+	$('#description_question_container').text(description_question);
 }
 
 function desactive_btn_prec_suiv(question_affichee){
@@ -100,29 +120,29 @@ function desactive_btn_prec_suiv(question_affichee){
 			$('#btn_right').removeClass("disabled");
 	}
 
-	console.log("question_affichee=" + question_affichee);
 }
 
 function click_on_btn_right(question_affichee){
-	console.log("click");
 	window.question_affichee ++;
 	$('.well').text(window.question_affichee);
+
 	desactive_btn_prec_suiv(window.question_affichee);
 	set_description_container(window.question_affichee);
 	set_image(question_affichee);
+	gestion_marqueur(question_affichee);
 }
 
 function click_on_btn_left(question_affichee){
-	console.log("click");
 	window.question_affichee --;
 	$('.well').text(window.question_affichee);
+
 	desactive_btn_prec_suiv(window.question_affichee);
 	set_description_container(window.question_affichee);
 	set_image(question_affichee);
+	gestion_marqueur(question_affichee);
 }
 
 function init(){
-	console.log("initialisation carte");
 	map = L.map('carte').setView([48.858376, 2.294442], 3);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
@@ -134,8 +154,10 @@ function init(){
     }).addTo(map);
 
     select_all_from_question();
+
     desactive_btn_prec_suiv(question_affichee);
     set_image(question_affichee);
+    gestion_marqueur(question_affichee);
 
 }
 

@@ -8,6 +8,7 @@ function recuperation_coordonnees(e) {
         $(".leaflet-marker-shadow").remove();
         //On supprime le marker (et son ombre) précédemment placé.
         var marker = L.marker(e.latlng).addTo(map);
+        //Sinon utiliser e.latlng.lat et e.latlng.lng
         
         var coordonnees = e.latlng.toString();
         var position_parenthese_ouvrante = coordonnees.indexOf('(') + 1;
