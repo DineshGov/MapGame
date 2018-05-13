@@ -14,7 +14,7 @@
 #mapContainer{
 	height: 460px;
 	margin-top: 20px;
-	margin-bottom: 20px;"
+	margin-bottom: 20px;
 }
 
 #inputNomQuestionnaire{
@@ -67,4 +67,8 @@ label{
 #questionnaireStatutForm{
 	margin-top: 25px;
 	margin-left: 30px;
+}
+
+.img_container{
+	text-align: center;
 }

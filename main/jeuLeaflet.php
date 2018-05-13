@@ -40,8 +40,7 @@
 	    	    	<div id="dashboard">
 						<div>
 							<div>
-								<p id="nom_question" class="well"></p>
-								
+								<p id="nom_question" class="well"></p>	
 							</div>
 							<div>
 								<p id="nombre_essai" class="text-info"></p>
@@ -59,9 +58,13 @@
 							</div>
 							<span id="help" class="glyphicon glyphicon-eye-open"></span>
 						</div>
-						<a  href="" class="endGame btn btn-primary">Voir la correction</a>							
-						<a  href="menu_principal.php" class="endGame btn btn-primary btnInvit">retourner au menu principal</a>
-						
+						<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 col-md-offset-2 col-md-8 col-md-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+							<a  href="correction.php" class="endGameButton btn btn-success" id="btnCorrection" >Voir la correction</a>
+							<a  href="score.php" class="endGameButton btn btn-primary" id="btnScore" >Consulter vos scores</a>
+						</div>
+						<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 col-md-offset-2 col-md-8 col-md-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+							<a  href="menu_principal.php" class="endGameButton btn btn-danger" id="btnMenuPrincipal" >Retourner au menu principal</a>
+						</div>
 						
 					</div>
 					
