@@ -19,7 +19,7 @@
 
 				echo json_encode($tab);
 		
-		}				
+		}
 		else if (isset($_GET['idQ']) && $_GET['para']=="end")
 		{
 			if(!isset($_SESSION['login']))
