@@ -59,7 +59,13 @@
 							<span id="help" class="glyphicon glyphicon-eye-open"></span>
 						</div>
 						<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 col-md-offset-2 col-md-8 col-md-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
-							<a  href="correction.php" class="endGameButton btn btn-success" id="btnCorrection" >Voir la correction</a>
+							<form method="post" action="correction.php" id="form_to_correction">
+								<?php
+								echo '<input name="idQuestionnaire" type="hidden" value="' . (int)$_POST["idQuestionnaire"] . '">';
+								echo '<input name="nomQuestionnaire" type="hidden" value="' . $_POST['nomQuestionnaire'] . '">';
+								?>
+								<input type="submit" class="endGameButton btn btn-success" id="btnCorrection" value="Voir la correction">
+							</form>
 							<a  href="score.php" class="endGameButton btn btn-primary" id="btnScore" >Consulter vos scores</a>
 						</div>
 						<div class="col-lg-offset-2 col-lg-8 col-lg-offset-2 col-md-offset-2 col-md-8 col-md-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">

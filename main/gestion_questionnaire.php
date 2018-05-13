@@ -163,7 +163,7 @@
                             echo '<div class="form-group">';
                                 echo '<label class="control-label col-sm-2" for="image">Fichier: (JPG , JPEG , GIF , PNG & max. 4 Mo)</label>';
                                 echo '<div class="col-sm-10">';
-                                    echo '<input type="file"  name="image" id="image" required>';
+                                    echo '<input type="file"  name="image" id="image" >';
                                 echo "</div>";
                             echo '</div>';
 

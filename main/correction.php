@@ -3,12 +3,23 @@
     require ('header.php');
     require('../database_auth.php');
 ?>
+	<div id="champs_invisible">
+		<?php
+			echo '<input id="idQuestionnaire" type="hidden" value="' . (int)$_POST["idQuestionnaire"] . '">';
+			echo '<input id="nomQuestionnaire" type="hidden" value="' . $_POST['nomQuestionnaire'] . '">';
+		?>
+	</div>
+
 
 	<div id="table-container">
 			<table border="1">
 	    	  
 				<tr>
-					<th  id="ligne1"> nomQuestionnaire </th>
+					<th  id="ligne1"> 
+					<?php
+						echo $_POST['nomQuestionnaire'];
+					?>
+					</th>
 				</tr>
 
 				<tr>
@@ -20,48 +31,45 @@
 
 				<tr>
 					<td id="ligne3">
+
 						<div id="btn_left_container" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 							<div id="div_btn_left">
-								<button type="button" class="btn btn-danger btn-md">
+								<button id="btn_left" type="button" class="btn btn-danger btn-md">
 	          						<span class="glyphicon glyphicon-arrow-left"></span>
 	          						Prec.
 	        					</button>
 	        				</div>
 						</div>
-						<div id="image_container" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
+						<div id="image_container" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+							<img src="" alt="Image non disponible" id="image_question">
 						</div>
 
 						<div id="description_container" class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-							<p class="well"> test </p>
+							<pre id="nom_question_container"> 
+							</pre>
+							<p id="description_question_container" class="well">
+							</p>
 						</div>
 
 						<div id="btn_right_container" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 							<div id="div_btn_right">
-								<button type="button" class="btn btn-danger btn-md">
+								<button id="btn_right" type="button" class="btn btn-danger btn-md">
 	          						Suiv.
 	          						<span class="glyphicon glyphicon-arrow-right"></span>
 	        					</button>
 	        				</div>
 						</div>
+
 					</td>
 				</tr>
-			  
-			 
-
 	    	</table>
+
 	    </div>
+
+	    <script type="text/javascript">
+	    	$('#btn_left').on('click', function(){ click_on_btn_left(question_affichee) });
+	    	$('#btn_right').on('click', function(){ click_on_btn_right(question_affichee) });
+	    </script>
 </body>
 </html>
-
-			<!--<tr id="ligne1">
-				<?php //echo "<th>" . $_POST['nomQuestionnaire'] . "</th>";?>
-			</tr>
-			<tr id="ligne2">
-				<td>
-					<div id="carte" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-					</div>
-				</td>
-			</tr>
-			<tr id="ligne3">
-			</tr>-->

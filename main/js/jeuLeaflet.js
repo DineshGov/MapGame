@@ -196,6 +196,5 @@ $(document).ready(function(){
 		}
 
 	});
-
 	
 });
