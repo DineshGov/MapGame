@@ -42,7 +42,7 @@
 						</div>
 
 						<div id="image_container" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-							<img src="" alt="img" id="image_question">
+							<img src="" alt="Image non disponible" id="image_question">
 						</div>
 
 						<div id="description_container" class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
