@@ -38,7 +38,7 @@ $(document).ready(function(){
 			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000,{color: 'transparent'}).addTo(map);
 			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000,{color: 'transparent'}).addTo(map);
 			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000,{color: 'transparent'}).addTo(map);
-			cercle6 = L.circle([question[0].latitude+3,question[0].longitude],600000,{color: 'blue', opacity: 0.1}).addTo(map);
+			cercle6 = L.circle([question[0].latitude+3,question[0].longitude+3],800000,{color: 'blue', opacity: 0.1}).addTo(map);
 			
 
 		}
