@@ -38,7 +38,7 @@ $(document).ready(function(){
 			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000,{color: 'transparent'}).addTo(map);
 			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000,{color: 'transparent'}).addTo(map);
 			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000,{color: 'transparent'}).addTo(map);
-			cercle6 = L.circle([question[0].latitude+3,question[0].longitude+3],800000,{color: 'blue', opacity: 0.1}).addTo(map);
+			cercle6 = L.circle([question[0].latitude,question[0].longitude],100000,{color: 'transparent'}).addTo(map);
 			
 
 		}
@@ -99,7 +99,7 @@ $(document).ready(function(){
 			cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
 			cercle4.setLatLng([question[phase].latitude,question[phase].longitude]);
 			cercle5.setLatLng([question[phase].latitude,question[phase].longitude]);
-			cercle6.setLatLng([question[phase].latitude+3,question[phase].longitude])
+			cercle6.setLatLng([question[phase].latitude,question[phase].longitude])
 		
 			$('#question_numero').text("Question N°" + question[phase].idQuestion);
 			$('#nom_question').text(question[phase].q);
@@ -114,7 +114,7 @@ $(document).ready(function(){
 		$("#valLat").val(e.latlng.lat);
 		$("#valLong").val(e.latlng.lng);
 		
-		if(e.latlng.distanceTo([question[phase].latitude,question[phase].longitude])<=cercle4.getRadius())
+		if(e.latlng.distanceTo([question[phase].latitude,question[phase].longitude])<=cercle6.getRadius())
 			$('#help').show();
 		else
 			$('#help').hide();

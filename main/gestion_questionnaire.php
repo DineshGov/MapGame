@@ -75,7 +75,7 @@
 
                     for ($compteur_question = 1; $compteur_question <= $nbr_question_total; $compteur_question++) {
                         for ($i=0; $i < $nbr_question_total; $i++) {
-                            if(isset($tab2[$i][idQuestion]) && $tab2[$i][idQuestion] == $compteur_question){
+                            if(isset($tab2[$i]['idQuestion']) && $tab2[$i]['idQuestion'] == $compteur_question){
                                 echo '<tr id="tr_question' . $tab2[$i]['idQuestion'] . '">';
                                 echo "<td id='idQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['idQuestion'] . "</td>";
                                 echo "<td id='nomQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['nomQuestion'] . "</td>";
