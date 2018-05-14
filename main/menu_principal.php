@@ -60,7 +60,7 @@
           }
           echo "<form method='POST' action='jeuLeaflet.php' id='formQuestionnaire" . $tab['idQuestionnaire'] . "'>";
           echo "<input type='hidden' name='idQuestionnaire' value='" . $tab['idQuestionnaire']."'>";
-          echo "<input type='hidden' name='nomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'>";
+          echo '<input type="hidden" name="nomQuestionnaire" value="' . $tab['nomQuestionnaire'] . '">';
           echo "</form>";
         //Formulaire caché permettant de transmettre des informations au moteur de jeu via la variable $_POST
         }
