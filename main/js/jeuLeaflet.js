@@ -75,7 +75,11 @@ $(document).ready(function(){
 		function(reponse)
 		{
 			if(reponse!=true)
-				alert("echec de l'enregistrement");
+			{
+				if($('#invite').val()!='true')
+					alert("score non enregistré");	
+				
+			}
 		});
 	}
 	
