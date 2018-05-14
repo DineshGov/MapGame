@@ -13,7 +13,7 @@
     $req->execute();
     
     $req2=$bd->prepare('select progression from users where login=:l');
-    $req2->bindvalue(':l',$_SESSION['login']);
+    $req2->bindvalue(':l',@$_SESSION['login']);
     $req2->execute();
     $tab2 = $req2->fetch(PDO::FETCH_ASSOC);
     
