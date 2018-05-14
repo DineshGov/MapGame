@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	
+	/*Erreur dans la console javascript possible pour la variable question
+	En effet, cette variable peut prendre quelques ms pour charger, elle peut donc etre considérée
+	non définie au chargement de la page.
+	Cette erreur n'a aucune conséquence sur le fonctionnement du moteur du jeu.
+	*/
+
 	var exoStart=false;
 	var question =	[];
 	var cercle1;

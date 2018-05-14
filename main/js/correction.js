@@ -71,6 +71,12 @@ function set_image(question_affichee){
     if (fichier_existe(png_image))
     	$('#image_question').attr('src', png_image);
 
+    /*
+		3 erreurs apparaitront dans la console js,
+		en effet seule 1 de ces image existe vraiment.
+		Les 3 autres n'existent pas.
+    */
+
     $('#image_question').css('height',hauteur_div_container);
     $('#image_question').css('width',largeur_div_container);
 }
