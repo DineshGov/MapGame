@@ -26,7 +26,9 @@ USE `mapgame`;
 DROP TABLE IF EXISTS `questionnaires`;
 CREATE TABLE `questionnaires` (
   `idQuestionnaire` smallint(6) NOT NULL,
-  `nomQuestionnaire` tinytext NOT NULL
+  `nomQuestionnaire` tinytext NOT NULL,
+  `statut` varchar(50)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
@@ -39,7 +41,8 @@ CREATE TABLE `questions` (
   `idQuestionnaire` smallint(6) NOT NULL,
   `nomQuestion` text NOT NULL,
   `latitude` float NOT NULL,
-  `longitude` float NOT NULL
+  `longitude` float NOT NULL,
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
@@ -48,8 +51,9 @@ CREATE TABLE `questions` (
 
 DROP TABLE IF EXISTS `score`;
 CREATE TABLE `score` (
-  `idUser` varchar(50) NOT NULL,
+  `login` varchar(50) NOT NULL,
   `idQuestionnaire` smallint(6) NOT NULL,
+  `nomQuestionnaire` tinytext NOT NULL,
   `score` smallint(6) NOT NULL,
   `date_partie` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -65,7 +69,8 @@ CREATE TABLE `users` (
   `id` smallint(6) NOT NULL,
   `login` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `progression` integer NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
@@ -89,7 +94,7 @@ ALTER TABLE `questions`
 -- Index pour la table `score`
 --
 ALTER TABLE `score`
-  ADD PRIMARY KEY (`idUser`),
+  ADD PRIMARY KEY (`login`,`idQuestionnaire`,`date_partie`),
   ADD KEY `idQuestionnaire` (`idQuestionnaire`);
 
 --

@@ -2,7 +2,8 @@ body {
   padding-bottom: 40px;
   background-color: #eee;
 }
-#game_name_link , #connected_as{
+
+#connected_as{
   pointer-events: none;
 }
 

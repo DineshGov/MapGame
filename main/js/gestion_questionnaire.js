@@ -8,6 +8,7 @@ function recuperation_coordonnees(e) {
         $(".leaflet-marker-shadow").remove();
         //On supprime le marker (et son ombre) précédemment placé.
         var marker = L.marker(e.latlng).addTo(map);
+        //Sinon utiliser e.latlng.lat et e.latlng.lng
         
         var coordonnees = e.latlng.toString();
         var position_parenthese_ouvrante = coordonnees.indexOf('(') + 1;
@@ -20,10 +21,6 @@ function recuperation_coordonnees(e) {
         
         $("#clickedLatitude").val(extractionCoordonnees[0]);
         $("#clickedLongitude").val(extractionCoordonnees[1]);
-}
-
-function attribution_coordonnees(){
-    console.log('lol');
 }
 
 function maj_nom_questionnaire(){
@@ -45,6 +42,20 @@ function maj_nom_questionnaire(){
         }     
     })
 };
+
+    
+    $('.questionnaireStatut').on('click',function(){
+        console.log($(this).attr('id')); //AJOUTER AJAX POUR ACTIVER/DESACTIVER QUESTIONNAIRE
+    });
+
+function change_statut_questionnaire(){
+    $.get("requete_ajax_gestion_questionnaire.php",{
+        nvxStatut: $(this).attr('id'),
+        idQuestionnaire: $('#inputIdQuestionnaire').val()
+    })
+    //On ignore le retour
+};
+
 
 
 function add_edition_line_in_table(event){
@@ -70,6 +81,11 @@ function add_edition_line_in_table(event){
 
 function delete_edition_line_in_table(){
     $('#add_question').remove();
+}
+
+function attribution_coordonnes_via_bouton(){
+    $('#newLatitude').val($("#clickedLatitude").val());
+    $('#newLongitude').val($("#clickedLongitude").val());
 }
 
 

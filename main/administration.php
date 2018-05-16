@@ -2,6 +2,13 @@
 	$page_name="administration.php";
     require ('header.php');
     require('../database_auth.php');
+	
+	if(!$_SESSION['login'] || !isset($_SESSION['statut']))
+	{
+		echo "Vous n'avez pas les droits nécessaires pour acceder à cette page";
+		header('location: menu_principal.php');
+		exit(1);
+	}
 ?>
 
   <div class="col-lg-12 col-md-12 col-sm-12">
@@ -80,6 +87,10 @@
       </table>
     </div>
 
+    <div class="col-lg-offset-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-sm-offset-3"> 
+      <a href="creation_questionnaire.php" id="btn_creation_questionnaire" class="btn btn-lg btn-success btn-block" role="button">Création questionnaire</a>
+    </div>
+
     <script type="text/javascript"> 
       $('.element_supprimable').on('click', supprimer_element_bdd);
       $('.element_modifiable').on('click', modifie_questionnaire);
@@ -88,3 +99,5 @@
     </script>
 
   </div>
+</body>
+</html>

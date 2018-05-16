@@ -1,99 +1,140 @@
- $(document).ready(function(){
+$(document).ready(function(){
 	
-	var question =	[];
-	$.get(
-		"jeuLeafletAjax.php",
-		{idQuestion: $('#idQuestion').val()},
-		function(reponse){
-			var i=0;
-			alert("a");
+	/*Erreur dans la console javascript possible pour la variable question
+	En effet, cette variable peut prendre quelques ms pour charger, elle peut donc etre considérée
+	non définie au chargement de la page.
+	Cette erreur n'a aucune conséquence sur le fonctionnement du moteur du jeu.
+	*/
+
+	var exoStart=false;	//tant que cette valeur reste à false l'exercice ne peut pas commencer
+	var question =	[];	//tableau d'objet qui contiendra les données de chaque questions
+	var cercle1;	//cercles nécessaires à l'attribution des points
+	var cercle2;
+	var cercle3;
+	var cercle4;
+	var cercle5;
+	var cercle6;	//cercle nécessaire à l'affichage de l'indice	
+	var phase = 0;	//permet de naviguer dans le tableau d'objet à chaque question répondu
+	var essai = 3;	
+	var point = 0;
+	var exoFini = false; 
+
+	$.get("requete_ajax_jeuLeaflet.php",
+		{para: "start", idQ: $('#idQuestionnaire').val()}, //requete ajax permettant d'oir les données de chaque questions
+		function(reponse)
+		{
+
+			var i = 0;
+			
+			while(i<reponse.length) //on joute chaque objet au tableau créée précédement
+			{
+				question.push({
+					idQuestion: reponse[i].idQuestion,
+					q: reponse[i].nomQuestion,
+				 	latitude: reponse[i].latitude,
+				  	longitude: reponse[i].longitude
+				})
+				i++;
+			}
+			$('#question_numero').text("Question N°" + question[0].idQuestion);
+			$('#nom_question').text(question[0].q);
+			cercle1 = L.circle([question[0].latitude,question[0].longitude],8000,{color: 'transparent'}).addTo(map);  //on est obligé de tout initialiser dans cette fct sinon les variables définis plus bas ne reconnaitront pas les champs du tableau question
+			cercle2 = L.circle([question[0].latitude,question[0].longitude],16000,{color: 'transparent'}).addTo(map);
+			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000,{color: 'transparent'}).addTo(map);
+			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000,{color: 'transparent'}).addTo(map);
+			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000,{color: 'transparent'}).addTo(map);
+			cercle6 = L.circle([question[0].latitude,question[0].longitude],100000,{color: 'transparent'}).addTo(map); 
+			
+
 		}
 	);
 	
-	
-	var question =	[	
-						{q : "Ou se trouve la pyramide de Keops?", latitude : 29.978889, longitude : 31.133889},
-						{q : "Ou se trouve les jardins suspendus de Babylone ?", latitude : 32.53554, longitude : 44.42753},
-						{q : "Ou se trouve la statue chryselephantine de Zeus", latitude : 38.6378, longitude : 21.63},			
-						{q : "Ou se trouve le temple d'Artemis ?", latitude : 37.9497, longitude : 27.3639},
-						{q : "Ou se trouve le tombeau de Mausole ?", latitude : 37.03794, longitude : 27.42406},
-						{q : "Ou se trouve le colosse de Rhodes ?", latitude : 36.4511, longitude : 28.2278},				
-						{q : "Ou se trouve la tour de Pharos ?", latitude : 31.2142, longitude : 29.885}
-					];
-					
-	
-	
-	
-	var phase = 0;
-	var essai = 3;
-	var point = 0;
-	var exoFini = false;
+	exoStart=true;
 
-	$('#question').text(question[phase].q);
+	
 	$('#points').text("Vous n'avez actuellement aucun point");
-	$('#test').text("Vous avez droit à "+essai+" essais");
-	
-	console.log("Phase : "+phase);
-	console.log("Points actuels : "+point);
-	console.log("Essais : "+essai);
-	
-	map = L.map('carte').setView([48.858376, 2.294442], 3);
-        //La map est créée mais elle ne possède pas encore de tuiles.
+	$('#nombre_essai').text("Vous avez droit à "+essai+" essais");
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
-        {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 13,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
-        }).addTo(map);
-		
-	//var html ="<h3>Mon marqueur avec popup</h3><p>La Tour Eiffel</p><ul><li>Construction de 1887 à 1889</li><li>Hauteur avec antenne 324m</li><li>Nombre d'ascenseurs 6</li></ul><center><img src='Tour Eiffel.png'></center>";
-		
-		
-	//var popup=L.popup().setLatLng([48.858376, 2.294442]).setContent(html).openOn(map);
+	
+	var map = L.map('carte').setView([48.858376, 2.294442], 3);
 
-		var cercle1 = L.circle([question[phase].latitude,question[phase].longitude],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-		var cercle2 = L.circle([question[phase].latitude,question[phase].longitude],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-		var cercle3 = L.circle([question[phase].latitude,question[phase].longitude],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
+    {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 9,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiZGppbiIsImEiOiJjamZheWg1OWoxaHYzM3VtejB5OWZxcXVwIn0.i_GA2vSOytwgViYnIvlGGA'
+    }).addTo(map);
+	
+	function sauvegarde()
+	{
 		
-		function miseAJour()
+		$.get("requete_ajax_jeuLeaflet.php",
+		{para:"end", idQ: $('#idQuestionnaire').val(), nomQ: $('#nomQuestionnaire').val(), score: point},
+		function(reponse)
 		{
-			
-			if(phase==question.length-1)
+			if(reponse!=true)
 			{
-				$('#total').text('Test fini : vous avez au total '+point+' point(s)');
-				exoFini = true;
-				console.log(exoFini);
+				if($('#invite').val()!='true')
+					alert("score non enregistré");	
+				
 			}
-			else
-			{
-				phase++;
-				essai=3;
-				
-				$.get(
-					"jeuLeafletAjax.php",
-					{idQuestion: phase},
-					function(reponse){
-						console.log(reponse);
-					}
-				);
-				
-				cercle1.setLatLng([question[phase].latitude,question[phase].longitude]);
-				cercle2.setLatLng([question[phase].latitude,question[phase].longitude]);
-				cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
-			
-				$('#question').text(question[phase].q);		
-				$('#test').text("Vous avez droit à "+essai+" essais");				
-				$('#points').text("Vous avez "+point+" point(s)");
-			}
-			
-		}
-
-			
-				
-	function click(e) {
+		});
+	}
+	
+	function miseAJour()
+	{
 		
+		$('#btnInfos').hide();
+		if(phase==question.length-1)
+		{
+			$('#total').text('Test fini : vous avez au total '+point+' point(s) sur 70');
+			$('#points').hide();
+			
+			sauvegarde();
+			
+			exoFini = true;
+			$('#question_numero').text("");
+			$('#nom_question').text("Questionnaire terminé.");
+			$('.endGameButton').css("display", "block");
+
+		}
+		else
+		{
+			phase++;
+			essai=3;
+			cercle1.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle2.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle3.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle4.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle5.setLatLng([question[phase].latitude,question[phase].longitude]);
+			cercle6.setLatLng([question[phase].latitude,question[phase].longitude])
+		
+			$('#question_numero').text("Question N°" + question[phase].idQuestion);
+			$('#nom_question').text(question[phase].q);
+			$('#nombre_essai').text("Vous avez droit à "+essai+" essais");				
+			$('#points').text("Vous avez "+point+" point(s)");
+		}
+		
+	}
+
+	map.on('mousemove',function(e){
+		
+		$("#valLat").val(e.latlng.lat);
+		$("#valLong").val(e.latlng.lng);
+		
+		if(e.latlng.distanceTo([question[phase].latitude,question[phase].longitude])<=cercle6.getRadius())
+			$('#help').show();
+		else
+			$('#help').hide();
+	});
+	
+				
+	map.on('click',function click(e) {
+		if(!exoStart)
+		{
+			e.preventDefault();
+		}
 		$("#valLat").val(e.latlng.lat);
 		$("#valLong").val(e.latlng.lng);
 		
@@ -101,96 +142,68 @@
 		
 		var pop = L.popup();		
 						
-		var dist = e.latlng.distanceTo([question[phase].latitude,question[phase].longitude]);  //à ne pas effacer (distanceTo sert à calculer la distance entre 2 points)
+		var dist = e.latlng.distanceTo([question[phase].latitude,question[phase].longitude]);  //sert à calculer la distance entre 2 points (clique et celui de la réponse)
 		
 		if(exoFini!=true)
 		{
-			if(essai==0)
+			if(essai==1)	//si il ne reste plus que un seul essai au joueur
 			{
-				alert("nombre d'essai dépassé");
-				miseAJour();
+						
+				attrib_pts(); //attribue les points à chaque click (fonction défini en bas)
+				
+				miseAJour(); //met à jour les coordonnées de la réponse
+				
+				
 			}
 			else
+			{	
+				attrib_pts();	
+			}
+			
+			function attrib_pts()	//fonction permettant d'ettribuer le score du joueur en fonction de la distance entre le click effectué et la réponse
 			{
-				if(dist<=cercle1.getRadius())
+				if(dist<=cercle1.getRadius())	// si la distance calculée est un inferieur au rayon du cercle le plus petit
 				{
-					alert("Bonne réponse, vous avez eu 5 points");
-					point+=5;
-					miseAJour();
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Bonne réponse, vous avez eu 10 points").openOn(map); //affiche au joueur le nombre de point obtenu
+					point+=10;	
+					miseAJour();	//met à jour les coordonnées de la réponse
 				}
 					
 				else if(dist>cercle1.getRadius() && dist<=cercle2.getRadius())
 				{
-					alert("Vous y étiez presque, vous avez eu 3 points");
-					point+=3;
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Vous y étiez presque, vous avez eu 8 points").openOn(map);
+					point+=8;
 					miseAJour();
 				}
 				else if(dist>cercle2.getRadius() && dist<=cercle3.getRadius())
 				{
-					alert("Pas mal vous avez eu 1 point");
-					point+=1;
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Pas mal, vous avez eu 6 points").openOn(map);
+					point+=6;
+					miseAJour();
+				}
+				else if(dist>cercle3.getRadius() && dist<=cercle4.getRadius())
+				{
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Pas mal, vous avez eu 4 points").openOn(map);
+					point+=4;
+					miseAJour();
+				}
+				else if(dist>cercle4.getRadius() && dist<=cercle5.getRadius())
+				{
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Pas mal, vous avez eu 2 points").openOn(map);
+					point+=2;
 					miseAJour();
 				}
 				else
 				{
 					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("vous êtes loin de la réponse").openOn(map);
-					console.log("Distance entre le point de réference et le click : "+dist);
 					essai--;
 				}
 						
-				$('#test').text("Vous avez droit à "+essai+" essais");
-						
-				console.log("Phase : "+phase);
-				console.log("Points actuels : "+point);
-				console.log("Essais : "+essai);
+				$('#nombre_essai').text("Vous avez droit à "+essai+" essais");
+		
 			}
-			
 		}
-		else
-		{
-			alert("L'exercice est fini");
-		}
-	}
-		
 
-	map.on('click',click);
-	
-	
-	
-	/*$('.derouler').click(function(){
-		if($('.derbis').css('display')=='block')
-			$('.derbis').css('display','none');
-		else
-			$('.derbis').css('display','block');
 	});
-	
-	
-	$('.rec').click(function(){
-		
-		var a = $('.choix').val();
-		var c = $('.chp_num').val();
-	
-		$('.chp_res').val(a+c);
-		
-		$('.res2').text("votre numéro est le : "+c)
-	});
-	
-	$('#pass').keyup(function(){
-		
-		var a = $('#pass').val();
-		var b = a.length;
-		
-		if( b<2 )
-		{
-			$('#indicateur').text("entrez un mot de passe d'au moins 5 caractères");
-			$('#form1').removeClass().addClass("form-group has-error");
-		}
-		else
-		{
-			$('#indicateur').text("la sécurité est suffisante");
-			$('#form1').removeClass().addClass("form-group has-success");
-		}
-	});*/
-	
 	
 });

@@ -1,0 +1,84 @@
+html, body{
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#table-container{
+	height: calc(100% - 66px);
+	width: 100%;
+	display: flex;
+  	justify-content: center;
+}	
+
+table{
+	height: 100%;
+	width: 99%;
+	padding: 0px;
+	align-self: center;
+}
+
+td {
+	padding:0;
+}
+#col1 {
+	width: 70%;
+	height: 100%;
+}  
+#col2 {
+	width: 30%;
+	height: 100%;
+} 
+td>div{
+	height: 100%;
+}
+th{
+	height: 5%;
+	text-align: center;
+}  
+#footer {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+}
+
+.navbar-static-top {
+  margin-bottom: 10px;
+}
+
+#dashboard{
+	text-align: center;
+}
+
+#nom_question{
+	font-weight: bold;
+	font-style: italic;
+	color: #444000;
+}
+
+#help{
+	margin-right: 1em;
+	float: right;
+	font-size: 120%;
+	display:none;
+}
+
+
+.endGameButton{
+	display:none; 
+}
+
+#btnScore{
+	margin-top: 10px;
+}
+
+#btnCorrection{
+	margin-top: 10px;
+	width: 100%;
+}
+
+#btnMenuPrincipal{
+	margin-top: 10px;
+}
+

@@ -3,7 +3,6 @@ $page_name = "index.php";
 require('header.php');
 require('database_auth.php'); ?>
 
-	<body>
 		<div class="container">
 
 		  <form class="form-signin" action="redirection_connexion.php" method="post">

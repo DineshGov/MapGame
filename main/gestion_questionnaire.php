@@ -17,15 +17,14 @@
 
         <div class="col-lg-12 col-md-12 col-sm-12" id="div_gestion">
             <?php
-            $req=$bd->prepare("SELECT idQuestionnaire, nomQuestionnaire FROM questionnaires WHERE idQuestionnaire = :id");
+            $req=$bd->prepare("SELECT idQuestionnaire, nomQuestionnaire, statut FROM questionnaires WHERE idQuestionnaire = :id");
             $req->bindvalue(":id", $_POST['idQuestionnaire']);
             $req->execute();
             $tab = $req->fetch(PDO::FETCH_ASSOC);
 
-
             echo "<p>idQuestionnaire: <input type='text' name='inputIdQuestionnaire' id='inputIdQuestionnaire' value='" . $tab['idQuestionnaire'] . "'disabled></input></p>";
-            echo "<p>nomQuestionnaire: <input type='text' name='inputNomQuestionnaire' id='inputNomQuestionnaire' value='" . $tab['nomQuestionnaire'] . "'></input>";
-            echo '<button type="button" class="btn btn-info btn-xs" id="majNomQuestionnaire">Mise à jour</button>';
+            echo '<p>nomQuestionnaire: <input type="text" name="inputNomQuestionnaire" id="inputNomQuestionnaire" value="' . $tab["nomQuestionnaire"] . '"></input>';
+            echo '<button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="majNomQuestionnaire">Mise à jour</button>';
             ?>
             <div id="resultat_requete_MAJ">
             </div>
@@ -41,9 +40,12 @@
             Latitude: <input type="text" id="clickedLatitude"> 
             Longitude: <input type="text" id="clickedLongitude">
         </p>
-            <p>Attribuer ces coordonnées à la question à modifier
-                <button type="button" class="btn btn-info btn-xs" id="btn_attrib_coord" >Go</button>
-            </p>
+
+        <div>
+            <p>Attribuer ces coordonnées à la question à modifier</p>
+            <p><button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="btn_attrib_coord" >Go</button></p>
+            <p id="explication_utilisation">(Cliquez sur une clé à molette et appuyez sur le bouton Go pour attribuer les coordonnées à la question.)</p>
+        </div>
 
         </div>
 
@@ -63,17 +65,13 @@
                   <?php
                     $req2=$bd->prepare('select * from questions where idQuestionnaire= :id order by idQuestion');
                     $req2->bindvalue(':id', $_POST['idQuestionnaire']);
-                    // idQuestion, nomQuestion, longitude, latitude
                     $req2->execute();
                     $compteur_question = 1;
                     $nbr_question_total = 7;
                     $question_trouvee_dans_bdd = false;
 
-                    /*print_r($tab2 = $req2->fetchAll(PDO::FETCH_ASSOC));
-                    echo "<br />";
-                    echo "test = " . ($tab2[0][idQuestion]);*/
-
                     $tab2 = $req2->fetchAll(PDO::FETCH_ASSOC);
+                    //Ce tableau contient toutes les informations d'un questionnaire.
 
                     for ($compteur_question = 1; $compteur_question <= $nbr_question_total; $compteur_question++) {
                         for ($i=0; $i < $nbr_question_total; $i++) {
@@ -101,16 +99,128 @@
                         $question_trouvee_dans_bdd = false;
                         $i = 0;
                     }
+                    //Cette boucle for permet de creer le tableau ligne par ligne
+                    //Une ligne est vide si pour tout $i, il n'existe pas de question d'id correspondant
+                    //Sinon on recupere les infos de la question et on l'ajoute au tableau
                   ?>
                 </tbody>
             </table>
 
         </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <button type="button" class="btn btn-info btn-xs" id="buttonQuestionUpdate">Mise à jour question</button>
-                <h6 id="reponse_MAJ"></h6>
-            </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <button type="button" class="btn_gestion_questionnaire btn btn-info btn-xs" id="buttonQuestionUpdate">Mise à jour question</button>
+            <h6 id="reponse_MAJ"></h6>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h3>Insertion image et description pour chaque question</h3>
+
+            <?php
+                $nbr_question = 7;
+                $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+                for ($div_question = 1; $div_question <= $nbr_question; $div_question++) {
+                    echo '<div class="col-lg-12 col-md-12 col-sm-12">';
+                        echo '<h4>Question ' . $div_question . '</h4>';
+
+                        $indiceQuestionDansTab2 = $div_question - 1;
+                        $id_image = $tab['idQuestionnaire'] . "_" . $div_question;
+
+                        $pwd_image = "img/" . $id_image . "";
+                        //Chemin vers l'image sans l'extension
+
+                        //Ajout des différentes extensions possibles
+                        $jpg_image  = "" . $pwd_image . "." . $extensions_valides[0] . "";
+                        $jpeg_image = "" . $pwd_image . "." . $extensions_valides[1] . "";
+                        $gif_image  = "" . $pwd_image . "." . $extensions_valides[2] . "";
+                        $png_image  = "" . $pwd_image . "." . $extensions_valides[3] . "";
+
+                        if(file_exists($jpg_image)){
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
+                                echo '<img src="' . $jpg_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else if(file_exists($jpeg_image)){
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
+                                echo '<img src="' . $jpeg_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else if(file_exists($gif_image)){
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
+                                echo '<img src="' . $gif_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else if(file_exists($png_image)){
+                            echo '<div class="col-lg-12 col-md-12 col-sm-12 img_container">';
+                                echo '<img src="' . $png_image . '" alt="img' . $id_image . '" height="160" width="100" >';
+                            echo '</div>';
+                        }
+                        else
+                            echo "Pas d'image enregistrée.";
+
+                        echo '<form class="form-horizontal" method="post" action="verification_upload.php" enctype="multipart/form-data">';
+                            
+                            echo '<div class="form-group">';
+                                echo '<label class="control-label col-sm-2" for="image">Fichier: (JPG , JPEG , GIF , PNG & max. 4 Mo)</label>';
+                                echo '<div class="col-sm-10">';
+                                    echo '<input type="file"  name="image" id="image" >';
+                                echo "</div>";
+                            echo '</div>';
+
+                            echo '<div class="form-group">';
+                                echo '<label class="control-label col-sm-2" for="description">Description:</label>';
+                                echo '<div class="col-sm-10">';
+                                    if(isset($tab2[$indiceQuestionDansTab2]['description']) && !is_null($tab2[$indiceQuestionDansTab2]['description']) ){
+                                        echo '<textarea name="description" class="form-control" id="description">' . $tab2[$indiceQuestionDansTab2]['description'] . '</textarea required>';    
+                                    }
+                                    else{
+                                        echo '<textarea name="description" class="form-control" id="description"></textarea required>';
+                                    }
+                                    //Affiche la description dans le champs si une description pour cette question existe dans la bdd
+                                echo "</div>";
+                            echo '</div>';
+
+                            //Informations à transmettre via $_POST:
+                            echo '<input type="hidden" name="idQuestionnaire" value="' . $tab["idQuestionnaire"] . '"> ';
+                            echo '<input type="hidden" name="idQuestion" value="' . $div_question . '"> ';
+                            //idQuestionnaire et idQuestion serviront à créer le nom de l'image.
+
+                            echo '<button type="submit" class="btn btn-default">Envoyer </button>';
+
+                        echo '</form>';
+
+                    echo '</div>';
+
+                }//Fin for
+            ?>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" id="div_statut_questionnaire">
+            <h3>Statut du questionnaire</h3>
+            <form id="questionnaireStatutForm">
+
+                <?php
+                if($tab['statut'] !== 'desactive'){
+                    echo '<label class="radio">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="active" checked="checked">
+                        Questionnaire activé</label>';
+                    echo '<label class="radio">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="desactive" >
+                        Questionnaire désactivé</label>';
+                    }
+                else{
+                    echo '<label class="radio">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="active">
+                        Activer le questionnaire</label>';
+                    echo '<label class="radio">
+                        <input type="radio" name="questionnaireStatut" class="questionnaireStatut" id="desactive" checked="checked">
+                        Desactiver le questionnaire</label>';
+                }
+                ?>
+            </form>
+        </div>
+
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12" id="div_returnLink">
@@ -119,6 +229,7 @@
         Retour à la page d'administration
         </a>
     </div>
+
 
     <script type="text/javascript">
         
@@ -134,9 +245,10 @@
         }).addTo(map);
 
         map.on('click', recuperation_coordonnees);
-        var cercle1 = L.circle([48.858376, 2.294442],500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-        var cercle2 = L.circle([48.858376, 2.294442],1000,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
-        var cercle3 = L.circle([48.858376, 2.294442],1500,{color: "red" ,weight: 8,fillColor: "blue"}).addTo(map);
+        map.on('mousemove', function(e){
+            console.log(e.latlng);
+        });
+
     </script>
 
     <script type="text/javascript">
@@ -144,6 +256,9 @@
         $('#majNomQuestionnaire').on('click', maj_nom_questionnaire);
         $('.glyphicon-wrench').on('click', add_edition_line_in_table);
         $('#buttonQuestionUpdate').on('click', maj_question);
+        $('#btn_attrib_coord').on('click', attribution_coordonnes_via_bouton);
+        $('.questionnaireStatut').on('click', change_statut_questionnaire);
+
     </script>
 
 

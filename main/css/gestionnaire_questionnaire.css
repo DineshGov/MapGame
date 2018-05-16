@@ -14,7 +14,7 @@
 #mapContainer{
 	height: 460px;
 	margin-top: 20px;
-	margin-bottom: 20px;"
+	margin-bottom: 20px;
 }
 
 #inputNomQuestionnaire{
@@ -35,10 +35,6 @@ label{
 	font-size: 13px
 }
 
-#btn_attrib_coord{
-	margin-left: 10px;
-}
-
 .glyphicon-remove{
 	cursor: pointer;
 }
@@ -53,4 +49,26 @@ label{
 
 #buttonQuestionUpdate{
 	margin-bottom: 10px;
+}
+
+.btn_gestion_questionnaire{
+	margin-top: inherit;
+}
+
+#explication_utilisation{
+	font-size: 90%;
+	font-style: italic;
+}
+
+#div_statut_questionnaire{
+	margin-top: 40px;
+}
+
+#questionnaireStatutForm{
+	margin-top: 25px;
+	margin-left: 30px;
+}
+
+.img_container{
+	text-align: center;
 }
