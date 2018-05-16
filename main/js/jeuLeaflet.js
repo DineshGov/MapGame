@@ -6,28 +6,27 @@ $(document).ready(function(){
 	Cette erreur n'a aucune conséquence sur le fonctionnement du moteur du jeu.
 	*/
 
-	var exoStart=false;
-	var question =	[];
-	var cercle1;
+	var exoStart=false;	//tant que cette valeur reste à false l'exercice ne peut pas commencer
+	var question =	[];	//tableau d'objet qui contiendra les données de chaque questions
+	var cercle1;	//cercles nécessaires à l'attribution des points
 	var cercle2;
 	var cercle3;
 	var cercle4;
 	var cercle5;
-	var cercle6;
-	
-	var phase = 0;
-	var essai = 3;
+	var cercle6;	//cercle nécessaire à l'affichage de l'indice	
+	var phase = 0;	//permet de naviguer dans le tableau d'objet à chaque question répondu
+	var essai = 3;	
 	var point = 0;
-	var exoFini = false;
+	var exoFini = false; 
 
 	$.get("requete_ajax_jeuLeaflet.php",
-		{para: "start", idQ: $('#idQuestionnaire').val()},
+		{para: "start", idQ: $('#idQuestionnaire').val()}, //requete ajax permettant d'oir les données de chaque questions
 		function(reponse)
 		{
 
 			var i = 0;
 			
-			while(i<reponse.length)
+			while(i<reponse.length) //on joute chaque objet au tableau créée précédement
 			{
 				question.push({
 					idQuestion: reponse[i].idQuestion,
@@ -44,7 +43,7 @@ $(document).ready(function(){
 			cercle3 = L.circle([question[0].latitude,question[0].longitude],24000,{color: 'transparent'}).addTo(map);
 			cercle4 = L.circle([question[0].latitude,question[0].longitude],32000,{color: 'transparent'}).addTo(map);
 			cercle5 = L.circle([question[0].latitude,question[0].longitude],40000,{color: 'transparent'}).addTo(map);
-			cercle6 = L.circle([question[0].latitude,question[0].longitude],100000,{color: 'transparent'}).addTo(map);
+			cercle6 = L.circle([question[0].latitude,question[0].longitude],100000,{color: 'transparent'}).addTo(map); 
 			
 
 		}
@@ -143,16 +142,16 @@ $(document).ready(function(){
 		
 		var pop = L.popup();		
 						
-		var dist = e.latlng.distanceTo([question[phase].latitude,question[phase].longitude]);  //à ne pas effacer (distanceTo sert à calculer la distance entre 2 points)
+		var dist = e.latlng.distanceTo([question[phase].latitude,question[phase].longitude]);  //sert à calculer la distance entre 2 points (clique et celui de la réponse)
 		
 		if(exoFini!=true)
 		{
-			if(essai==1)
+			if(essai==1)	//si il ne reste plus que un seul essai au joueur
 			{
 						
-				attrib_pts();
+				attrib_pts(); //attribue les points à chaque click (fonction défini en bas)
 				
-				miseAJour();
+				miseAJour(); //met à jour les coordonnées de la réponse
 				
 				
 			}
@@ -161,13 +160,13 @@ $(document).ready(function(){
 				attrib_pts();	
 			}
 			
-			function attrib_pts()
+			function attrib_pts()	//fonction permettant d'ettribuer le score du joueur en fonction de la distance entre le click effectué et la réponse
 			{
-				if(dist<=cercle1.getRadius())
+				if(dist<=cercle1.getRadius())	// si la distance calculée est un inferieur au rayon du cercle le plus petit
 				{
-					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Bonne réponse , vous avez eu 10 point").openOn(map);
-					point+=10;
-					miseAJour();
+					pop.setLatLng([e.latlng.lat,e.latlng.lng]).setContent("Bonne réponse , vous avez eu 10 point").openOn(map); //affiche au joueur le nombre de point obtenu
+					point+=10;	
+					miseAJour();	//met à jour les coordonnées de la réponse
 				}
 					
 				else if(dist>cercle1.getRadius() && dist<=cercle2.getRadius())
