@@ -19,7 +19,7 @@ $req = $bd->prepare('select nomQuestionnaire,max(score) as record from score whe
 $req->bindvalue(':l',$_SESSION['login']);
 $req->execute();
  
-$req2 = $bd->prepare('select * from score where login=:l');
+$req2 = $bd->prepare('select * from score where login=:l order by date_partie desc');
 $req2->bindvalue(':l',$_SESSION['login']);
 $req2->execute();
 
