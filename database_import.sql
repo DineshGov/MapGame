@@ -51,6 +51,7 @@ CREATE TABLE `questions` (
 
 DROP TABLE IF EXISTS `score`;
 CREATE TABLE `score` (
+  `id` smallint NOT NULL,
   `login` varchar(50) NOT NULL,
   `idQuestionnaire` smallint(6) NOT NULL,
   `nomQuestionnaire` tinytext NOT NULL,
@@ -94,14 +95,14 @@ ALTER TABLE `questions`
 -- Index pour la table `score`
 --
 ALTER TABLE `score`
-  ADD PRIMARY KEY (`login`,`idQuestionnaire`,`date_partie`),
+  ADD PRIMARY KEY (`id`,`idQuestionnaire`,`date_partie`),
   ADD KEY `idQuestionnaire` (`idQuestionnaire`);
 
 --
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`login`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
@@ -143,3 +144,6 @@ ALTER TABLE `questions`
 --
 ALTER TABLE `score`
   ADD CONSTRAINT `score_ibfk_1` FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires` (`idQuestionnaire`);
+
+ALTER TABLE `score`
+  ADD CONSTRAINT `score_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`);

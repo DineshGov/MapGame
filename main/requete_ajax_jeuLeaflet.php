@@ -25,16 +25,22 @@
 			if(!isset($_SESSION['login']))
 			{
 				echo "true";
-			}	
+			}
 			
-			$req = $bd->prepare("select * from score where login = :l and idQuestionnaire = :id");
-			$req->bindvalue(':l',$_SESSION['login']);
+			$req0 = $bd->prepare("select id from users where login = :l");
+			$req0->bindvalue(':l',$_SESSION['login']);
+			$req0->execute();
+			$tab0 = $req0->fetch(PDO::FETCH_ASSOC);
+			
+			$req = $bd->prepare("select * from score where id = :idU and idQuestionnaire = :id");
+			$req->bindvalue(':idU',$tab0['id']);
 			$req->bindvalue(':id',$_GET['idQ']);
 			$req->execute();
 			$tab = $req->fetchAll(PDO::FETCH_ASSOC);
 			
 			
-			$req2=$bd->prepare('insert into score values(:l,:id,:nQ,:s,:d)');
+			$req2=$bd->prepare('insert into score values(:idU,:l,:id,:nQ,:s,:d)');
+			$req2->bindvalue(':idU',$tab0['id']);
 			$req2->bindvalue(':l',$_SESSION['login']);
 			$req2->bindvalue(':id',$_GET['idQ']);
 			$req2->bindvalue(':nQ',$_GET['nomQ']);
