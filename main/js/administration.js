@@ -7,7 +7,7 @@ function supprimer_element_bdd(event){
 
 	var id = event.target.id;
 
-	$.get("requete_ajax_suppression_user.php",
+	$.get("requete_ajax_administration.php",
 	{elementId: id},
 	function(reponse)
 	{

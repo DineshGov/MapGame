@@ -42,7 +42,7 @@ require('database_auth.php'); ?>
 		}
 		else{
 			echo '<div class="redirection_div"> Erreur. </div>';
-			echo "<p>Erreur lors de l'inscription. Attention à ne pas un mot de passe constitué uniquement d'espace.</p> <p>Veuillez contacter l'administrateur au 06 82 32 23 20 si le problème persiste.</p>" . "\n<a href='inscription.php'> Retour à la page d'inscription </a>";
+			echo "<p>Erreur lors de l'inscription. Attention à ne pas un mot de passe constitué uniquement d'espace.</p> <p>Veuillez contacter l'administrateur si le problème persiste.</p>" . "\n<a href='inscription.php'> Retour à la page d'inscription </a>";
 			echo("<script>setTimeout('RedirectionVersInscription()', 3)</script>");
 		}
 	?>
