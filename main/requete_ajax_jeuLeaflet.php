@@ -27,7 +27,7 @@
 				echo "true";
 			}
 			
-			$req0 = $bd->prepare("select id from users where login = :l");
+			$req0 = $bd->prepare("select id from users where login = :l"); //sert à recuperer l'id du joueur
 			$req0->bindvalue(':l',$_SESSION['login']);
 			$req0->execute();
 			$tab0 = $req0->fetch(PDO::FETCH_ASSOC);
