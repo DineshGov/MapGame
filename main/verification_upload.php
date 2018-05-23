@@ -39,7 +39,7 @@
 					$dossier = "img/";
 					$nom_fichier_sans_extension = "" . $_POST["idQuestionnaire"] . "_" . $_POST["idQuestion"] . "";
 					$nom_fichier_avec_extension = "" . $nom_fichier_sans_extension . "." . $extension_upload . "";
-					
+					//Une image a pour format de nom: idQuestionnaire_idQuestion.extension
 					$emplacement = "" . $dossier . "" . $nom_fichier_avec_extension . "";
 
 					$resultat = move_uploaded_file($_FILES['image']['tmp_name'], $emplacement);

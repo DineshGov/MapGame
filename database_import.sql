@@ -146,4 +146,4 @@ ALTER TABLE `score`
   ADD CONSTRAINT `score_ibfk_1` FOREIGN KEY (`idQuestionnaire`) REFERENCES `questionnaires` (`idQuestionnaire`);
 
 ALTER TABLE `score`
-  ADD CONSTRAINT `score_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `score_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
