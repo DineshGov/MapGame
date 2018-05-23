@@ -49,3 +49,4 @@ INSERT INTO `questions` (`idQuestion`, `idQuestionnaire`, `nomQuestion`, `latitu
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(1, 'admin', 'admin', '2018-03-23 23:55:41',1);
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(2, 'assan', 'bafa1b192396b6aceacd52f5708064b1', '2018-03-23 23:55:41',1);
 INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(3, 'dinesh', '9c9f1c65b1dc1f79498c9f09eb610e1a', '2018-03-23 23:55:41',1);
+INSERT INTO `users` (`id`, `login`, `password`, `date_inscription`,`progression`) VALUES(4, 'etudiant', 'a3c6c43c72c71ed874d16ce12f8cede1', '2018-05-23 20:51:41', 1);

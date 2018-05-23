@@ -1,13 +1,22 @@
-Comment utiliser se7en ?
+Comment utiliser Se7en ?
 
 
 
-- Telechargez et installez wamp server (ou mamp pour mac) pour pouvoir utiliser vos fichiers php
-- Apres installation, allez sur phpmyadmin pour pouvoir avoir accès à vos bases de données avec ce lien : llocalhost/phpmyadmin
-- Creez une nouvelle base de données en selectionnant l'option à gauche "Nouvelle base de données" puis appellez la "Mapgame" (attention à bien choisir utf-8 comme option de caractère)
-- Validez en appuyant sur "creer"
-- Apres avoir créé votre base de données cliquez sur le nom de celle-ci parmis ceux présents à gauche de l'écran
-- Selectionnez maintenant l'option "import" présent sur barre de navigation 
-- cliquez sur "choisir un fichier" et selectionnez le fichier "database_import" présent dans le dossier mapgame puis validez
-- repetez l'operation précedente mais en choisissant cette fois le fichier "database_insertion"
-- vous voila pret à utiliser le site ! vous pouvez essayer en utilisant le mode invité ou en vous inscrivant, pour cela allez sur le lien : localhost/mapgame
+- Télechargez et installez wamp server (ou mamp pour mac) et lancez votre serveur.
+
+- Apres installation, allez sur phpmyadmin pour avoir accès à vos bases de données avec ce lien : localhost:8888/phpmyadmin
+
+- Importez la base de données de notre projet en important le fichier "database_import.sql"
+
+- Une fois que la base de données a été importée, cliquez sur le nom de celle-ci à gauche de l'écran
+
+- Selectionnez maintenant l'option import présent sur barre de navigation 
+
+- Importez le fichier "database_insertion.sql" présent dans la racine du répertoire MapGame.
+
+- Vous voila prêt à utiliser le site ! Vous pouvez essayer en utilisant le mode invité ou en vous inscrivant, pour cela allez sur le lien : localhost:8888/MapGame
+
+Après l'import du fichier database_insertion.sql, vous pourrez utiliser le compte administrateur:
+
+login: admin
+mdp: admin
