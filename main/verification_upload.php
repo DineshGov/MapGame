@@ -18,41 +18,42 @@
 		$req->execute();
 
 		echo '<div class="well">Description mise à jour.</div>';
+	}
+	else
+		echo '<div class="well">Description non mise à jour.</div>';
+			
+	if( !empty($_FILES['image']['name']) ){
+		if ($_FILES['image']['error'] > 0) 
+			echo '<div class="well">Erreur lors du transfert.</div>';
+		else if ($_FILES['icone']['size'] > $maxsize) 
+			echo '<div class="well">Le fichier est tros gros.</div>';
+		else{
 
-		if( empty($_FILES) ){
-			if ($_FILES['image']['error'] > 0) 
-				echo "Erreur lors du transfert";
-			else if ($_FILES['icone']['size'] > $maxsize) 
-				echo "Le fichier est trop gros";
+			$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+			//1. strrchr renvoie l'extension avec le point (« . »).
+			//2. substr(chaine,1) ignore le premier caractère de chaine.
+			//3. strtolower met l'extension en minuscules.
+			$extension_upload = strtolower(  substr(  strrchr($_FILES['image']['name'], '.')  ,1)  );
+
+			if ( !in_array($extension_upload,$extensions_valides) ) {
+				echo '<div class="well">Extension incorrecte.</div>';
+			}
 			else{
+				$dossier = "img/";
+				$nom_fichier_sans_extension = "" . $_POST["idQuestionnaire"] . "_" . $_POST["idQuestion"] . "";
+				$nom_fichier_avec_extension = "" . $nom_fichier_sans_extension . "." . $extension_upload . "";
+				//Une image a pour format de nom: idQuestionnaire_idQuestion.extension
+				$emplacement = "" . $dossier . "" . $nom_fichier_avec_extension . "";
 
-				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
-				//1. strrchr renvoie l'extension avec le point (« . »).
-				//2. substr(chaine,1) ignore le premier caractère de chaine.
-				//3. strtolower met l'extension en minuscules.
-				$extension_upload = strtolower(  substr(  strrchr($_FILES['image']['name'], '.')  ,1)  );
+				$resultat = move_uploaded_file($_FILES['image']['tmp_name'], $emplacement);
 
-				if ( !in_array($extension_upload,$extensions_valides) ) {
-					echo "Extension incorrecte";
-				}
-				else{
-					$dossier = "img/";
-					$nom_fichier_sans_extension = "" . $_POST["idQuestionnaire"] . "_" . $_POST["idQuestion"] . "";
-					$nom_fichier_avec_extension = "" . $nom_fichier_sans_extension . "." . $extension_upload . "";
-					//Une image a pour format de nom: idQuestionnaire_idQuestion.extension
-					$emplacement = "" . $dossier . "" . $nom_fichier_avec_extension . "";
-
-					$resultat = move_uploaded_file($_FILES['image']['tmp_name'], $emplacement);
-
-					if ($resultat) echo "Transfert réussi";
-					else echo "Transfert échoué";
-				}
+				if ($resultat) echo '<div class="well">Transfert réussi.</div>';
+				else echo '<div class="well">Transfert échoué.</div>';
 			}
 		}
-		else
-			echo '<div class="well">Pas de fichier uploadé.</div>';
 	}
-
+	else
+		echo '<div class="well">Pas de fichier uploadé.</div>';
 ?>
 
 </div>

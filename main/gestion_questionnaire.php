@@ -78,7 +78,7 @@
                             if(isset($tab2[$i]['idQuestion']) && $tab2[$i]['idQuestion'] == $compteur_question){
                                 echo '<tr id="tr_question' . $tab2[$i]['idQuestion'] . '">';
                                 echo "<td id='idQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['idQuestion'] . "</td>";
-                                echo "<td id='nomQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['nomQuestion'] . "</td>";
+                                echo '<td id="nomQ' . $tab2[$i]["idQuestion"] . '">' . $tab2[$i]["nomQuestion"] . '</td>';
                                 echo "<td id='latiQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['latitude'] . "</td>";
                                 echo "<td id='longQ" . $tab2[$i]['idQuestion'] . "'>" . $tab2[$i]['longitude'] . "</td>";
                                 echo '<td><span  id="edit_question' . $tab2[$i]['idQuestion'] . '" class="glyphicon glyphicon-wrench"></span></td>';
@@ -90,7 +90,7 @@
                         if(!$question_trouvee_dans_bdd){
                             echo '<tr id="tr_question' . $compteur_question . '">';
                             echo "<td id='idQ" . $compteur_question . "'> $compteur_question </td>";
-                            echo "<td id='nomQ" . $compteur_question . "'> </td>";
+                            echo '<td id="nomQ' . $compteur_question . '"> </td>';
                             echo "<td id='latiQ" . $compteur_question . "'> </td>";
                             echo "<td id='longQ" . $compteur_question . "'> </td>";
                             echo '<td><span  id="edit_question' . $compteur_question . '" class="glyphicon glyphicon-wrench"></span></td>';

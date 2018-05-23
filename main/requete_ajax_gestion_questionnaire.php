@@ -14,13 +14,25 @@
         $req=$bd->prepare('INSERT INTO questions (idQuestion, idQuestionnaire, nomQuestion, longitude, latitude)
             VALUES (:idquestion, :idquestionnaire, :nom, :long, :lat)
             ON DUPLICATE KEY UPDATE nomQuestion = :nom, longitude = :long, latitude = :lat');
-        $req->bindvalue(':newName',$_GET['nomQuestionnaire']);
 
         $req->bindvalue(':idquestion',$_GET['id_question']);
         $req->bindvalue(':idquestionnaire',$_GET['id_questionnaire']);
         $req->bindvalue(':nom',$_GET['question']);
         $req->bindvalue(':long',$_GET['longitude']);
         $req->bindvalue(':lat',$_GET['latitude']);
+        $req->execute();
+
+        echo 'Mise a jour terminée';
+    }
+    else if( isset($_GET['id_questionnaire']) && isset($_GET['id_question']) && isset($_GET['question']) && trim($_GET['id_questionnaire'])!=="" && trim($_GET['id_question'])!=="" && trim($_GET['question'])!==""){
+
+        $req=$bd->prepare('INSERT INTO questions (idQuestion, idQuestionnaire, nomQuestion)
+            VALUES (:idquestion, :idquestionnaire, :nom)
+            ON DUPLICATE KEY UPDATE nomQuestion = :nom');
+
+        $req->bindvalue(':idquestion',$_GET['id_question']);
+        $req->bindvalue(':idquestionnaire',$_GET['id_questionnaire']);
+        $req->bindvalue(':nom',$_GET['question']);
         $req->execute();
 
         echo 'Mise a jour terminée';

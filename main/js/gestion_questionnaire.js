@@ -66,14 +66,14 @@ function add_edition_line_in_table(event){
     var longitude_existant = $('#longQ' + id_question).text();
     var latitude_existant = $('#latiQ' + id_question).text();
     $('#add_question').remove();
-    $('#tr_question' + id_question).after("\
-        <tr class='active' id='add_question'>\
-        <td id='updating_question_id' >" + id_question + "</td>\
-        <td><input type='text' id='newQuestion' class='form-control' value='" + nom_existant + "'></td>\
-        <td><input type='text' id='newLatitude' class='form-control' value='" + latitude_existant + "'></td>\
-        <td><input type='text' id='newLongitude' class='form-control' value='" + longitude_existant + "'></td>\
-        <td>" + "<span id='cancel_add' class='glyphicon glyphicon-remove'></span>" + "</td>\
-        </tr>");
+    $('#tr_question' + id_question).after('\
+        <tr class="active" id="add_question">\
+        <td id="updating_question_id" >' + id_question + '</td>\
+        <td><input type="text" id="newQuestion" class="form-control" value="' + nom_existant + '"></td>\
+        <td><input type="text" id="newLatitude" class="form-control" value="' + latitude_existant + '"></td>\
+        <td><input type="text" id="newLongitude" class="form-control" value="' + longitude_existant + '"></td>\
+        <td>' + '<span id="cancel_add" class="glyphicon glyphicon-remove"></span>' + '</td>\
+        </tr>');
     
     $('#cancel_add').on('click', delete_edition_line_in_table);
 };
@@ -124,5 +124,3 @@ function maj_question(){
     })
 
 };
-
-
